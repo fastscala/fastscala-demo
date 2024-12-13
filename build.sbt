@@ -27,11 +27,11 @@ lazy val fs_demo = (project in file("demo/"))
     publishArtifact := true,
 
     libraryDependencies ++= Seq(
-      "com.fastscala" %% "fs-core" % "0.0.3",
-      "com.fastscala" %% "fs-circe" % "0.0.3",
-      "com.fastscala" %% "fs-scala-xml" % "0.0.3",
-      "com.fastscala" %% "fs-db" % "0.0.3",
-      "com.fastscala" %% "fs-components" % "0.0.3",
+      "com.fastscala" %% "fs-core" % "0.0.5",
+      "com.fastscala" %% "fs-circe" % "0.0.5",
+      "com.fastscala" %% "fs-scala-xml" % "0.0.5",
+      "com.fastscala" %% "fs-db" % "0.0.5",
+      "com.fastscala" %% "fs-components" % "0.0.5",
       //
       "org.typelevel" %% "cats-effect" % "3.5.5",
       "at.favre.lib" % "bcrypt" % "0.10.2",
