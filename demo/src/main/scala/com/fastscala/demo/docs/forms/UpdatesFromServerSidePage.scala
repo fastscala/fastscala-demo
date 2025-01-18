@@ -2,7 +2,6 @@ package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples2Page
-import com.fastscala.demo.docs.data.{Continents, Fruit}
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
@@ -15,6 +14,7 @@ import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.fields.select.F7SelectField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
+import com.fastscala.demo.testdata.{Continents, Fruit}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import scala.util.Random

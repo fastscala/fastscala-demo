@@ -3,12 +3,12 @@ package com.fastscala.demo.docs.fastscala
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples2Page
 import com.fastscala.demo.docs.components.Widget
-import com.fastscala.demo.docs.data.{CountriesData, Country}
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.scala_xml.rerenderers.{RerendererDebugStatus, RerendererDebugStatusState}
 import com.fastscala.components.bootstrap5.tables.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.bootstrap5.components.BSBtnToogle.RichBSBtnToogler
+import com.fastscala.demo.testdata.{CountriesData, Country}
 
 import scala.xml.{Elem, NodeSeq}
 

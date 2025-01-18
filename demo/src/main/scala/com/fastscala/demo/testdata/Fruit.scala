@@ -1,4 +1,4 @@
-package com.fastscala.demo.docs.data
+package com.fastscala.demo.testdata
 
 object Fruit {
 

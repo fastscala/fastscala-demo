@@ -1,5 +1,4 @@
-package com.fastscala.demo.docs.data
-
+package com.fastscala.demo.testdata
 
 object Continents {
   def apply(): List[String] = List(

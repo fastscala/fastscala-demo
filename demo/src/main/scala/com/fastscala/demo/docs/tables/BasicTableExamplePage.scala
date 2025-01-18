@@ -2,11 +2,11 @@ package com.fastscala.demo.docs.tables
 
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples2Page
-import com.fastscala.demo.docs.data.{CountriesData, Country}
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.tables.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
+import com.fastscala.demo.testdata.{CountriesData, Country}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import java.util.Date
