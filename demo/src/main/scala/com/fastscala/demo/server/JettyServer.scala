@@ -17,7 +17,9 @@ object JettyServer extends JettyServerHelper() {
   override def buildMainHandler(): Handler = new RoutingHandler()
 
   override def buildFSSystem(): FSSystem = new FSSystem(appName = appName) {
-    override def transformCallbackResponse(resp: Js, fsFunc: FSFunc, page: FSPage): Js = super.transformCallbackResponse(resp, fsFunc, page) & JS.setContents("fs_num_page_callbacks", scala.xml.Text(page.callbacks.size.toString))
+    override def transformCallbackResponse(resp: Js, fsFunc: FSFunc, page: FSPage): Js = 
+      super.transformCallbackResponse(resp, fsFunc, page) &
+        JS.setContents("fs_num_page_callbacks", scala.xml.Text(page.callbacks.size.toString))
   }
 
   override def postStart(): Unit = {

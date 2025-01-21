@@ -1,6 +1,6 @@
 package com.fastscala.demo.docs.jstree
 
-import com.fastscala.components.jstree.{JSTree, JSTreeContextMenuAction, JSTreeNode, JSTreeNodeWithContextMenu, JSTreeSimpleNode, JSTreeWithContextMenu}
+import com.fastscala.components.jstree.{DefaultJSTreeContextMenuAction, JSTree, JSTreeContextMenuAction, JSTreeNode, JSTreeNodeWithContextMenu, JSTreeSimpleNode, JSTreeWithContextMenu}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples2Page
 import com.fastscala.demo.testdata.Continents
@@ -68,7 +68,12 @@ class JSTreePage extends MultipleCodeExamples2Page() {
                 ) extends JSTreeNodeWithContextMenu[Unit, Node] {
         override def childrenF: () => Seq[Node] = () => Nil
 
-        override def actions: Seq[JSTreeContextMenuAction] = Nil
+        override def actions: Seq[JSTreeContextMenuAction] = Seq(
+          new DefaultJSTreeContextMenuAction(
+            label = "Open",
+            run = implicit fsc => JS.alert("Hello world"),
+          )
+        )
       }
 
       val jsTree = new JSTreeWithContextMenu[Unit, Node] {
