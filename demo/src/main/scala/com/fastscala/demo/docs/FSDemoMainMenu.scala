@@ -10,6 +10,7 @@ import com.fastscala.demo.docs.jstree.JSTreePage
 import com.fastscala.demo.docs.loggedout.LoginPage
 import com.fastscala.demo.docs.navigation.DefaultBSMenuRenderer.*
 import com.fastscala.demo.docs.navigation.{BSMenu, MenuSection, RoutingMenuItem, SimpleMenuItem}
+import com.fastscala.demo.docs.other.AceEditorPage
 import com.fastscala.demo.docs.tables.ModifyingTableExamplePage
 
 object FSDemoMainMenu extends BSMenu(
@@ -73,5 +74,6 @@ object FSDemoMainMenu extends BSMenu(
   MenuSection("Other integrations")(
     SimpleMenuItem("ChartJS", "/demo/chartjs/simple"),
     new RoutingMenuItem("demo", "jstree", "simple")("JSTree", () => new JSTreePage()),
+    new RoutingMenuItem("demo", "ace-editor", "simple")("AceEditor", () => new AceEditorPage()),
   ),
 )

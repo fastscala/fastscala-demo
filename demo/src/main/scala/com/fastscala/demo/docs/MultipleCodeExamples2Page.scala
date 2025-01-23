@@ -66,8 +66,11 @@ abstract class MultipleCodeExamples2Page() extends BasePage() {
       sections.reverse.mkNS
   }
 
+  import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
+
+  def contentsDiv = div.border.border_secondary_subtle.bg_white.p_3
+
   def renderCodeSnippet(title: String, rendered: NodeSeq, contents: NodeSeq): NodeSeq = {
-    import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
     h4.pb_1.border_bottom.border_secondary_subtle.apply(title) ++
       div.row.apply {
         div.col_md_6.mb_2.apply {
@@ -77,10 +80,8 @@ abstract class MultipleCodeExamples2Page() extends BasePage() {
             }
           }
         } ++ div.col_md_6.mb_2.apply {
-          div.border.border_secondary_subtle.bg_white.apply {
-            div.p_3.apply {
-              contents
-            }
+          contentsDiv.apply {
+            contents
           }
         }
       }
