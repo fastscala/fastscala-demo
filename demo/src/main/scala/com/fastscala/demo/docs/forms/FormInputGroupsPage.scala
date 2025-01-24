@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
@@ -13,16 +13,16 @@ import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
-class FormInputGroupsPage extends MultipleCodeExamples2Page() {
+class FormInputGroupsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Input Groups"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Input groups") {
+    renderCodeSampleAndAutoClosePreviousOne("Input groups") {
 
       val userhandle = new F7StringField().placeholder("Your user handle")
       val firstNameField = new F7StringOptField().help("On the left input your first/given name").isRequired
@@ -74,6 +74,6 @@ class FormInputGroupsPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

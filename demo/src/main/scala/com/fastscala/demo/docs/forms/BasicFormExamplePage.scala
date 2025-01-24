@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.JS
@@ -41,12 +41,12 @@ object CitiesData {
 }
 
 
-class BasicFormExamplePage extends MultipleCodeExamples2Page() {
+class BasicFormExamplePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Simple Form Example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       var editing = new User1(
         firstName = "",
@@ -103,6 +103,6 @@ class BasicFormExamplePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.fastscala
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.scala_xml.rerenderers.{RerendererDebugStatus, RerendererDebugStatusState}
@@ -12,14 +12,14 @@ import com.fastscala.demo.testdata.{CountriesData, Country}
 
 import scala.xml.{Elem, NodeSeq}
 
-class FSContextDiscardPage extends MultipleCodeExamples2Page() {
+class FSContextDiscardPage extends MultipleCodeExamples3Page() {
   override def pageTitle: String = "FSContext discard"
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Old FSContext is discarded on rerender, so the number of callbacks doesn't grow indefinitely") {
+    renderCodeSampleAndAutoClosePreviousOne("Old FSContext is discarded on rerender, so the number of callbacks doesn't grow indefinitely") {
 
       // Debug rerenderable:
       val table = new Table5Base
@@ -72,6 +72,6 @@ class FSContextDiscardPage extends MultipleCodeExamples2Page() {
         override def widgetContents()(implicit fsc: FSContext): NodeSeq = table.render()
       }.renderWidget()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

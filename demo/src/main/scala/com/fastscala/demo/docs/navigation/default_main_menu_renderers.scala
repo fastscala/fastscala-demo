@@ -3,28 +3,24 @@ package com.fastscala.demo.docs.navigation
 import com.fastscala.core.FSContext
 import com.fastscala.utils.IdGen
 
-import scala.xml.NodeSeq
+import scala.xml.{Elem, NodeSeq}
 
 object DefaultBSMenuRenderer {
-  implicit val bsMenuRenderer: DefaultBSMenuRenderer = new DefaultBSMenuRenderer {}
-  implicit val menuSectionRenderer: DefaultMenuSectionRenderer = new DefaultMenuSectionRenderer {}
-  implicit val simpleMenuItemRenderer: DefaultSimpleMenuItemRenderer = new DefaultSimpleMenuItemRenderer {}
-  implicit val routingMenuItemRenderer: DefaultRoutingMenuItemRenderer = new DefaultRoutingMenuItemRenderer {}
-  implicit val headerMenuItemRenderer: DefaultHeaderMenuItemRenderer = new DefaultHeaderMenuItemRenderer {}
+  implicit val renderer: BSMenuRenderer = new DefaultBSMenuRenderer {}
 }
 
 trait DefaultBSMenuRenderer extends BSMenuRenderer {
-  def render(elem: BSMenu)(implicit fsc: FSContext): NodeSeq = {
+  override def render(elem: BSNav)(implicit fsc: FSContext, renderer: BSMenuRenderer): Elem = ???
+
+  def render(elem: BSMenu)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
     <div class="position-sticky p-3 sidebar-sticky">
       <ul class="list-unstyled ps-0">
         {elem.items.map(_.render())}
       </ul>
     </div>
   }
-}
 
-trait DefaultMenuSectionRenderer extends MenuSectionRenderer {
-  def render(elem: MenuSection)(implicit fsc: FSContext): NodeSeq = {
+  def render(elem: MenuSection)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
     val isOpen = elem.items.exists(_.matches(fsc.page.req.getHttpURI.getPath))
     val id = IdGen.id
     <li class="mb-1">
@@ -38,16 +34,10 @@ trait DefaultMenuSectionRenderer extends MenuSectionRenderer {
       </div>
     </li>
   }
-}
 
-trait DefaultSimpleMenuItemRenderer extends SimpleMenuItemRenderer {
-  def render(elem: SimpleMenuItem)(implicit fsc: FSContext): NodeSeq = <li><a href={elem.href} class="text-white d-inline-flex text-decoration-none rounded">{elem.name}</a></li>
-}
+  def render(elem: SimpleMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = <li><a href={elem.href} class="text-white d-inline-flex text-decoration-none rounded">{elem.name}</a></li>
 
-trait DefaultRoutingMenuItemRenderer extends RoutingMenuItemRenderer {
-  def render(elem: RoutingMenuItem)(implicit fsc: FSContext): NodeSeq = <li><a href={elem.href} class="text-white d-inline-flex text-decoration-none rounded">{elem.name}</a></li>
-}
+  def render(elem: RoutingMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = <li><a href={elem.href} class="text-white d-inline-flex text-decoration-none rounded">{elem.name}</a></li>
 
-trait DefaultHeaderMenuItemRenderer extends HeaderMenuItemRenderer {
-  def render(elem: HeaderMenuItem)(implicit fsc: FSContext): NodeSeq = <li class="mt-3"><span class="menu-heading fw-bold text-uppercase fs-7 ">{elem.title}</span></li>
+  def render(elem: HeaderMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = <li class="mt-3"><span class="menu-heading fw-bold text-uppercase fs-7 ">{elem.title}</span></li>
 }

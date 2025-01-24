@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.BSModal5
@@ -11,16 +11,16 @@ import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
-class FormInputTypesPage extends MultipleCodeExamples2Page() {
+class FormInputTypesPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Input Types"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Enum-based") {
+    renderCodeSampleAndAutoClosePreviousOne("Enum-based") {
 
       object OutputState extends Enumeration {
         val High, Low, HighZ = Value
@@ -43,6 +43,6 @@ class FormInputTypesPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

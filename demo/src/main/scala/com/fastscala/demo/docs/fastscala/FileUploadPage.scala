@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.fastscala
 
 import com.fastscala.core.{FSContext, FSSessionVarOpt, FSUploadedFile}
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.utils.FileUpload
@@ -9,16 +9,16 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import java.util.Base64
 
-// === code snippet ===
+// === code sample ===
 object UploadedImage extends FSSessionVarOpt[FSUploadedFile]()
-// === code snippet ===
+// === code sample ===
 
-class FileUploadPage extends MultipleCodeExamples2Page() {
+class FileUploadPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "File Upload Example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       JS.rerenderable(rerenderer => implicit fsc => {
         div.border.p_2.rounded.apply {
@@ -37,6 +37,6 @@ class FileUploadPage extends MultipleCodeExamples2Page() {
         }
       }).render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

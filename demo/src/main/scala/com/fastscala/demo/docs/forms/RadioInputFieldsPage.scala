@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlignment, CheckboxSide, CheckboxStyle}
@@ -13,15 +13,15 @@ import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
-class RadioInputFieldsPage extends MultipleCodeExamples2Page() {
+class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Radio Input Fields"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Radio input-based fields") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Radio input-based fields") {
 
       val radioAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).radioFieldRenderer
       val radioInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal).radioFieldRenderer
@@ -63,6 +63,6 @@ class RadioInputFieldsPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

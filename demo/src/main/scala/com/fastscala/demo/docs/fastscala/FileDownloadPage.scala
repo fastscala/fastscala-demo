@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.fastscala
 
 import com.fastscala.core.{FSContext, FSSessionVarOpt, FSUploadedFile}
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.utils.{BSBtn, FileUpload}
@@ -9,16 +9,16 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import java.util.Base64
 
-// === code snippet ===
+// === code sample ===
 object FileDownloadPageUploadedImage extends FSSessionVarOpt[FSUploadedFile]()
-// === code snippet ===
+// === code sample ===
 
-class FileDownloadPage extends MultipleCodeExamples2Page() {
+class FileDownloadPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "File Download"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       FileDownloadPageUploadedImage.clear()
       JS.rerenderable(rerenderer => implicit fsc => {
@@ -42,6 +42,6 @@ class FileDownloadPage extends MultipleCodeExamples2Page() {
         }
       }).render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

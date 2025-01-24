@@ -1,26 +1,26 @@
 package com.fastscala.demo.docs.bootstrap
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
-class BootstrapButtonsPage extends MultipleCodeExamples2Page() {
+class BootstrapButtonsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Bootstrap Buttons"
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Simple Button") {
+    renderCodeSampleAndAutoClosePreviousOne("Simple Button") {
       div.withContents {
         BSBtn().BtnPrimary.lbl("Example Button").onclick(JS.alert("clicked!")).btn
       }
     }
-    renderSnippet("Button styles") {
+    renderCodeSampleAndAutoClosePreviousOne("Button styles") {
       div.withContents {
         (BSBtn().BtnPrimary.lbl("Style Primary").sm.btn.ms_2.mb_2 ++
           BSBtn().BtnSecondary.lbl("Style Secondary").sm.btn.ms_2.mb_2 ++
@@ -41,11 +41,11 @@ class BootstrapButtonsPage extends MultipleCodeExamples2Page() {
           BSBtn().BtnOutlineWarning.lbl("Style Warning Outline").sm.btn.ms_2.mb_2)
       }
     }
-    renderSnippet("Button sizes") {
+    renderCodeSampleAndAutoClosePreviousOne("Button sizes") {
       BSBtn().BtnPrimary.lbl("Size lg").lg.btn.ms_2 ++
         BSBtn().BtnPrimary.lbl("Size normal").btn.ms_2 ++
         BSBtn().BtnPrimary.lbl("Size sm").sm.btn.ms_2
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

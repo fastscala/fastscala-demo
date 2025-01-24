@@ -1,17 +1,17 @@
 package com.fastscala.demo.docs.tables
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.components.bootstrap5.tables.*
 import com.fastscala.demo.testdata.{CountriesData, Country}
 
 
-class PaginatedTableExamplePage extends MultipleCodeExamples2Page() {
+class PaginatedTableExamplePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Paginated Table Example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       new Table5Base
         with Table5BaseBootrapSupport
         with Table5StandardColumns
@@ -41,6 +41,6 @@ class PaginatedTableExamplePage extends MultipleCodeExamples2Page() {
         override def seqRowsSource: Seq[Country] = CountriesData.data
       }.render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

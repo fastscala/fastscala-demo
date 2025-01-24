@@ -1,22 +1,22 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.{MultipleCodeExamples2Page, MultipleCodeExamples3Page}
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 
-class ValidationStrategiesPage extends MultipleCodeExamples2Page() {
+class ValidationStrategiesPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Validation Strategies"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("ValidateBeforeUserInput (always validates)") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("ValidateBeforeUserInput (always validates)") {
       new DefaultForm7() {
         validateBeforeUserInput()
         override lazy val rootField: F7Field = F7VerticalField()(
@@ -28,7 +28,7 @@ class ValidationStrategiesPage extends MultipleCodeExamples2Page() {
         )
       }.render()
     }
-    renderSnippet("ValidateEachFieldAfterUserInput (validates immediately after input in a field)") {
+    renderCodeSampleAndAutoClosePreviousOne("ValidateEachFieldAfterUserInput (validates immediately after input in a field)") {
       new DefaultForm7() {
         validateEachFieldAfterUserInput()
         override lazy val rootField: F7Field = F7VerticalField()(
@@ -40,7 +40,7 @@ class ValidationStrategiesPage extends MultipleCodeExamples2Page() {
         )
       }.render()
     }
-    renderSnippet("ValidateOnAttemptSubmitOnly (only validates on submit)") {
+    renderCodeSampleAndAutoClosePreviousOne("ValidateOnAttemptSubmitOnly (only validates on submit)") {
       new DefaultForm7() {
         validateOnAttemptSubmitOnly()
         override lazy val rootField: F7Field = F7VerticalField()(
@@ -52,6 +52,6 @@ class ValidationStrategiesPage extends MultipleCodeExamples2Page() {
         )
       }.render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

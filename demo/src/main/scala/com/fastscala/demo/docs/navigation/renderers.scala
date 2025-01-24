@@ -5,25 +5,16 @@ import com.fastscala.core.FSContext
 import scala.xml.{Elem, NodeSeq}
 
 trait BSMenuRenderer {
-  def render(elem: BSMenu)(implicit fsc: FSContext): NodeSeq
-}
+  def render(elem: BSMenu)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq
 
-trait BSNavBarRenderer {
-  def render(elem: BSNav)(implicit fsc: FSContext): Elem
-}
+  def render(elem: BSNav)(implicit fsc: FSContext, renderer: BSMenuRenderer): Elem
 
-trait MenuSectionRenderer {
-  def render(elem: MenuSection)(implicit fsc: FSContext): NodeSeq
-}
+  def render(elem: MenuSection)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq
 
-trait SimpleMenuItemRenderer {
-  def render(elem: SimpleMenuItem)(implicit fsc: FSContext): NodeSeq
-}
+  def render(elem: SimpleMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq
 
-trait RoutingMenuItemRenderer {
-  def render(elem: RoutingMenuItem)(implicit fsc: FSContext): NodeSeq
-}
+  def render(elem: RoutingMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq
 
-trait HeaderMenuItemRenderer {
-  def render(elem: HeaderMenuItem)(implicit fsc: FSContext): NodeSeq
+  def render(elem: HeaderMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq
+
 }

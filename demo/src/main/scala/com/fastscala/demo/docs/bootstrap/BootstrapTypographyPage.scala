@@ -1,16 +1,16 @@
 package com.fastscala.demo.docs.bootstrap
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 
-class BootstrapTypographyPage extends MultipleCodeExamples2Page() {
+class BootstrapTypographyPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Bootstrap Typography"
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Headings") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Headings") {
       h1.apply("h1 heading") ++
         h2.apply("h2 heading") ++
         h3.apply("h3 heading") ++
@@ -18,7 +18,7 @@ class BootstrapTypographyPage extends MultipleCodeExamples2Page() {
         h5.apply("h5 heading") ++
         h6.apply("h6 heading")
     }
-    renderSnippet("Display headings") {
+    renderCodeSampleAndAutoClosePreviousOne("Display headings") {
       display_1.apply("Display 1") ++
         display_2.apply("Display 2") ++
         display_3.apply("Display 3") ++
@@ -26,10 +26,10 @@ class BootstrapTypographyPage extends MultipleCodeExamples2Page() {
         display_5.apply("Display 5") ++
         display_6.apply("Display 6")
     }
-    renderSnippet("Lead") {
+    renderCodeSampleAndAutoClosePreviousOne("Lead") {
       lead.apply("Lead paragraph example")
     }
-    renderSnippet("Inline text elements") {
+    renderCodeSampleAndAutoClosePreviousOne("Inline text elements") {
       <p>{mark.apply("Lorem ipsum")} dolor sit amet, consectetur adipiscing elit. Nulla luctus magna at lorem faucibus, vel condimentum lacus imperdiet.</p> ++
         p.apply(del.apply("del tag example")) ++
         p.apply(s.apply("s tag example")) ++
@@ -39,20 +39,20 @@ class BootstrapTypographyPage extends MultipleCodeExamples2Page() {
         p.apply(strong.apply("strong tag example")) ++
         p.apply(em.apply("em tag example"))
     }
-    renderSnippet("Abbreviations") {
+    renderCodeSampleAndAutoClosePreviousOne("Abbreviations") {
       p.apply(abbr.apply("WWW").withTitle("World Wide Web"))
     }
-    renderSnippet("Blockquotes") {
+    renderCodeSampleAndAutoClosePreviousOne("Blockquotes") {
       blockquote.apply(p.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a porttitor elit, eu viverra nibh.")) ++
         blockquote.apply(p.apply("Centered blockquote")).text_center ++
         blockquote.apply(p.apply("Aligned to the right blockquote")).text_end
     }
-    renderSnippet("Blockquotes") {
+    renderCodeSampleAndAutoClosePreviousOne("Blockquotes") {
       blockquote.apply(p.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a porttitor elit, eu viverra nibh.")) ++
         blockquote.apply(p.apply("Centered blockquote")).text_center ++
         blockquote.apply(p.apply("Aligned to the right blockquote")).text_end
     }
-    renderSnippet("Lists") {
+    renderCodeSampleAndAutoClosePreviousOne("Lists") {
       ul.list_unstyled.apply {
         li.apply("Item 1") ++
           li.apply("Item 2") ++
@@ -70,6 +70,6 @@ class BootstrapTypographyPage extends MultipleCodeExamples2Page() {
           )
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

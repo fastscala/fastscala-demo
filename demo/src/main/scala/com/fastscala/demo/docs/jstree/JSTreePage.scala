@@ -2,7 +2,7 @@ package com.fastscala.demo.docs.jstree
 
 import com.fastscala.components.jstree.{DefaultJSTreeContextMenuAction, JSTree, JSTreeContextMenuAction, JSTreeNode, JSTreeNodeWithContextMenu, JSTreeSimpleNode, JSTreeWithContextMenu}
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.testdata.Continents
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -11,7 +11,7 @@ import com.fastscala.scala_xml.js.{JS, inScriptTag}
 import scala.io.Source
 import scala.xml.NodeSeq
 
-class JSTreePage extends MultipleCodeExamples2Page() {
+class JSTreePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "JsTree Example"
 
@@ -21,8 +21,8 @@ class JSTreePage extends MultipleCodeExamples2Page() {
   override def append2Body(): NodeSeq = super.append2Body() ++
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Countries") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Countries") {
 
       lazy val data = Source.fromResource("world-cities.csv").getLines().drop(1).map(_.split(",")).collect({
         case Array(name, country, subcountry, geonameid) => (country, subcountry, name)
@@ -49,7 +49,7 @@ class JSTreePage extends MultipleCodeExamples2Page() {
       }
       jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
     }
-    renderSnippet("With menu") {
+    renderCodeSampleAndAutoClosePreviousOne("With menu") {
 
       lazy val data = Source.fromResource("world-cities.csv").getLines().drop(1).map(_.split(",")).collect({
         case Array(name, country, subcountry, geonameid) => (country, subcountry, name)
@@ -85,6 +85,6 @@ class JSTreePage extends MultipleCodeExamples2Page() {
       }
       jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

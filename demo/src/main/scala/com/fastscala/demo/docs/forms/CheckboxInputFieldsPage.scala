@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlignment, CheckboxSide, CheckboxStyle}
@@ -12,15 +12,15 @@ import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7Vertica
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
-class CheckboxInputFieldsPage extends MultipleCodeExamples2Page() {
+class CheckboxInputFieldsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Checkbox Input Fields"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Checkbox input-based fields") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Checkbox input-based fields") {
 
       val checkboxAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).checkboxFieldRenderer
       val checkboxInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal).checkboxFieldRenderer
@@ -80,6 +80,6 @@ class CheckboxInputFieldsPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

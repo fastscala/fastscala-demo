@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.toast.BSToast2
@@ -19,16 +19,16 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import scala.util.Random
 import scala.xml.Elem
 
-class FieldStatesPage extends MultipleCodeExamples2Page() {
+class FieldStatesPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 - Update client values after changes on server side"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Disabled example") {
+    renderCodeSampleAndAutoClosePreviousOne("Disabled example") {
 
       def render(startsDisabled: Boolean): Elem = {
 
@@ -91,7 +91,7 @@ class FieldStatesPage extends MultipleCodeExamples2Page() {
         render(false)
     }
 
-    renderSnippet("Read/Read example") {
+    renderCodeSampleAndAutoClosePreviousOne("Read/Read example") {
 
       def render(startsReadOnly: Boolean): Elem = {
 
@@ -139,6 +139,6 @@ class FieldStatesPage extends MultipleCodeExamples2Page() {
       render(true) ++
         render(false)
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
@@ -19,16 +19,16 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import scala.util.Random
 
-class UpdatesFromServerSidePage extends MultipleCodeExamples2Page() {
+class UpdatesFromServerSidePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 - Update client values after changes on server side"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
-    renderSnippet("Example") {
+    renderCodeSampleAndAutoClosePreviousOne("Example") {
 
       val randomSeed: F7IntField = new F7IntField().step(1).label("Random seed").doSyncToServerOnChange
 
@@ -92,6 +92,6 @@ class UpdatesFromServerSidePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

@@ -12,7 +12,7 @@ import scala.xml.NodeSeq
 
 abstract class MultipleCodeExamples2Page() extends BasePage() {
 
-  val CommentSeparator = "=== code snippet ==="
+  val CommentSeparator = "=== code sample ==="
 
   def file = getClass.getName.split("\\.").mkString("/", "/", ".scala")
 

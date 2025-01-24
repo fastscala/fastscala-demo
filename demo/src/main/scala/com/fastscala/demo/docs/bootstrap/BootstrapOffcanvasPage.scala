@@ -4,16 +4,16 @@ import com.fastscala.components.bootstrap5.modals.BSModal5Base
 import com.fastscala.components.bootstrap5.offcanvas.{BSOffcanvas, BSOffcanvasBase}
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 
 import scala.xml.NodeSeq
 
-class BootstrapOffcanvasPage extends MultipleCodeExamples2Page() {
+class BootstrapOffcanvasPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Offcanvas Example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Basic") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Basic") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       BSBtn().BtnPrimary.lbl("Open Offcanvas").ajax(implicit fsc =>
         BSOffcanvas.start("Sample offcanvas")(
@@ -26,7 +26,7 @@ class BootstrapOffcanvasPage extends MultipleCodeExamples2Page() {
         )
       ).btn.w_100
     }
-    renderSnippet("Slide right") {
+    renderCodeSampleAndAutoClosePreviousOne("Slide right") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       BSBtn().BtnPrimary.lbl("Slide right offcanvas").ajax(implicit fsc =>
         BSOffcanvas.end("Slide right offcanvas")(
@@ -39,7 +39,7 @@ class BootstrapOffcanvasPage extends MultipleCodeExamples2Page() {
         )
       ).btn.w_100
     }
-    renderSnippet("Slide top") {
+    renderCodeSampleAndAutoClosePreviousOne("Slide top") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       BSBtn().BtnPrimary.lbl("Slide top offcanvas").ajax(implicit fsc =>
         BSOffcanvas.top("Slide top offcanvas")(
@@ -52,7 +52,7 @@ class BootstrapOffcanvasPage extends MultipleCodeExamples2Page() {
         )
       ).btn.w_100
     }
-    renderSnippet("Slide bottom") {
+    renderCodeSampleAndAutoClosePreviousOne("Slide bottom") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       BSBtn().BtnPrimary.lbl("Slide bottom offcanvas").ajax(implicit fsc =>
         BSOffcanvas.bottom("Slide bottom offcanvas")(
@@ -65,6 +65,6 @@ class BootstrapOffcanvasPage extends MultipleCodeExamples2Page() {
         )
       ).btn.w_100
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.BSModal5
@@ -15,15 +15,15 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import java.awt.Color
 
-class SelectInputFieldsPage extends MultipleCodeExamples2Page() {
+class SelectInputFieldsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Select Input Fields"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Select input-based fields") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Select input-based fields") {
 
       val colors: List[(String, Color)] = List(
         "WHITE" -> java.awt.Color.WHITE
@@ -70,6 +70,6 @@ class SelectInputFieldsPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

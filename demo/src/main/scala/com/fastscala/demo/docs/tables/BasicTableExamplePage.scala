@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.tables
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.tables.*
@@ -12,12 +12,12 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import java.util.Date
 
 
-class BasicTableExamplePage() extends MultipleCodeExamples2Page() {
+class BasicTableExamplePage() extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Table example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       new Table5Base
         with Table5BaseBootrapSupport
         with Table5Paginated
@@ -100,6 +100,6 @@ class BasicTableExamplePage() extends MultipleCodeExamples2Page() {
 
       }.render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

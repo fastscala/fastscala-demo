@@ -1,18 +1,18 @@
 package com.fastscala.demo.docs.bootstrap
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.components.bootstrap5.modals.BSModal5Base
 import com.fastscala.components.bootstrap5.utils.BSBtn
 
 import scala.xml.NodeSeq
 
-class BootstrapModalPage extends MultipleCodeExamples2Page() {
+class BootstrapModalPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Simple Modal Example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       div.d_grid.mx_auto.col_8.my_5.apply {
         BSBtn().BtnPrimary.lbl("Open Modal").ajax(implicit fsc => new BSModal5Base {
@@ -27,6 +27,6 @@ class BootstrapModalPage extends MultipleCodeExamples2Page() {
         }.installAndShow()).btn
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.tables
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
@@ -14,12 +14,12 @@ import java.util.Date
 import scala.xml.{Elem, NodeSeq}
 
 
-class SelectableColsTableExamplePage extends MultipleCodeExamples2Page() {
+class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Selectable cols table example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
       lazy val mainTable = new Table5Base
@@ -123,6 +123,6 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples2Page() {
         override def widgetContents()(implicit fsc: FSContext): NodeSeq = mainTable.render()
       }.renderWidget()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

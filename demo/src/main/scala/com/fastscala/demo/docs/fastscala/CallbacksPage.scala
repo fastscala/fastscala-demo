@@ -2,7 +2,7 @@ package com.fastscala.demo.docs.fastscala
 
 import com.fastscala.core.FSContext
 import com.fastscala.core.circe.CirceSupport.FSContextWithCirceSupport
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -11,12 +11,12 @@ import io.circe.generic.semiauto
 
 import java.util.Date
 
-class CallbacksPage extends MultipleCodeExamples2Page() {
+class CallbacksPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "FastScala Callbacks"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Basic callback") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Basic callback") {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
@@ -25,7 +25,7 @@ class CallbacksPage extends MultipleCodeExamples2Page() {
           }).cmd}
       >Check time on server</button>
     }
-    renderSnippet("Callback with args") {
+    renderCodeSampleAndAutoClosePreviousOne("Callback with args") {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
@@ -35,7 +35,7 @@ class CallbacksPage extends MultipleCodeExamples2Page() {
         }
       >Send browser details to server side</button>
     }
-    renderSnippet("Callback with JSON arg with languages data") {
+    renderCodeSampleAndAutoClosePreviousOne("Callback with JSON arg with languages data") {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
@@ -46,7 +46,7 @@ class CallbacksPage extends MultipleCodeExamples2Page() {
           }).cmd}
       >Send browser details to server side as JSON object</button>
     }
-    renderSnippet("Callback with JSON arg with languages data") {
+    renderCodeSampleAndAutoClosePreviousOne("Callback with JSON arg with languages data") {
       final case class NavigatorData(
                                       language: String,
                                       languages: List[String],
@@ -65,6 +65,6 @@ class CallbacksPage extends MultipleCodeExamples2Page() {
           }).cmd}
       >Send browser details to server side as a case class</button>
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

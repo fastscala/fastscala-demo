@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
@@ -10,15 +10,15 @@ import com.fastscala.components.form7.{DefaultForm7, F7Field}
 
 import java.time.LocalDate
 
-class FormValidationPage extends MultipleCodeExamples2Page() {
+class FormValidationPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Validation"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("String input") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("String input") {
       new DefaultForm7() {
         override lazy val rootField: F7Field = F7VerticalField()(
 
@@ -35,6 +35,6 @@ class FormValidationPage extends MultipleCodeExamples2Page() {
         )
       }.render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

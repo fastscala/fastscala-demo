@@ -1,9 +1,9 @@
 package com.fastscala.demo.docs.bootstrap
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 
-class BootstrapImagesPage extends MultipleCodeExamples2Page() {
+class BootstrapImagesPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Bootstrap Images"
 
@@ -11,20 +11,20 @@ class BootstrapImagesPage extends MultipleCodeExamples2Page() {
 
   val image = img.withAttr("src" -> "/static/images/pexels-souvenirpixels-414612.jpg")
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Responsive") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Responsive") {
       image.img_fluid
     }
-    renderSnippet("Thumbnails") {
+    renderCodeSampleAndAutoClosePreviousOne("Thumbnails") {
       text_center.apply {
         image.withStyle("max-width: 250px; max-height: 250px;").img_thumbnail
       }
     }
-    renderSnippet("Rounded") {
+    renderCodeSampleAndAutoClosePreviousOne("Rounded") {
       text_center.apply {
         image.withStyle("max-width: 250px; max-height: 250px;").rounded
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

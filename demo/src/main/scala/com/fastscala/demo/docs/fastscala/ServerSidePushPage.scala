@@ -2,7 +2,7 @@ package com.fastscala.demo.docs.fastscala
 
 import cats.effect.IO
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.utils.IdGen
@@ -10,11 +10,11 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import scala.concurrent.duration.DurationInt
 
-class ServerSidePushPage extends MultipleCodeExamples2Page() {
+class ServerSidePushPage extends MultipleCodeExamples3Page() {
   override def pageTitle: String = "Server-Side push using Websockets"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Source") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Source") {
 
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       val id = IdGen.id
@@ -36,6 +36,6 @@ class ServerSidePushPage extends MultipleCodeExamples2Page() {
           .withStyle("font-family: courier; min-height: 100px;") ++
         JS.inScriptTag(fsc.page.initWebSocket())
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

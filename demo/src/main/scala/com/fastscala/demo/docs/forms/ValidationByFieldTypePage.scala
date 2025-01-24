@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.renderermodifiers.CheckboxStyle
@@ -20,15 +20,15 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import java.awt.Color
 import scala.util.chaining.scalaUtilChainingOps
 
-class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
+class ValidationByFieldTypePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Input Types"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("String input") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("String input") {
       new DefaultForm7() {
         validateBeforeUserInput()
 
@@ -44,7 +44,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         div.border.p_2.rounded.apply(renderedForm)
       })
     }
-    renderSnippet("Textarea") {
+    renderCodeSampleAndAutoClosePreviousOne("Textarea") {
       new DefaultForm7() {
         validateBeforeUserInput()
 
@@ -60,7 +60,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         div.border.p_2.rounded.apply(renderedForm)
       })
     }
-    renderSnippet("Select") {
+    renderCodeSampleAndAutoClosePreviousOne("Select") {
       val colors: List[(String, Color)] = List(
         "WHITE" -> java.awt.Color.WHITE
         , "LIGHT_GRAY" -> java.awt.Color.LIGHT_GRAY
@@ -94,7 +94,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    renderSnippet("Multi Select") {
+    renderCodeSampleAndAutoClosePreviousOne("Multi Select") {
       val continents: List[String] = List(
         "Asia"
         , "Africa"
@@ -123,7 +123,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    renderSnippet("Checkbox") {
+    renderCodeSampleAndAutoClosePreviousOne("Checkbox") {
 
       val inputField = new F7CheckboxField().label("I agree to the Terms of Service")
         .addValidation(_.currentValue == true, _ => div.apply("Error: you must accept the Terms of Service."))
@@ -143,7 +143,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    renderSnippet("Checkbox as switch") {
+    renderCodeSampleAndAutoClosePreviousOne("Checkbox as switch") {
 
       val renderers = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch)
       import renderers.*
@@ -167,7 +167,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    renderSnippet("Radio") {
+    renderCodeSampleAndAutoClosePreviousOne("Radio") {
 
       val inputField = new F7RadioField[String](() => Seq("Android", "iOS", "Others")).label("Your phone")
         .setInternalValue("Others")
@@ -190,7 +190,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
     //    renderSnippet("Enum-based") {
     //
     //      object OutputState extends Enumeration {

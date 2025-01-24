@@ -13,13 +13,15 @@ import com.fastscala.demo.docs.navigation.{BSMenu, MenuSection, RoutingMenuItem,
 import com.fastscala.demo.docs.other.AceEditorPage
 import com.fastscala.demo.docs.tables.ModifyingTableExamplePage
 
+import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
+
 object FSDemoMainMenu extends BSMenu(
-  MenuSection("About FastScala")(
+  MenuSection("About FastScala", <i class="bi bi-rocket-takeoff"></i>.withColorDanger)(
     new RoutingMenuItem()("About", () => new AboutPage())
     , new RoutingMenuItem("getting_started")("Getting Started", () => new GettingStartedPage())
     , new RoutingMenuItem("author")("Author", () => new AuthorPage())
   )
-  , MenuSection("FastScala")(
+  , MenuSection("FastScala", <i class="bi bi-book"></i>.withColorInfo)(
     new RoutingMenuItem("demo", "fastscala", "callbacks")("Callbacks", () => new CallbacksPage())
     , new RoutingMenuItem("demo", "fastscala", "rerenderable")("Rerenderable", () => new RerenderablePage())
     , new RoutingMenuItem("demo", "fastscala", "file_upload")("File Upload", () => new FileUploadPage())
@@ -29,25 +31,23 @@ object FSDemoMainMenu extends BSMenu(
     , new RoutingMenuItem("demo", "fastscala", "internal_metrics")("Internal Metrics", () => new InternalMetricsPage())
     , new RoutingMenuItem("demo", "fastscala", "discard_fs_context")("FSContext discard", () => new FSContextDiscardPage())
     , new SimpleMenuItem("Grafana", "https://grafana.fastscala.com/public-dashboards/e01e760c4321418e9b4903e7e6bfcfb0?orgId=1&refresh=5s")
-    , new RoutingMenuItem("demo", "empty-page")("Empty page", () => new EmptyPage())
   ),
-  MenuSection("HTML utils")(
+  MenuSection("HTML utils", <i class="bi bi-filetype-html"></i>.withColorDark)(
     new RoutingMenuItem("demo", "html", "tags")("tags", () => new HtmlTagsPage())
     , new RoutingMenuItem("demo", "html", "utils")("utils", () => new HtmlUtilsPage())
     , new RoutingMenuItem("demo", "html", "scala-tags")("Integrating ScalaTags", () => new ScalaTagsPage())
   ),
-  MenuSection("Js utils")(
+  MenuSection("Js utils", <i class="bi bi-filetype-js"></i>.withColorDark)(
     new RoutingMenuItem("demo", "js", "overview")("Overview", () => new JsUtilsPage()),
-    SimpleMenuItem("BarChart", "/demo/chartjs/simple")
   ),
-  MenuSection("Bootstrap utils")(
+  MenuSection("Bootstrap utils", <i class="bi bi-bootstrap"></i>.withColorSuccess)(
     new RoutingMenuItem("demo", "bootstrap", "buttons")("Buttons", () => new BootstrapButtonsPage())
     , new RoutingMenuItem("demo", "bootstrap", "typography")("Typography", () => new BootstrapTypographyPage())
     , new RoutingMenuItem("demo", "bootstrap", "images")("Images", () => new BootstrapImagesPage())
     , new RoutingMenuItem("demo", "bootstrap", "modal")("Modal", () => new BootstrapModalPage())
     , new RoutingMenuItem("demo", "bootstrap", "offcanvas")("Offcanvas", () => new BootstrapOffcanvasPage())
   ),
-  MenuSection("Forms Lib")(
+  MenuSection("Form7 Library", <i class="bi bi-ui-checks"></i>.withColorPrimary)(
     SimpleMenuItem("Creating a form", "/demo/simple_form")
     , new RoutingMenuItem("demo", "forms", "text_input")("Text Input Fields", () => new TextInputFieldsPage())
     , new RoutingMenuItem("demo", "forms", "select_input")("Select Input Fields", () => new SelectInputFieldsPage())
@@ -60,7 +60,7 @@ object FSDemoMainMenu extends BSMenu(
     , new RoutingMenuItem("demo", "forms", "server-side-update")("Server-Side Update", () => new UpdatesFromServerSidePage())
     , new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage())
   ),
-  MenuSection("Table Lib")(
+  MenuSection("Table5 Library", <i class="bi bi-table"></i>.withColorPrimary)(
     SimpleMenuItem("Simple", "/demo/simple_tables")
     , SimpleMenuItem("Sortable", "/demo/sortable_tables")
     , SimpleMenuItem("Paginated", "/demo/paginated_tables")
@@ -68,10 +68,10 @@ object FSDemoMainMenu extends BSMenu(
     , SimpleMenuItem("Selectable Columns", "/demo/tables_sel_cols")
     , new RoutingMenuItem("demo", "tables", "modifying")("Modifying tables", () => new ModifyingTableExamplePage())
   ),
-  MenuSection("Logged in")(
+  MenuSection("Log-in demo", <i class="bi bi-box-arrow-in-left"></i>.withColorDark)(
     new RoutingMenuItem("demo", "login")("Login example", () => new LoginPage()),
   ),
-  MenuSection("Other integrations")(
+  MenuSection("Other integrations", <i class="bi bi-code-square"></i>.withColorPrimary)(
     SimpleMenuItem("ChartJS", "/demo/chartjs/simple"),
     new RoutingMenuItem("demo", "jstree", "simple")("JSTree", () => new JSTreePage()),
     new RoutingMenuItem("demo", "ace-editor", "simple")("AceEditor", () => new AceEditorPage()),

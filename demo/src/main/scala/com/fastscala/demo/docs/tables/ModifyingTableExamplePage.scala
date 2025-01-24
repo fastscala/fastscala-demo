@@ -1,20 +1,20 @@
 package com.fastscala.demo.docs.tables
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.components.bootstrap5.tables.*
 import com.fastscala.demo.testdata.{CountriesData, Country}
 
 
-class ModifyingTableExamplePage extends MultipleCodeExamples2Page() {
+class ModifyingTableExamplePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Table example"
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
 
     var buildTable: () => Table5Base = null
 
-    renderSnippet("Building the table") {
+    renderCodeSampleAndAutoClosePreviousOne("Building the table") {
       buildTable = () => new Table5Base
         with Table5BaseBootrapSupport
         with Table5StandardColumns {
@@ -36,38 +36,38 @@ class ModifyingTableExamplePage extends MultipleCodeExamples2Page() {
       }
       buildTable().render()
     }
-    renderSnippet("Modify table") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify table") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().border.border_danger.border_5.render()
     }
-    renderSnippet("Modify table (alternative)") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify table (alternative)") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTable(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Head Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Head Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableHead(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Head TR Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Head TR Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableHeadTRs(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Head TRTH Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Head TRTH Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableHeadTRTHClasses(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Body Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Body Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableBodyClasses(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Body TR Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Body TR Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableBodyTRClasses(_.border.border_danger.border_5).render()
     }
-    renderSnippet("Modify Table Body TRTD Classes") {
+    renderCodeSampleAndAutoClosePreviousOne("Modify Table Body TRTD Classes") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onAllTableBodyTRTDClasses(_.border.border_danger.border_5).render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

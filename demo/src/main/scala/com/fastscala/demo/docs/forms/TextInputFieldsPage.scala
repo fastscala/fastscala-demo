@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.forms
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.{MultipleCodeExamples2Page, MultipleCodeExamples3Page}
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.BSModal5
@@ -14,15 +14,15 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 import java.time.{LocalDate, LocalDateTime}
 
-class TextInputFieldsPage extends MultipleCodeExamples2Page() {
+class TextInputFieldsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "Form 7 Text Input Fields"
 
   import DefaultFSDemoBSForm7Renderers.*
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Text-based input fields") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Text-based input fields") {
       val stringField = new F7StringField().label("Name (string input)")
         .help("An empty input translates into an empty string")
         .setInternalValue("John Doe")
@@ -85,6 +85,6 @@ class TextInputFieldsPage extends MultipleCodeExamples2Page() {
         }.render()
       }
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

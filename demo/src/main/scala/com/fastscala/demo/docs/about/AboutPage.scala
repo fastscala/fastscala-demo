@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs.about
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
@@ -21,17 +21,17 @@ import scala.io.Source
 import scala.util.Try
 import scala.xml.NodeSeq
 
-class AboutPage extends MultipleCodeExamples2Page {
+class AboutPage extends MultipleCodeExamples3Page {
 
-  override def pageTitle: String = "FastScala | About"
+  override def pageTitle: String = "About FastScala"
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderHtml() {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderHtmlAndAutoClosePreviousCodeSample() {
       alert.alert_success.withRole("alert").d_flex.justify_content_between.align_items_center.apply {
         div.apply("Interested in learning more about the FastScala framework? Register now for a free live demo/training here!:") ++
-          BSBtn().BtnPrimary.lbl("Register for Free Training!").href("https://training.fastscala.com/").btnLink.ms_3
+          BSBtn().BtnPrimary.lbl("Register for Free Training!").href("https://calendly.com/fastscala/fastscala-free-training").btnLink.ms_3
       } ++
         h3.apply("What is the FastScala framework?") ++
         <p>
@@ -44,60 +44,36 @@ class AboutPage extends MultipleCodeExamples2Page {
         </p>
     }
 
-    renderSnippet("Create a callback") {
+    renderCodeSampleAndAutoClosePreviousOne("Create a callback") {
       val callbackJs = fsc.callback(() => JS.alert(s"Current date/time on server: ${new Date().toString}"))
       <p>Clicking the button runs the javacript:</p>
       <pre>{callbackJs.cmd}</pre>
       <button class="btn btn-primary d-block mx-auto" onclick={callbackJs.cmd}>Check time on server</button>
     }
-    renderHtml() {
-      <p>
-        Builing on top of this basic <b>callback</b> funcionality, we can create a great development experience which
-        allows you to build web applications much faster.
-      </p>
-      <p>
-        See bellow the available library to build Bootstrap buttons easily:
-      </p>
-    }
-    renderSnippet("Building on top of the basics") {
+    renderCodeSampleAndAutoClosePreviousOne("Building on top of the basics", <p>Builing on top of this basic <b>callback</b> funcionality, we can create a great development experience which allows you to build web applications much faster.</p><p>See bellow the available library to build Bootstrap buttons easily:</p>) {
       BSBtn().BtnPrimary.lg.lbl("Check time on server")
         .ajax(_ => JS.alert(s"Current date/time on server: ${new Date().toString}"))
         .btn.m_3.shadow.mx_auto.d_block
     }
-    renderHtml() {
-      <p>
-        Your imagination is the limit - easily control the client side from the client side:
-      </p>
-    }
-    renderSnippet("Check time on server basic example") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("Check time on server basic example", "Your imagination is the limit - easily control the client side from the client side:") {
       <div id="current-time"><span>{new Date().toString}</span></div> ++
         BSBtn().BtnPrimary.sm.lbl("Update time")
           .ajax(_ => JS.setContents("current-time", <span>{new Date().toString}</span>)).sm.btn
     }
-    renderHtml() {
-      <p>
-        Building on these fundations we introduce more advanced components which make you go even faster and safer:
-      </p>
-    }
-    renderSnippet("Check time on server example 2") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("Check time on server example 2", "Building on these fundations we introduce more advanced components which make you go even faster and safer:") {
       val rerenderable = JS.rerenderable(_ => _ => <span>{new Date().toString}</span>)
       rerenderable.render() ++
         BSBtn().BtnPrimary.sm.lbl("Update time")
           .ajax(_ => rerenderable.rerender()).sm.btn.ms_2
     }
-    renderSnippet("Check time on server example 3") {
+    renderCodeSampleAndAutoClosePreviousOne("Check time on server example 3") {
       JS.rerenderableContents(rerenderer => implicit fsc => {
         <span>{new Date().toString}</span> ++
           BSBtn().BtnPrimary.sm.lbl("Update time")
             .ajax(_ => rerenderer.rerender()).sm.btn.ms_2
       }).render()
     }
-    renderHtml() {
-      <p>
-        Lets create an even more complex scenario:
-      </p>
-    }
-    renderSnippet("Variable number of input buttons") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("Variable number of input buttons", "Lets create an even more complex scenario:") {
       var numBtns = 3
       JS.rerenderableContents(rerenderer => implicit fsc => {
         val buttons = (0 until numBtns).map(btnNum => {
@@ -118,7 +94,7 @@ class AboutPage extends MultipleCodeExamples2Page {
           }
       }).render()
     }
-    renderSnippet("Variable number of input buttons - more elegant/functional approach, with JS.rerenderableContentsP") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("Variable number of input buttons v2", "More elegant/functional approach, with JS.rerenderableContentsP") {
       JS.rerenderableContentsP[Int](rerenderer => implicit fsc => numBtns => {
         val buttons = (0 until numBtns).map(_ + 1).map(points => {
           BSBtn().BtnSecondary.lg.lbl(points.toString)
@@ -135,12 +111,7 @@ class AboutPage extends MultipleCodeExamples2Page {
           }
       }).render(3)
     }
-    renderHtml() {
-      <p>
-        We continously build on top of abstractions to create even more complex experiences, that are really simple and low-code to develop:
-      </p>
-    }
-    renderSnippet("Easily create advanced forms") {
+    renderCodeSampleAndAutoClosePreviousOne("Easily create advanced forms", <p>We continously build on top of abstractions to create even more complex experiences, that are really simple and low-code to develop:</p>) {
       import DefaultFSDemoBSForm7Renderers.*
       val nameField = new F7StringField().label("Name").required(true)
       val emailField = new F7StringField().label("Email").inputType("email").required(true)
@@ -158,7 +129,7 @@ class AboutPage extends MultipleCodeExamples2Page {
         )
       }.render()
     }
-    renderSnippet("Support advanced interactions with a few lines of code") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("Advanced interactions", "Support advanced interactions with a few lines of code") {
       import DefaultFSDemoBSForm7Renderers.*
       case class Definition(definition: Option[String], example: Option[String], synonyms: List[String], antonyms: List[String]) {
         def render(): NodeSeq = definition.map(definition => <li><i>{definition}</i>{example.map(": " + _).getOrElse("")}</li>).getOrElse(NodeSeq.Empty)
@@ -178,7 +149,7 @@ class AboutPage extends MultipleCodeExamples2Page {
       implicit val meaningDecoder: Decoder[Meaning] = semiauto.deriveDecoder[Meaning]
       implicit val responseDecoder: Decoder[Response] = semiauto.deriveDecoder[Response]
 
-      def renderResponses(responses:  List[Response]) = responses.flatMap(_.render())
+      def renderResponses(responses: List[Response]) = responses.flatMap(_.render())
 
       val resultsRenderer = JS.rerenderableContentsP[Option[String]](_ => implicit fsc => queryOpt => {
         queryOpt match {
@@ -213,6 +184,6 @@ class AboutPage extends MultipleCodeExamples2Page {
           )
         }.render()
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

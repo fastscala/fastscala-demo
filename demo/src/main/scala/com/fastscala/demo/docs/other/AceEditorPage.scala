@@ -9,7 +9,7 @@ import com.fastscala.components.form7.fields.text.F7IntOptField
 import com.fastscala.components.form7.fields.{F7CheckboxField, F7CheckboxOptField, F7EnumField}
 import com.fastscala.components.form7.{ChangedField, DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -17,7 +17,7 @@ import com.fastscala.scala_xml.js.{JS, inScriptTag, printBeforeExec}
 
 import scala.xml.{Elem, NodeSeq}
 
-class AceEditorPage extends MultipleCodeExamples2Page() {
+class AceEditorPage extends MultipleCodeExamples3Page() {
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
@@ -29,10 +29,8 @@ class AceEditorPage extends MultipleCodeExamples2Page() {
 
   override def append2Head(): NodeSeq = super.append2Head() ++ AceEditor.cssImports
 
-  override def contentsDiv: Elem = div
-
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("AceEditor") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("AceEditor") {
 
       val aceEditor = new AceEditor() {
 
@@ -133,6 +131,6 @@ class AceEditorPage extends MultipleCodeExamples2Page() {
         editorOptions.renderWidget() ++
         aceEditor.install().onDOMContentLoaded.inScriptTag
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

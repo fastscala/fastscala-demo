@@ -1,18 +1,18 @@
 package com.fastscala.demo.docs.html
 
 import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples2Page
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import scalatags.Text.TypedTag
 
 import scala.xml.NodeSeq
 
-class ScalaTagsPage extends MultipleCodeExamples2Page() {
+class ScalaTagsPage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "ScalaTags interoperability"
 
-  override def renderExplanation()(implicit fsc: FSContext): NodeSeq = {
+  override def pageLead(implicit fsc: FSContext): NodeSeq = {
     import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
     <p>
       Fastscala is not tied to {span.badge.text_bg_secondary.apply("scala-xml")}, but the libraries that are on top of do use it.
@@ -23,8 +23,8 @@ class ScalaTagsPage extends MultipleCodeExamples2Page() {
     </p>
   }
 
-  override def renderContentsWithSnippets()(implicit fsc: FSContext): Unit = {
-    renderSnippet("Integrating ScalaTags using an implicit conversion") {
+  override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
+    renderCodeSampleAndAutoClosePreviousOne("Integrating ScalaTags using an implicit conversion") {
       // You can use an implicit conversion from ScalaTags to scala-xml:
       implicit def scalaTags2ScalaXml(frag: TypedTag[String]): NodeSeq =
         scala.xml.Unparsed(frag.render)
@@ -40,6 +40,6 @@ class ScalaTagsPage extends MultipleCodeExamples2Page() {
         })
       ).btn
     }
-    closeSnippet()
+    closeCodeSample()
   }
 }

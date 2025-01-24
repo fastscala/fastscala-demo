@@ -18,7 +18,7 @@ class GettingStartedPage extends BasePage() {
       </div> ++
         alert.alert_success.withRole("alert").d_flex.justify_content_between.align_items_center.mb_5.apply {
           div.apply("Interested in learning more about the FastScala framework? Register now for a free live demo/training here!:") ++
-            BSBtn().BtnPrimary.lbl("Register for Free Training!").href("https://training.fastscala.com/").btnLink.ms_3
+            BSBtn().BtnPrimary.lbl("Register for Free Training!").href("https://calendly.com/fastscala/fastscala-free-training").btnLink.ms_3
         } ++
         h2.apply("Github repo") ++
         <p>You can access the FastScala framework repo at: <a href="https://github.com/fastscala/fastscala">https://github.com/fastscala/fastscala</a></p> ++
