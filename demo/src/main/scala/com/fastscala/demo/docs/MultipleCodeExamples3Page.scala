@@ -9,7 +9,7 @@ import org.eclipse.jetty.util.IO
 import java.nio.charset.StandardCharsets
 import java.nio.file.Path
 import scala.util.matching.Regex
-import scala.xml.NodeSeq
+import scala.xml.{Elem, NodeSeq}
 
 abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
 
@@ -85,6 +85,8 @@ abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
 
   private def renderedCodeSampleWrapper = div.withClass("bd-example m-0 border-0")
 
+  private def renderTitle(title: String, id: String): Elem = <h2 id={id}>{title} <a class="anchor-link" href={"#" + id} aria-label={"Link to this code sample: " + title}></a></h2>
+
   private def renderCodeSample(
                                 title: String,
                                 description: NodeSeq,
@@ -94,7 +96,7 @@ abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
     val id = StringUtils.splitByCharacterTypeCamelCase(title).mkString(" ").toLowerCase.replaceAll(" ", "-").filter(_.isLetterOrDigit)
 
     val rendered = {
-      <h2 id={id}>{title} <a class="anchor-link" href={"#" + id} aria-label={"Link to this code sample: " + title}></a></h2> ++
+      renderTitle(title, id) ++
         description ++
         <div class="bd-example-snippet bd-code-snippet">
             {
@@ -144,12 +146,26 @@ abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
     currentlyOpenCodeSample = Some(OpenCodeSample(thisSectionStartsAt, title, description, contents))
   }
 
+  def renderHtmlAndAutoClosePreviousCodeSampleWithTitle(
+                                                         title: String,
+                                                         thisSectionStartsAt: Int = Thread.currentThread.getStackTrace.apply(stackTracePos).getLineNumber
+                                                       )(contents: => NodeSeq): Unit = renderHtmlAndAutoClosePreviousCodeSample(Some(title), None, thisSectionStartsAt)(contents)
+
+  def renderHtmlAndAutoClosePreviousCodeSampleWithTitleAndDesc(
+                                                                title: String,
+                                                                description: NodeSeq,
+                                                                thisSectionStartsAt: Int = Thread.currentThread.getStackTrace.apply(stackTracePos).getLineNumber
+                                                              )(contents: => NodeSeq): Unit = renderHtmlAndAutoClosePreviousCodeSample(Some(title), Some(description), thisSectionStartsAt)(contents)
+
   def renderHtmlAndAutoClosePreviousCodeSample(
+                                                title: Option[String] = None,
+                                                description: Option[NodeSeq] = None,
                                                 thisSectionStartsAt: Int = Thread.currentThread.getStackTrace.apply(stackTracePos).getLineNumber
                                               )(contents: => NodeSeq): Unit = {
+    val id = title.map(title => StringUtils.splitByCharacterTypeCamelCase(title).mkString(" ").toLowerCase.replaceAll(" ", "-").filter(_.isLetterOrDigit))
     closeOpenCodeSample(thisSectionStartsAt)
     currentlyOpenCodeSample = None
-    output ::= RenderedCodeSample(contents, None, None)
+    output ::= RenderedCodeSample(title.flatMap(title => id.map(id => renderTitle(title, id))).getOrElse(NodeSeq.Empty) ++ description.getOrElse(NodeSeq.Empty) ++ contents, title, id)
   }
 
   def closeCodeSample(): Unit = renderCodeSampleAndAutoClosePreviousOne("", NodeSeq.Empty, Thread.currentThread.getStackTrace.apply(stackTracePos).getLineNumber)(NodeSeq.Empty)

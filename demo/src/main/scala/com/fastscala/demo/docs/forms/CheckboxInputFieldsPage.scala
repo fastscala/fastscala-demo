@@ -47,7 +47,9 @@ class CheckboxInputFieldsPage extends MultipleCodeExamples3Page() {
             new F7HtmlField(fs_5.mb_3.border_bottom.apply("Tri-state checkboxes (supports indeterminate)")),
             new F7ContainerField("row")(
               "col" -> hasACar,
-              "col" -> new F7HtmlField(span.apply("Checkbox state: " + hasACar.currentValue.map("set to " + _).getOrElse("not set"))).dependsOn(hasACar),
+              "col" -> new F7HtmlField({
+                span.apply("Checkbox state: " + hasACar.currentValue.map("set to " + _).getOrElse("not set"))
+              }).dependsOn(hasACar),
             ),
             //
             new F7HtmlField(fs_5.mb_3.border_bottom.apply("Checkboxes inline")),

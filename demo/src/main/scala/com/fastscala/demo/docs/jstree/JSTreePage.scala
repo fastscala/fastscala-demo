@@ -8,6 +8,7 @@ import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.{JS, inScriptTag}
 
+import java.util.Date
 import scala.io.Source
 import scala.xml.NodeSeq
 
@@ -71,7 +72,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
         override def actions: Seq[JSTreeContextMenuAction] = Seq(
           new DefaultJSTreeContextMenuAction(
             label = "Open",
-            run = implicit fsc => JS.alert("Hello world"),
+            action = Some(implicit fsc => JS.alert(s"Time on server: ${new Date().toGMTString}")),
           )
         )
       }

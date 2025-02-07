@@ -30,7 +30,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
   override def append2Head(): NodeSeq = super.append2Head() ++ AceEditor.cssImports
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
-    renderCodeSampleAndAutoClosePreviousOne("AceEditor") {
+    renderCodeSampleAndAutoClosePreviousOneStrDesc("AceEditor", "Note: this integration is still at an early state.") {
 
       val aceEditor = new AceEditor() {
 
@@ -38,9 +38,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
 
         override def defaultTheme: Theme.Value = Theme.solarized_dark
 
-        override def onChangeFunc: Js = Js("function(delta) {console.debug(delta);}")
-
-        var contents: String =
+        override def initalValue: String =
           """object Hello {
             |    def main(args: Array[String]) = {
             |        println("Hello, world")
@@ -114,8 +112,8 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
                 "col-4" -> new F7IntOptField().label("LiveAutocompletionThreshold").addOnThisFieldChanged(_.currentValue.map(i => aceEditor.setLiveAutocompletionThreshold(i)).getOrElse(JS.void)),
               ),
               new F7ContainerField("row")(
-                "col-6" -> F7EnumField.Nullable(Language).label("Language").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setMode(v)).getOrElse(JS.void)),
-                "col-6" -> F7EnumField.Nullable(Theme).label("Theme").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setTheme(v)).getOrElse(JS.void)),
+                //                "col-6" -> F7EnumField.Nullable(Language).label("Language").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setMode(v)).getOrElse(JS.void)),
+                //                "col-6" -> F7EnumField.Nullable(Theme).label("Theme").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setTheme(v)).getOrElse(JS.void)),
                 "col-4" -> F7EnumField.Nullable(WrapMethod).label("WrapMethod").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setWrapMethod(v)).getOrElse(JS.void)),
                 "col-4" -> F7EnumField.Nullable(FoldStyle).label("FoldStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setFoldStyle(v)).getOrElse(JS.void)),
                 "col-4" -> F7EnumField.Nullable(NewLineMode).label("NewLineMode").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setNewLineMode(v)).getOrElse(JS.void)),
@@ -129,7 +127,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
 
       aceEditor.render().withStyle("height: 300px;").w_100.border.border_secondary_subtle.bg_white.p_3.mb_3 ++
         editorOptions.renderWidget() ++
-        aceEditor.install().onDOMContentLoaded.inScriptTag
+        aceEditor.initialize().onDOMContentLoaded.inScriptTag
     }
     closeCodeSample()
   }

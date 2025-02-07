@@ -133,14 +133,12 @@ trait DocsBasePage extends RenderableWithFSContext {
             <div class="d-flex">
               <div class="bd-search" id="docsearch" data-bd-docs-version="5.3"></div>
               <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
-                <svg class="bi" aria-hidden="true">
-                  <use xlink:href="#three-dots"></use>
-                </svg>
+                <i class="bi bi-three-dots"></i>
               </button>
             </div>
             <div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-scroll="true">
               <div class="offcanvas-header px-4 pb-0">
-                <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">Bootstrap</h5>
+                <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">FastScala</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
               </div>
               <div class="offcanvas-body p-4 pt-0 p-lg-0">
@@ -226,10 +224,10 @@ trait DocsBasePage extends RenderableWithFSContext {
                   <img src="/static/images/fastscala_full_logo_color.svg" height="50"/>
                 </a>
                 <ul class="list-unstyled small">
-                  <li class="mb-2">Documentation website based on the Bootstrap docs, licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</li>
+                  <li class="mb-2">Documentation website based on the <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap docs</a>, licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</li>
                 </ul>
               </div>
-              <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+              <div class="col-6 col-lg-2 offset-lg-5 mb-3">
                 <h5>Links</h5>
                 <ul class="list-unstyled">
                   <li class="mb-2"><a href="/">Docs</a></li>
