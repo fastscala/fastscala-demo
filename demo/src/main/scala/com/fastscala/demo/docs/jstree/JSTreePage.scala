@@ -8,6 +8,7 @@ import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.{JS, inScriptTag}
 
+import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 import scala.xml.NodeSeq
 
@@ -16,10 +17,10 @@ class JSTreePage extends MultipleCodeExamples3Page() {
   override def pageTitle: String = "JsTree Example"
 
   override def append2Head(): NodeSeq = super.append2Head() ++
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.17/themes/default/style.min.css" />
 
   override def append2Body(): NodeSeq = super.append2Body() ++
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.17/jstree.min.js"></script>
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Countries") {
@@ -47,7 +48,16 @@ class JSTreePage extends MultipleCodeExamples3Page() {
             })
           ))
       }
-      jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
+
+      val onSelect = fsc.callback(
+        Js("data.node.id"),
+        nodeId =>
+          println(s"JsTree Selected Node is: $nodeId")
+          JS.consoleLog(s"JsTree Selected Node is: $nodeId"),
+      )
+      import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
+      jsTree.render().withStyle("height: 300px; overflow: auto;")
+        ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
     }
     renderCodeSampleAndAutoClosePreviousOne("With menu") {
 
@@ -59,29 +69,73 @@ class JSTreePage extends MultipleCodeExamples3Page() {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
       class Node(
-                  val titleNs: NodeSeq,
+                  var title: String,
                   val value: Unit,
                   val id: String,
                   val open: Boolean = false,
                   val disabled: Boolean = false,
                   val icon: Option[String] = None,
+                  val children: ArrayBuffer[Node] = ArrayBuffer.empty
+                )(implicit jsTree: JSTreeWithContextMenu[Unit, Node]
                 ) extends JSTreeNodeWithContextMenu[Unit, Node] {
-        override def childrenF: () => Seq[Node] = () => Nil
+        override val allowDuplicated: Boolean = false
 
         override def actions: Seq[JSTreeContextMenuAction] = Seq(
-          new DefaultJSTreeContextMenuAction(
+          DefaultJSTreeContextMenuAction(
             label = "Open",
-            run = implicit fsc => JS.alert("Hello world"),
-          )
+            icon = Some("bi bi-book text-success"),
+            run = implicit fsc => id => JS.alert(s"Open: $id"),
+          ),
+          DefaultJSTreeContextMenuAction(
+            label = "Close",
+            icon = Some("bi bi-book text-info"),
+            run = implicit fsc => id => JS.alert(s"Close: $id"),
+          ),
+          DefaultCreateAction(
+            label = "Create",
+            icon = Some("bi bi-book text-danger"),
+            onCreate = id => Node(id, (), id, icon = Some("bi bi-book text-info")),
+            onEdit = (node, text) =>
+              node.title = text; JS.void,
+          ),
+          DefaultRenameAction(
+            label = "Rename",
+            icon = Some("bi bi-book text-danger"),
+            onEdit = (node, text) =>
+              node.title = text; JS.void,
+          ),
+          DefaultRemoveAction(
+            label = "Remove",
+            icon = Some("bi bi-book text-danger"),
+            onRemove = (node, pid) =>
+              JS.alert(s"remove id: ${node.id}"),
+          ),
+          DefaultJSTreeContextMenuAction(
+            label = "SubMenu",
+            icon = Some("bi bi-book text-warning"),
+            separatorAfter = false,
+            run = fsc => id => JS.void,
+            subactions = Seq(
+              DefaultJSTreeContextMenuAction(
+                label = "SubOpen",
+                icon = Some("bi bi-book text-success"),
+                run = implicit fsc => id => JS.alert(s"Open From SubMenu: $id"),
+              ),
+              DefaultJSTreeContextMenuAction(
+                label = "SubClose",
+                icon = Some("bi bi-book text-info"),
+                separatorAfter = false,
+                run = implicit fsc => id => JS.alert(s"Close From SubMenu: $id"),
+              ),
+            ),
+          ),
         )
       }
 
       val jsTree = new JSTreeWithContextMenu[Unit, Node] {
-        override val rootNodes = Seq(new Node(
-          span("root"),
-          (),
-          "root"
-        ))
+        implicit val jstree: JSTreeWithContextMenu[Unit, Node] = this
+
+        override val rootNodes = Seq(new Node("root", (), "root"))
       }
       jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
     }
