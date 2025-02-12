@@ -55,6 +55,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
           println(s"JsTree Selected Node is: $nodeId")
           JS.consoleLog(s"JsTree Selected Node is: $nodeId"),
       )
+
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       jsTree.render().withStyle("height: 300px; overflow: auto;")
         ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
@@ -137,7 +138,15 @@ class JSTreePage extends MultipleCodeExamples3Page() {
 
         override val rootNodes = Seq(new Node("root", (), "root"))
       }
-      jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
+
+
+      import com.softwaremill.quicklens._
+      import com.fastscala.components.jstree.config.Themes
+      val config = jsTree.jsTreeConfig
+                    .modify(_.core.each.themes)
+                    .setTo(Some(Themes(dots = Some(false))))
+
+      jsTree.render() ++ jsTree.init(config = config).onDOMContentLoaded.inScriptTag
     }
     closeCodeSample()
   }
