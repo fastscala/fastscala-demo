@@ -44,7 +44,7 @@ cd fastscala-demo
 ### 3️⃣ Running the Demo
 To run the project, you can use SBT, Scala's interactive build tool:
 ```
-sbt run
+sbt fs_demo/run
 ```
 Open the demo at [http://localhost:9064/](http://localhost:9064/)
 
