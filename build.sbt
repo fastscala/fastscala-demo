@@ -9,11 +9,9 @@ val Version = "0.0.3"
 
 ThisBuild / organization := "com.fastscala"
 ThisBuild / version := Version
-ThisBuild / scalaVersion := "3.6.2"
+ThisBuild / scalaVersion := "3.6.3"
 
-lazy val root = (project in file(".")).aggregate(fs_demo)
-
-lazy val fs_demo = (project in file("./"))
+lazy val root = (project in file("."))
   .enablePlugins(JavaServerAppPackaging, SystemdPlugin)
   .settings(
     name := "fs-demo",
@@ -30,6 +28,11 @@ lazy val fs_demo = (project in file("./"))
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "at.favre.lib" % "bcrypt" % "0.10.2",
       "com.lihaoyi" %% "scalatags" % "0.13.1",
+      "com.fastscala" %% "fs-circe" % "0.0.11",
+      "com.fastscala" %% "fs-db" % "0.0.11",
+      "com.fastscala" %% "fs-core" % "0.0.11",
+      "com.fastscala" %% "fs-scala-xml" % "0.0.11",
+      "com.fastscala" %% "fs-components" % "0.0.11",
     ),
 
     bashScriptEnvConfigLocation := Some("/etc/default/" + (Linux / packageName).value),
