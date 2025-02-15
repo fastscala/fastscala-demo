@@ -135,7 +135,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
       }
       jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
     }
-    renderCodeSampleAndAutoClosePreviousOne("Editable (work in progress)") {
+    renderCodeSampleAndAutoClosePreviousOne("Editable", <p><b>NOTE:</b> work in progress</p>) {
 
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 

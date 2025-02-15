@@ -11,7 +11,7 @@ ThisBuild / organization := "com.fastscala"
 ThisBuild / version := Version
 ThisBuild / scalaVersion := "3.6.3"
 
-lazy val root = (project in file("."))
+lazy val fs_demo = (project in file("fs-demo"))
   .enablePlugins(JavaServerAppPackaging, SystemdPlugin)
   .settings(
     name := "fs-demo",
