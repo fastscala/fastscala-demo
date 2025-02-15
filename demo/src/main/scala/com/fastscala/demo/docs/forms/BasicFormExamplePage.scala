@@ -99,7 +99,7 @@ class BasicFormExamplePage extends MultipleCodeExamples3Page() {
             , new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Create User").btn.d_block)
           )
 
-          override def formRenderer: F7FormRenderer = formRenderer
+          override def formRenderer: F7FormRenderer = BSFormRenderer.formRenderer
         }.render()
       }
     }

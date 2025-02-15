@@ -41,7 +41,7 @@ abstract class Widget extends Mutable {
 
   def widgetTitle: String
 
-  def widgetTitleNs: NodeSeq = <h4 class="m-0">{widgetTitle}</h4>
+  def widgetTitleNs(implicit fsc: FSContext): NodeSeq = <h4 class="m-0">{widgetTitle}</h4>
 
   def widgetTopRight()(implicit fsc: FSContext): NodeSeq = NodeSeq.Empty
 
