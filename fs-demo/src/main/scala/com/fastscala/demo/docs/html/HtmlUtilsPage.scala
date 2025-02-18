@@ -16,7 +16,7 @@ class HtmlUtilsPage extends MultipleCodeExamples3Page() {
 
   override def pageLead(implicit fsc: FSContext): NodeSeq =
     <p>
-      Remember you need the import: {span.apply("import com.fastscala.templates.bootstrap5.helpers.BSHelpers.").text_bg_primary.d_inline}
+      Remember you need the import: {span.apply("import com.fastscala.components.bootstrap5.helpers.BSHelpers.").text_bg_primary.d_inline}
     </p>
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {

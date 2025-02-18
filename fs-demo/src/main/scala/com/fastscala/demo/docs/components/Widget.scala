@@ -81,5 +81,5 @@ abstract class Widget extends Mutable {
     } pipe transformWidgetCard
   }
 
-  def renderWidget()(implicit fsc: FSContext): Elem = widgetRenderer.render()
+  def renderWidget()(implicit fsc: FSContext): Elem = fsc.runInContextFor(this)(implicit fsc => widgetRenderer.render())
 }
