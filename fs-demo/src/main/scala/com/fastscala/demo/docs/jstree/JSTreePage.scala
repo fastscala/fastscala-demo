@@ -19,13 +19,13 @@ class JSTreePage extends MultipleCodeExamples3Page() {
   override def pageTitle: String = "JsTree Example"
 
   override def append2Head(): NodeSeq = super.append2Head() ++
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.17/themes/default/style.min.css" />
 
   override def append2Body(): NodeSeq = super.append2Body() ++
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.17/jstree.min.js"></script>
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
-    renderCodeSampleAndAutoClosePreviousOne("Countries") {
+    renderCodeSampleAndAutoClosePreviousOne("Countries", <span>An <code>onSelect</code> handler can also be set.</span>) {
 
       lazy val data = Source.fromResource("world-cities.csv").getLines().drop(1).map(_.split(",")).collect({
         case Array(name, country, subcountry, geonameid) => (country, subcountry, name)
@@ -50,7 +50,17 @@ class JSTreePage extends MultipleCodeExamples3Page() {
             })
           ))
       }
-      jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
+
+      val onSelect = fsc.callback(
+        Js("data.node.id"),
+        nodeId => {
+          println(s"JsTree Selected Node is: $nodeId")
+          JS.consoleLog(s"JsTree Selected Node is: $nodeId")
+        },
+      )
+
+      jsTree.render().withStyle("height: 600px; overflow: auto;")
+        ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
     }
     renderCodeSampleAndAutoClosePreviousOne("Countries (dedicated classes)", <p>Same functionality but with dedicated classes for RootNode, CountryNode, RegionNode and CityNode.</p>) {
 
@@ -102,7 +112,17 @@ class JSTreePage extends MultipleCodeExamples3Page() {
       val jsTree = new JSTree[Node] {
         override def rootNodes: Seq[Node] = List(new RootNode(data.groupBy(_._1).transform((k, v) => v.groupBy(_._2).transform((k, v) => v.map(_._3)))))
       }
-      jsTree.render() ++ jsTree.init().onDOMContentLoaded.inScriptTag
+
+      val onSelect = fsc.callback(
+        Js("data.node.id"),
+        nodeId => {
+          println(s"JsTree Selected Node is: $nodeId")
+          JS.consoleLog(s"JsTree Selected Node is: $nodeId")
+        },
+      )
+
+      jsTree.render().withStyle("height: 600px; overflow: auto;")
+        ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
     }
     renderCodeSampleAndAutoClosePreviousOne("With menu") {
 
@@ -121,8 +141,33 @@ class JSTreePage extends MultipleCodeExamples3Page() {
         override def actions: Seq[JSTreeContextMenuAction] = Seq(
           new DefaultJSTreeContextMenuAction(
             label = "Open",
-            action = Some(implicit fsc => JS.alert(s"Time on server: ${new Date().toGMTString}")),
-          )
+            icon = Some("bi bi-book text-success"),
+            action = Some(implicit fsc => JS.alert(s"Open from node: $id")),
+          ),
+          new DefaultJSTreeContextMenuAction(
+            label = "Close",
+            icon = Some("bi bi-book text-info"),
+            action = Some(implicit fsc => JS.alert(s"Close from node: $id")),
+          ),
+          new DefaultJSTreeContextMenuAction(
+            label = "SubMenu",
+            icon = Some("bi bi-book text-warning"),
+            separatorAfter = false,
+            action = None,
+            subactions = Seq(
+              new DefaultJSTreeContextMenuAction(
+                label = "SubOpen",
+                icon = Some("bi bi-book text-success"),
+                action = Some(implicit fsc => JS.alert(s"Open in SubMenu from node: $id")),
+              ),
+              new DefaultJSTreeContextMenuAction(
+                label = "SubClose",
+                icon = Some("bi bi-book text-info"),
+                separatorAfter = false,
+                action = Some(implicit fsc => JS.alert(s"Close in SubMenu from node: $id")),
+              ),
+            ),
+          ),
         )
       }
 
@@ -141,21 +186,39 @@ class JSTreePage extends MultipleCodeExamples3Page() {
 
       class Node(
                   val id: String,
-                  val title: String,
+                  var title: String,
                   val open: Boolean = false,
                   val disabled: Boolean = false,
                   val icon: Option[String] = None,
                 )(implicit jsTree: JSTreeWithContextMenu[Node]) extends EditableJSTreeNode[Node]()(jsTree) {
+        override val allowDuplicated: Boolean = false
 
         override val children: ArrayBuffer[Node] = ArrayBuffer[Node]()
 
         override def actions: Seq[JSTreeContextMenuAction] = Seq(
-          new DefaultCreateAction("New", onCreate = id => new Node(id, "Unnamed"), onEdit = (_, String) => Js.Void),
-          new DefaultRenameAction("Rename", onEdit = (_, String) => Js.Void),
-          new DefaultRemoveAction("Remove", onRemove = (node, _) => {
-            children -= node
-            Js.Void
-          }),
+          new DefaultCreateAction(
+            label = "New",
+            icon = Some("bi bi-book text-danger"),
+            // business logic and db operations can be here, e.g. insert a new record into database
+            onCreate = newId => new Node(newId, newId),
+            // business logic and db operations can be here, e.g. update a title field in database
+            onEdit = (node, newTitle) => { node.title = newTitle; Js.Void}
+          ),
+
+          new DefaultRenameAction(
+            label = "Rename",
+            icon = Some("bi bi-book text-danger"),
+            // business logic and db operations can be here, e.g. update a title field in database
+            onEdit = (node, newTitle) => { node.title = newTitle; Js.Void}
+          ),
+
+          new DefaultRemoveAction(
+            label = "Remove",
+            icon = Some("bi bi-book text-danger"),
+            // business logic and db operations can be here, e.g. delete a new record in database
+            // But Note: the node has already been removed from its parent's children, Don't do it again!
+            onRemove = (node, pid) => JS.alert(s"node(${node.id}) removed from $pid")
+          ),
         )
       }
 
