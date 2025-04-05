@@ -11,7 +11,7 @@ import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import scala.util.chaining.scalaUtilChainingOps
 import scala.xml.{Elem, NodeSeq}
 
-abstract class Widget extends Mutable {
+trait Widget extends Mutable {
 
   implicit val debug: RerendererDebugStatus.Value = RerendererDebugStatus.Enabled
 

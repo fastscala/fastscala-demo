@@ -2,9 +2,9 @@ package com.fastscala.demo.server
 
 import com.fastscala.core.{FSFunc, FSPage, FSSystem}
 import com.fastscala.js.Js
+import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.server.JettyServerHelper
-import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import org.eclipse.jetty.server.Handler
 
 import java.awt.Desktop
@@ -17,7 +17,7 @@ object JettyServer extends JettyServerHelper() {
   override def buildMainHandler(): Handler = new RoutingHandler()
 
   override def buildFSSystem(): FSSystem = new FSSystem(appName = appName) {
-    override def transformCallbackResponse(resp: Js, fsFunc: FSFunc, page: FSPage): Js = 
+    override def transformCallbackResponse(resp: Js, fsFunc: FSFunc, page: FSPage): Js =
       super.transformCallbackResponse(resp, fsFunc, page) &
         JS.setContents("fs_num_page_callbacks", scala.xml.Text(page.callbacks.size.toString))
   }

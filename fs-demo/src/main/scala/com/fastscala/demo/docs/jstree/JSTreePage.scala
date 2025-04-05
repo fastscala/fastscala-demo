@@ -1,15 +1,15 @@
 package com.fastscala.demo.docs.jstree
 
+import com.fastscala.components.jstree.*
 import com.fastscala.components.jstree.editable.EditableJSTreeNode
-import com.fastscala.components.jstree.{DefaultJSTreeContextMenuAction, JSTree, JSTreeContextMenuAction, JSTreeNode, JSTreeNodeWithContextMenu, JSTreeSimpleNode, JSTreeWithContextMenu}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.demo.testdata.Continents
+import com.fastscala.demo.testdata.{Continents, Fruit}
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.{JS, inScriptTag}
 
-import java.util.Date
+import java.util.{Date, UUID}
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 import scala.xml.NodeSeq
@@ -225,6 +225,55 @@ class JSTreePage extends MultipleCodeExamples3Page() {
       val editableJSTree: JSTreeWithContextMenu[Node] = new JSTreeWithContextMenu[Node] {
 
         override val rootNodes = Seq(new Node("root", "Example")(this))
+      }
+
+      editableJSTree.render() ++ editableJSTree.init().onDOMContentLoaded.inScriptTag
+    }
+    renderCodeSampleAndAutoClosePreviousOne("Drag and Drop Support") {
+
+      import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
+
+      class Node(
+                  var title: String,
+                  val id: String = UUID.randomUUID().toString,
+                  val open: Boolean = false,
+                  val disabled: Boolean = false,
+                  val icon: Option[String] = None,
+                )(
+                  val children: ArrayBuffer[Node] = ArrayBuffer[Node]()
+                ) extends JSTreeNodeWithDragAndDrop[Node] {
+
+        override def titleNs: NodeSeq = <span>{title}</span>
+
+        override def childrenF: () => collection.Seq[Node] = () => children
+
+        override def addedChildNode(child: Node, fromIdx: Int): Js = Js.Void
+
+        override def removedChildNode(child: Node, toIdx: Int): Js = Js.Void
+      }
+
+      val editableJSTree: JSTreeWithDragAndDrop[Node] = new JSTreeWithDragAndDrop[Node] {
+
+        override def movedNode(node: Node, fromParent: Node, fromIdx: Int, toParent: Node, toIdx: Int): Js = Js.Void
+
+        override val rootNodes = Seq(new Node("Root node")(
+          ArrayBuffer(
+            new Node("Folder A")(
+              ArrayBuffer(
+                new Node("Item A.1")(),
+                new Node("Item A.2")(),
+                new Node("Item A.3")(),
+              ),
+            ),
+            new Node("Folder B")(
+              ArrayBuffer(
+                new Node("Item B.1")(),
+                new Node("Item B.2")(),
+                new Node("Item B.3")(),
+              ),
+            ),
+          ),
+        ))
       }
 
       editableJSTree.render() ++ editableJSTree.init().onDOMContentLoaded.inScriptTag

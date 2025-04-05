@@ -11,7 +11,7 @@ object DefaultBSNavBarRenderer {
 
 trait DefaultBSNavBarRenderer extends BSMenuRenderer {
 
-  override def render(elem: BSMenu)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = ???
+  override def render(elem: BSMenu)(implicit fsc: FSContext): NodeSeq = ???
 
   def renderHeader(elem: BSNav): Elem = <a class="navbar-brand" href="#"></a>
 
@@ -22,7 +22,7 @@ trait DefaultBSNavBarRenderer extends BSMenuRenderer {
 
   def renderRightContents(elem: BSNav): NodeSeq = NodeSeq.Empty
 
-  def render(elem: BSNav)(implicit fsc: FSContext, renderer: BSMenuRenderer): Elem = {
+  def render(elem: BSNav)(implicit fsc: FSContext): Elem = {
     <nav class="navbar navbar-expand-lg bg-primary-subtle">
       <div class="container-fluid">
         {renderHeader(elem)}
@@ -37,7 +37,7 @@ trait DefaultBSNavBarRenderer extends BSMenuRenderer {
     </nav>
   }
 
-  def render(elem: MenuSection)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
+  def render(elem: MenuSection)(implicit fsc: FSContext): NodeSeq = {
     val isOpen = elem.items.exists(_.matches(fsc.page.req.getHttpURI.getPath))
     val id = IdGen.id
     <li class="mb-1">
@@ -52,11 +52,11 @@ trait DefaultBSNavBarRenderer extends BSMenuRenderer {
     </li>
   }
 
-  def render(elem: SimpleMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = <li class="nav-item"><a class="nav-link" href={elem.href}>{elem.name}</a></li>
+  def render(elem: SimpleMenuItem)(implicit fsc: FSContext): NodeSeq = <li class="nav-item"><a class="nav-link" href={elem.href}>{elem.name}</a></li>
 
 
-  def render(elem: RoutingMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = <li class="nav-item"><a class="nav-link" href={elem.href}>{elem.name}</a></li>
+  def render(elem: RoutingMenuItem)(implicit fsc: FSContext): NodeSeq = <li class="nav-item"><a class="nav-link" href={elem.href}>{elem.name}</a></li>
 
 
-  def render(elem: HeaderMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq =  <li class="mt-3"><span class="menu-heading fw-bold text-uppercase fs-7 ">{elem.title}</span></li>
+  def render(elem: HeaderMenuItem)(implicit fsc: FSContext): NodeSeq =  <li class="mt-3"><span class="menu-heading fw-bold text-uppercase fs-7 ">{elem.title}</span></li>
 }

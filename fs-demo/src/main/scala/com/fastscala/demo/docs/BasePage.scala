@@ -3,9 +3,8 @@ package com.fastscala.demo.docs
 import com.fastscala.core.FSContext
 import com.fastscala.demo.db.CurrentUser
 import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.inScriptTag
-import com.fastscala.scala_xml.js.JS
-import com.fastscala.scala_xml.utils.RenderableWithFSContext
+import com.fastscala.scala_xml.js.{JS, inScriptTag, printBeforeExec}
+import com.fastscala.scala_xml.utils.{FSPageImplWithFSContext, RenderableWithFSContext}
 import com.fastscala.components.bootstrap5.helpers.BSHelpers
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.demo.docs.navigation.DefaultBSMenuRenderer
@@ -17,7 +16,7 @@ import scala.io.Source
 import scala.util.Try
 import scala.xml.NodeSeq
 
-trait BasePage extends RenderableWithFSContext {
+trait BasePage extends FSPageImplWithFSContext {
 
   import BSHelpers.*
 
@@ -62,7 +61,7 @@ trait BasePage extends RenderableWithFSContext {
     renderPageContents()
   }, debugLabel = Some("page"))
 
-  def rerenderPageContents(): Js = pageRenderer.rerender()
+  def rerenderPageContents()(implicit fsc: FSContext): Js = pageRenderer.rerender()
 
   def renderPageContents()(implicit fsc: FSContext): NodeSeq
 
@@ -134,7 +133,7 @@ trait BasePage extends RenderableWithFSContext {
         <script src="//cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
         {append2Body()}
         {Try(config.getString("com.fastscala.demo.pages.include_file_in_body")).map(Source.fromFile(_).getLines().mkString("\n")).map(scala.xml.Unparsed(_)).getOrElse(NodeSeq.Empty)}
-        {JS.setContents("fs_num_page_callbacks", scala.xml.Text(fsc.page.callbacks.size.toString)).inScriptTag}
+        {JS.setContents("fs_num_page_callbacks", scala.xml.Text(fsc.page.callbacks.size.toString)).printBeforeExec.onDOMContentLoaded.inScriptTag}
       </body>
     </html>
 

@@ -8,7 +8,7 @@ import scala.xml.{Elem, NodeSeq}
 
 implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
 
-  def render(elem: BSMenu)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
+  def render(elem: BSMenu)(implicit fsc: FSContext): NodeSeq = {
     <nav class="bd-links w-100">
       <ul class="bd-links-nav list-unstyled mb-0 pb-3 pb-md-2 pe-lg-2">
         {elem.items.map(_.render())}
@@ -16,7 +16,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     </nav>
   }
 
-  def render(elem: MenuSection)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
+  def render(elem: MenuSection)(implicit fsc: FSContext): NodeSeq = {
     val isOpen = elem.items.exists(_.matches(fsc.page.req.getHttpURI.getPath))
     val id = IdGen.id
     <li class="bd-links-group py-2">
@@ -30,7 +30,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     </li>
   }
 
-  def render(elem: SimpleMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
+  def render(elem: SimpleMenuItem)(implicit fsc: FSContext): NodeSeq = {
     val isOpen = elem.matches(fsc.page.req.getHttpURI.getPath)
     <li>
       {
@@ -41,7 +41,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     </li>
   }
 
-  def render(elem: RoutingMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = {
+  def render(elem: RoutingMenuItem)(implicit fsc: FSContext): NodeSeq = {
     val isOpen = elem.matches(fsc.page.req.getHttpURI.getPath)
     <li>
       {
@@ -52,7 +52,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     </li>
   }
 
-  override def render(elem: BSNav)(implicit fsc: FSContext, renderer: BSMenuRenderer): Elem = ???
+  override def render(elem: BSNav)(implicit fsc: FSContext): Elem = ???
 
-  override def render(elem: HeaderMenuItem)(implicit fsc: FSContext, renderer: BSMenuRenderer): NodeSeq = ???
+  override def render(elem: HeaderMenuItem)(implicit fsc: FSContext): NodeSeq = ???
 }

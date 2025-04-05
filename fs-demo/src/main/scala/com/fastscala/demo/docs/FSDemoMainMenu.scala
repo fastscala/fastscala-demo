@@ -1,7 +1,7 @@
 package com.fastscala.demo.docs
 
 import com.fastscala.demo.docs.about.{AboutPage, AuthorPage, GettingStartedPage}
-import com.fastscala.demo.docs.bootstrap.{BootstrapButtonsPage, BootstrapImagesPage, BootstrapModalPage, BootstrapOffcanvasPage, BootstrapTypographyPage}
+import com.fastscala.demo.docs.bootstrap.{BootstrapAccordionPage, BootstrapButtonsPage, BootstrapImagesPage, BootstrapModalPage, BootstrapOffcanvasPage, BootstrapTypographyPage}
 import com.fastscala.demo.docs.fastscala.*
 import com.fastscala.demo.docs.forms.*
 import com.fastscala.demo.docs.html.{HtmlTagsPage, HtmlUtilsPage, ScalaTagsPage}
@@ -12,7 +12,6 @@ import com.fastscala.demo.docs.navigation.DefaultBSMenuRenderer.*
 import com.fastscala.demo.docs.navigation.{BSMenu, MenuSection, RoutingMenuItem, SimpleMenuItem}
 import com.fastscala.demo.docs.other.AceEditorPage
 import com.fastscala.demo.docs.tables.ModifyingTableExamplePage
-
 import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
 object FSDemoMainMenu extends BSMenu(
@@ -46,6 +45,7 @@ object FSDemoMainMenu extends BSMenu(
     , new RoutingMenuItem("demo", "bootstrap", "images")("Images", () => new BootstrapImagesPage())
     , new RoutingMenuItem("demo", "bootstrap", "modal")("Modal", () => new BootstrapModalPage())
     , new RoutingMenuItem("demo", "bootstrap", "offcanvas")("Offcanvas", () => new BootstrapOffcanvasPage())
+    , new RoutingMenuItem("demo", "bootstrap", "acoordion")("Accordion", () => new BootstrapAccordionPage())
   ),
   MenuSection("Form7 Library", <i class="bi bi-ui-checks"></i>.withColorPrimary)(
     SimpleMenuItem("Creating a form", "/demo/simple_form")

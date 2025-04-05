@@ -8,7 +8,7 @@ import com.fastscala.demo.docs.navigation.DefaultBSMenuRenderer
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.{JS, inScriptTag}
-import com.fastscala.scala_xml.utils.RenderableWithFSContext
+import com.fastscala.scala_xml.utils.{FSPageImplWithFSContext, RenderableWithFSContext}
 import com.typesafe.config.ConfigFactory
 
 import java.time.LocalDate
@@ -16,7 +16,7 @@ import scala.io.Source
 import scala.util.Try
 import scala.xml.NodeSeq
 
-trait DocsBasePage extends RenderableWithFSContext {
+trait DocsBasePage extends FSPageImplWithFSContext {
 
   import BSHelpers.*
 
@@ -25,12 +25,12 @@ trait DocsBasePage extends RenderableWithFSContext {
   def navBarTopRight()(implicit fsc: FSContext): NodeSeq =
     <div class="text-end justify-content-end">
         {
-        CurrentUser().map(user => {
-          BSBtn().BtnOutlineWarning.lbl("Logout").ajax(implicit fsc => {
-            user.logOut()
-          }).btn.ms_2
-        }).getOrElse(Empty)
-        }
+      CurrentUser().map(user => {
+        BSBtn().BtnOutlineWarning.lbl("Logout").ajax(implicit fsc => {
+          user.logOut()
+        }).btn.ms_2
+      }).getOrElse(Empty)
+    }
         <a href="https://calendly.com/fastscala/fastscala-free-training" class="btn btn-warning">Register for Free Training!</a>
     </div>
   //      <div class="text-end justify-content-end ms-2">
@@ -61,11 +61,15 @@ trait DocsBasePage extends RenderableWithFSContext {
 
   implicit val atTime: LocalDate = LocalDate.now()
 
-  lazy val pageRenderer = JS.rerenderableContents(rerenderer => implicit fsc => {
-    renderPageContents()
-  }, debugLabel = Some("page"))
+  lazy val pageRenderer = JS.rerenderableContents(
+    rerenderer =>
+      implicit fsc => {
+        renderPageContents()
+      },
+    debugLabel = Some("page")
+  )
 
-  def rerenderPageContents(): Js = pageRenderer.rerender()
+  def rerenderPageContents()(implicit fsc: FSContext): Js = pageRenderer.rerender()
 
   def renderPageContents()(implicit fsc: FSContext): NodeSeq
 
@@ -182,8 +186,8 @@ trait DocsBasePage extends RenderableWithFSContext {
               </div>
               <div class="offcanvas-body">
                 {
-                FSDemoMainMenu.render()(fsc, com.fastscala.demo.docs.navigation.BSMenuRenderer2)
-                }
+      FSDemoMainMenu.render()(fsc, com.fastscala.demo.docs.navigation.BSMenuRenderer2)
+    }
               </div>
             </div>
           </aside>
@@ -210,6 +214,9 @@ trait DocsBasePage extends RenderableWithFSContext {
               <div class="collapse bd-toc-collapse" id="tocContents">
                 {renderTableOfContents()}
               </div>
+              <strong class="d-none d-md-block h6 my-2 ms-3">Stats</strong>
+              <hr class="d-none d-md-block my-2 ms-3"/>
+              <strong class="d-none d-md-block h6 my-2 ms-3">#callbacks: <span id="fs_num_page_callbacks"></span></strong>
             </div>
             <div class="bd-content ps-lg-2">
               {renderPageContents()}

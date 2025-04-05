@@ -3,7 +3,7 @@ package com.fastscala.demo.docs.loggedout
 import com.fastscala.core.FSContext
 import com.fastscala.demo.db.{CurrentUser, FakeDB}
 import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.printBeforeExec
+import com.fastscala.scala_xml.js
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.layout.F7VerticalField
@@ -42,7 +42,7 @@ class LoginPage extends LoggedoutBasePage {
             fsc.session.delete()
             val newSession = fsc.session.fsSystem.createSession()
             CurrentUser.update(user)(newSession)
-            JS.setCookie(fsc.session.fsSystem.FSSessionIdCookieName, newSession.id, path = Some("/")).printBeforeExec & JS.redirectTo("/")
+            JS.setCookie(fsc.session.fsSystem.FSSessionIdCookieName, newSession.id, path = Some("/")) & JS.redirectTo("/")
           case None => JS.alert("User or password invalid.")
         }
       }

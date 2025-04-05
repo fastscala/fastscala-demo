@@ -36,7 +36,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
 
         override def defaultMode: Language.Value = Language.scala
 
-        override def defaultTheme: Theme.Value = Theme.solarized_dark
+        override def defaultTheme: Theme.Value = Theme.textmate
 
         override def initalValue: String =
           """object Hello {
