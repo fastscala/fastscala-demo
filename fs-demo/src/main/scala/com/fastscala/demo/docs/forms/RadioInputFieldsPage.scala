@@ -1,9 +1,5 @@
 package com.fastscala.demo.docs.forms
 
-import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlignment, CheckboxSide, CheckboxStyle}
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
@@ -11,7 +7,11 @@ import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
+import com.fastscala.core.FSContext
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
+import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
+import com.fastscala.scala_xml.js.JS
 
 class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
 
@@ -23,8 +23,8 @@ class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Radio input-based fields") {
 
-      val radioAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).radioFieldRenderer
-      val radioInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal).radioFieldRenderer
+      val radioAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).radioFieldRenderer
+      val radioInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).radioFieldRenderer
 
       val registrationType = Seq("Teacher", "Student", "Parent")
       val registrationTypeField = new F7RadioField[String](() => registrationType).label("Registration type")
@@ -53,11 +53,17 @@ class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
             modal =>
               implicit fsc =>
                 <h6>Your data:</h6> ++
-                <ul>
-                  <li><b>Registration type:</b> {registrationTypeField.getInternalValue()}</li>
-                  <li><b>Phone type:</b> {phoneTypeField.getInternalValue()}</li>
-                  <li><b>Preferred marketing channel:</b> {marketingChannelsTypeField.getInternalValue()}</li>
-                </ul>
+                  <ul>
+                    <li>
+                      <b>Registration type:</b>{registrationTypeField.getInternalValue()}
+                    </li>
+                    <li>
+                      <b>Phone type:</b>{phoneTypeField.getInternalValue()}
+                    </li>
+                    <li>
+                      <b>Preferred marketing channel:</b>{marketingChannelsTypeField.getInternalValue()}
+                    </li>
+                  </ul>
           }
 
         }.render()

@@ -22,8 +22,8 @@ class CheckboxInputFieldsPage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Checkbox input-based fields") {
 
-      val checkboxAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).checkboxFieldRenderer
-      val checkboxInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal).checkboxFieldRenderer
+      val checkboxAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).checkboxFieldRenderer
+      val checkboxInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).checkboxFieldRenderer
 
       val termsAndConditionsField = new F7CheckboxField().label("Accept Terms and Conditions")
       val privacyPolicyField = new F7CheckboxField().label("Accept Privacy Policy").setInternalValue(true)

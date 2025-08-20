@@ -1,10 +1,6 @@
 package com.fastscala.demo.docs.forms
 
-import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.JS
-import com.fastscala.components.bootstrap5.form7.renderermodifiers.CheckboxStyle
+import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlignment, CheckboxSide, CheckboxStyle}
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.toast.BSToast2
 import com.fastscala.components.bootstrap5.utils.BSBtn
@@ -15,7 +11,11 @@ import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.fields.select.F7SelectField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
+import com.fastscala.core.FSContext
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
+import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
+import com.fastscala.scala_xml.js.JS
 
 import java.awt.Color
 import scala.util.chaining.scalaUtilChainingOps
@@ -145,7 +145,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples3Page() {
     }
     renderCodeSampleAndAutoClosePreviousOne("Checkbox as switch") {
 
-      val renderers = new FSDemoBSForm7Renderers()(checkboxStyle = CheckboxStyle.Switch)
+      val renderers = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = summon[CheckboxSide.Value])
       import renderers.*
 
       // Pass the renderer which renders as switches:
