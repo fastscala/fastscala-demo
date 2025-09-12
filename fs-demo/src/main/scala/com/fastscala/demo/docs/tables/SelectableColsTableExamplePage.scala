@@ -5,7 +5,7 @@ import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
-import com.fastscala.components.bootstrap5.tables.*
+import com.fastscala.components.bootstrap5.table6.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.demo.testdata.{CountriesData, Country}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -16,32 +16,31 @@ import scala.xml.{Elem, NodeSeq}
 
 class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
 
-  override def pageTitle: String = "Selectable cols table example"
+  override def pageTitle: String = "Selectable Column Table Example"
+
+  override def codeSampleWrapperPadding: Boolean = false
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
-      lazy val mainTable = new Table5Base
-        with Table5BaseBootrapSupport
-        with Table5Paginated
-        with Table5SeqSortableDataSource
-        with Table5StandardColumns
-        with Table5Sortable
-        with Table5SelectableCols {
+      lazy val mainTable = new Table6Base
+        with Table6BaseBootrapSupport
+        with Table6Paginated
+        with Table6SeqSortableDataSource
+        with Table6StandardColumns
+        with Table6Sortable
+        with Table6SelectableCols {
         override type R = Country
 
         override def defaultPageSize: Int = 10
 
-        override def aroundClasses()(implicit fsc: FSContext): String = super.aroundClasses() + " mb-5"
+        onTableWrapper(_.mb_5)
 
-        override def tableHeadStyle: Option[Table5BootrapStyles.Value] = Some(Table5BootrapStyles.Primary)
+        override def tableHeadStyle: Option[Table6BootrapStyles.Value] = Some(Table6BootrapStyles.Primary)
 
-        override def tableResponsive: Option[Table5BootrapResponsiveSizes.Value] = Some(Table5BootrapResponsiveSizes.ALL)
+        override def tableResponsive: Option[Table6BootrapResponsiveSizes.Value] = Some(Table6BootrapResponsiveSizes.ALL)
 
-        val ColActions = ColNs("Actions", implicit fsc => row => BSBtn().BtnPrimary.sm.lbl("Time?").ajax(implicit fsc => {
-          JS.alert(s"Time on server is: ${new Date().toGMTString}")
-        }).btn)
         val ColName = ColStr("Name", _.name.common)
         val ColCCA2 = ColStr("CCA2", _.cca2)
         val ColCCN3 = ColStr("CCN3", _.ccn3)
@@ -61,7 +60,7 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
         val ColFlag = ColStr("Flag", _.flag)
 
 
-        override def rowsSorter: PartialFunction[Table5StandardColumn[Country], Seq[Country] => Seq[Country]] = {
+        override def rowsSorter: PartialFunction[C, Seq[Country] => Seq[Country]] = {
           case ColName => _.sortBy(_.name.common)
           case ColCCA2 => _.sortBy(_.cca2)
           case ColCCN3 => _.sortBy(_.ccn3)
@@ -99,15 +98,13 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
           , ColArea
           , ColCallingCodes
           , ColFlag
-          , ColActions
         )
 
-        override def columnStartsVisible(c: Table5StandardColumn[Country]): Boolean = Set(
+        override def columnStartsVisible(c: C): Boolean = Set(
           ColName
           , ColUNMember
           , ColCapital
           , ColArea
-          , ColActions
         ).contains(c)
 
         override def seqRowsSource: Seq[Country] = CountriesData.data

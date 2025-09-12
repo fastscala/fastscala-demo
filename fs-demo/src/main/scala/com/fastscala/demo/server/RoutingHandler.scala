@@ -115,15 +115,8 @@ class RoutingHandler(implicit fss: FSSystem) extends ScalaXmlRoutingHandlerHelpe
 
       FSDemoMainMenu.serve().map(servePage(_)).orElse({
         Some(req).collect {
-          case Get("demo") => servePage(new SimpleTableExamplePage())
-          case Get("demo", "simple_tables") => servePage(new SimpleTableExamplePage())
-          case Get("demo", "sortable_tables") => servePage(new SortableTableExamplePage())
-          case Get("demo", "paginated_tables") => servePage(new PaginatedTableExamplePage())
-          case Get("demo", "selectable_rows_tables") => servePage(new SelectableRowsTableExamplePage())
-          case Get("demo", "tables_sel_cols") => servePage(new SelectableColsTableExamplePage())
           case Get("demo", "simple_form") => servePage(new BasicFormExamplePage())
           case Get("demo", "simple_modal") => servePage(new BootstrapModalPage())
-
           case Get("demo", "chartjs", "simple") => servePage(new SimpleChartjsPage())
         }
       })

@@ -7,7 +7,7 @@ val Version = "0.0.3"
 
 ThisBuild / organization := "com.fastscala"
 ThisBuild / version := Version
-ThisBuild / scalaVersion := "3.7.2"
+ThisBuild / scalaVersion := "3.7.3"
 
 val FastScalaVersion = "0.0.20"
 

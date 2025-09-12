@@ -5,7 +5,7 @@ import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
 import com.fastscala.scala_xml.js.JS
 import com.fastscala.scala_xml.rerenderers.{RerendererDebugStatus, RerendererDebugStatusState}
-import com.fastscala.components.bootstrap5.tables.*
+import com.fastscala.components.bootstrap5.table6.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.bootstrap5.components.BSBtnToogle.RichBSBtnToogler
 import com.fastscala.demo.testdata.{CountriesData, Country}
@@ -22,11 +22,11 @@ class FSContextDiscardPage extends MultipleCodeExamples3Page() {
     renderCodeSampleAndAutoClosePreviousOne("Old FSContext is discarded on rerender, so the number of callbacks doesn't grow indefinitely") {
 
       // Debug rerenderable:
-      val table = new Table5Base
-        with Table5BaseBootrapSupport
-        with Table5SelectableRows
-        with Table5StandardColumns
-        with Table5Paginated {
+      val table = new Table6Base
+        with Table6BaseBootrapSupport
+        with Table6SelectableRows
+        with Table6StandardColumns
+        with Table6Paginated {
         override type R = Country
 
         override def defaultPageSize: Int = 10

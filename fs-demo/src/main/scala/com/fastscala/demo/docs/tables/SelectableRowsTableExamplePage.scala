@@ -3,7 +3,7 @@ package com.fastscala.demo.docs.tables
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
-import com.fastscala.components.bootstrap5.tables.*
+import com.fastscala.components.bootstrap5.table6.*
 import com.fastscala.demo.testdata.{CountriesData, Country}
 
 import scala.xml.{Elem, NodeSeq}
@@ -11,17 +11,19 @@ import scala.xml.{Elem, NodeSeq}
 
 class SelectableRowsTableExamplePage extends MultipleCodeExamples3Page() {
 
-  override def pageTitle: String = "Selectable rows table example"
+  override def pageTitle: String = "Selectable Rows Table Example"
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
+  override def codeSampleWrapperPadding: Boolean = false
+  
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      val table = new Table5Base
-        with Table5BaseBootrapSupport
-        with Table5SelectableRows
-        with Table5StandardColumns
-        with Table5Paginated {
+      val table = new Table6Base
+        with Table6BaseBootrapSupport
+        with Table6SelectableRows
+        with Table6StandardColumns
+        with Table6Paginated {
         override type R = Country
 
         override def defaultPageSize: Int = 10
