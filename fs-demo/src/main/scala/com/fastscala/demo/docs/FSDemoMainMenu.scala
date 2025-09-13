@@ -65,6 +65,7 @@ object FSDemoMainMenu
         new RoutingMenuItem("demo", "tables", "paginated")("Paginated", () => new PaginatedTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "paginated_and_sortable")("Paginated & Sortable", () => new PaginatedAndSortableTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "selectable_rows")("Selectable Rows", () => new SelectableRowsTableExamplePage()),
+        new RoutingMenuItem("demo", "tables", "selectable_rows_with_actions")("Selectable Rows w/Actions", () => new SelectableRowsWithActionsTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "selectable_columns")("Selectable Columns", () => new SelectableColsTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "modifying")("Modifying tables", () => new ModifyingTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "simple_filter")("Simple filter", () => new SimpleFilterTableExamplePage()),

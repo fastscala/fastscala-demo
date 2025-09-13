@@ -115,7 +115,7 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
 
         override def transformWidgetCardBody(elem: Elem): Elem = super.transformWidgetCardBody(elem).p_0
 
-        override def widgetTopRight()(implicit fsc: FSContext): NodeSeq = mainTable.colSelectionDropdownBtn(_.BtnPrimary.lbl("Columns...").sm.dataBsAutoCloseAsOutside)
+        override def widgetTopRight()(implicit fsc: FSContext): NodeSeq = mainTable.colSelectionDropdown()
 
         override def widgetContents()(implicit fsc: FSContext): NodeSeq = mainTable.render()
       }.renderWidget()

@@ -13,7 +13,7 @@ class OtherFeaturesTableExamplePage extends MultipleCodeExamples3Page() {
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Striped rows") {
-      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqDataSourceNoContext {
+      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqDataSource {
         override type R = Country
 
         override def tableStriped: Boolean = true
@@ -30,7 +30,7 @@ class OtherFeaturesTableExamplePage extends MultipleCodeExamples3Page() {
       }.render()
     }
     renderCodeSampleAndAutoClosePreviousOne("Striped columns") {
-      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqDataSourceNoContext {
+      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqDataSource {
         override type R = Country
 
         override def tableStripedColumns: Boolean = true
