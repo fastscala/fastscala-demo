@@ -17,7 +17,7 @@ class ModifyingTableExamplePage extends MultipleCodeExamples3Page() {
 
     renderCodeSampleAndAutoClosePreviousOne("Building the table") {
       buildTable = () =>
-        new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqDataSource with Table6Paginated {
+        new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqDataSource with Table6Paginated {
           override type R = Country
 
           val ColName = ColStr("Name", _.name.common)
@@ -54,33 +54,33 @@ class ModifyingTableExamplePage extends MultipleCodeExamples3Page() {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
       buildTable().onTableHeadTr(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableHeadTrThClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableHeadTrTh method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableHeadTrThClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableHeadTrTh(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onTableBodyClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onTableBody method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onTableBodyClasses(_.border.border_danger.border_5).render()
+      buildTable().onTableBody(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableBodyTRClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableBodyTR method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableBodyTRClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableBodyTR(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableBodyTRTDClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableBodyTRTD method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableBodyTRTDClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableBodyTRTD(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableFootClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableFoot method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableFootClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableFoot(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableFootTRClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableFootTR method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableFootTRClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableFootTR(_.border.border_danger.border_5).render()
     }
-    renderCodeSampleAndAutoClosePreviousOne("onAllTableFootTrThClasses method") {
+    renderCodeSampleAndAutoClosePreviousOne("onAllTableFootTrTh method") {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
-      buildTable().onAllTableFootTrThClasses(_.border.border_danger.border_5).render()
+      buildTable().onAllTableFootTrTh(_.border.border_danger.border_5).render()
     }
     closeCodeSample()
   }

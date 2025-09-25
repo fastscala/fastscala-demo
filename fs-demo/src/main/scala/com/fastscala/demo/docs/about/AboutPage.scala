@@ -81,7 +81,7 @@ class AboutPage extends MultipleCodeExamples3Page {
           BSBtn().BtnSecondary.lg.lbl(points.toString)
             .onclick(JS.alert(points + " points")).btn.mx_3
         })
-        d_flex.justify_content_center.apply(buttons: _*).mb_2 ++
+        d_flex.justify_content_center.apply(buttons*).mb_2 ++
           d_flex.justify_content_center.apply {
             BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
               numBtns -= 1
@@ -100,7 +100,7 @@ class AboutPage extends MultipleCodeExamples3Page {
           BSBtn().BtnSecondary.lg.lbl(points.toString)
             .onclick(JS.alert(points + " points")).btn.mx_3
         })
-        d_flex.justify_content_center.apply(buttons: _*).mb_2 ++
+        d_flex.justify_content_center.apply(buttons*).mb_2 ++
           d_flex.justify_content_center.apply {
             BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
               rerenderer.rerender(math.max(1, numBtns - 1))

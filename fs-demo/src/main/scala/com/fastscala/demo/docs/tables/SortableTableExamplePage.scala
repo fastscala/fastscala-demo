@@ -18,7 +18,7 @@ class SortableTableExamplePage extends MultipleCodeExamples3Page() {
     import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
     import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers.*
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SeqSortableDataSource with Table6Sortable {
+      new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqSortableDataSource with Table6Sortable {
         override type R = Country
 
         val ColName = ColStr("Name", _.name.common)

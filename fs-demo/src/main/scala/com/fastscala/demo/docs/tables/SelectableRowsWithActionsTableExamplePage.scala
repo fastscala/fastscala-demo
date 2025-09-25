@@ -20,7 +20,7 @@ class SelectableRowsWithActionsTableExamplePage extends MultipleCodeExamples3Pag
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      val table = new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns with Table6SelectableRowsWithActions with Table6Paginated {
+      val table = new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SelectableRowsWithActions with Table6Paginated {
         override type R = Country
 
         override def defaultPageSize: Int = 10

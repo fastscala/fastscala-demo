@@ -13,33 +13,10 @@ import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.select.F7SelectField
 import com.fastscala.components.form7.fields.text.{F7IntOptField, F7LocalDateOptField, F7StringField}
+import com.fastscala.demo.docs.forms.model.{CitiesData, City, Province, User1}
 import com.fastscala.demo.testdata.{CountriesData, Country}
 
-class User1(
-             var firstName: String,
-             var lastName: String,
-             var email: String,
-             var phoneNumber: String,
-             var securityLevel: Int,
-             var countryOfResidence: Country,
-             var birthDay: Option[String],
-             var province: Province,
-             var city: City
-           )
-
-case class Province(no: Int, name: String)
-
-case class City(no: Int, name: String)
-
-object CitiesData {
-  lazy val data = Map(
-    Province(1, "P1") -> List(City(11, "C11"), City(12, "C12"), City(13, "C13"), City(14, "C14"), City(15, "C15"), City(16, "C16")),
-    Province(2, "P2") -> List(City(21, "C21"), City(22, "C22"), City(23, "C23"), City(24, "C24"), City(25, "C25"), City(26, "C26"), City(27, "C27")),
-    Province(3, "P3") -> List(City(31, "C31"), City(32, "C32"), City(33, "C33"), City(34, "C34"), City(35, "C35"), City(36, "C36"), City(37, "C37")),
-    Province(4, "P4") -> List(City(41, "C41"), City(42, "C42"), City(43, "C43"), City(34, "C44"), City(35, "C45"))
-  )
-}
-
+import java.time.LocalDate
 
 class BasicFormExamplePage extends MultipleCodeExamples3Page() {
 
@@ -55,9 +32,10 @@ class BasicFormExamplePage extends MultipleCodeExamples3Page() {
         phoneNumber = "",
         securityLevel = 0,
         countryOfResidence = CountriesData.data(0),
-        birthDay = Some("2022-08-04"),
+        birthday = Some(LocalDate.of(2000, 5, 1)),
         province = CitiesData.data.head._1,
-        city = CitiesData.data.head._2.head
+        city = CitiesData.data.head._2.head,
+        enableLogin = false
       )
       val BSFormRenderer = new BSForm7Renderers {
         override def defaultRequiredFieldLabel: String = "Required Field"
@@ -76,7 +54,7 @@ class BasicFormExamplePage extends MultipleCodeExamples3Page() {
               <span><b>Phone:</b> {editing.phoneNumber}</span><br/> ++
               <span><b>Security Level:</b> {editing.securityLevel}</span><br/> ++
               <span><b>Country of Residence:</b> {editing.countryOfResidence.name.common}</span><br/> ++
-              <span><b>Date of Birth:</b> {editing.birthDay.getOrElse("N/A")}</span><br/> ++
+              <span><b>Date of Birth:</b> {editing.birthday.getOrElse("N/A")}</span><br/> ++
               <span><b>Province:</b> {s"${editing.province.name}(${editing.province.no})"}</span><br/>++
               <span><b>City:</b> {s"${editing.city.name}(${editing.city.no})"}</span>
             })
@@ -93,7 +71,7 @@ class BasicFormExamplePage extends MultipleCodeExamples3Page() {
             , new F7StringField().label("Phone Number").rw(editing.phoneNumber, editing.phoneNumber = _).inputType("tel")
             , new F7SelectField[Country](CountriesData.data.toList).label("Country of Residence").rw(editing.countryOfResidence, editing.countryOfResidence = _).option2String(_.name.common)
             , new F7IntOptField().label("Security Level").rw(Some(editing.securityLevel), oi => editing.securityLevel = oi.getOrElse(0))
-            , F7LocalDateOptField(editing.birthDay, editing.birthDay = _).label("BirthDay")
+            , new F7LocalDateOptField().rw(editing.birthday, editing.birthday = _).label("Birthday")
             , _provField
             , new F7SelectField[City](() => CitiesData.data(_provField.currentValue)).label("City").rw(editing.city, editing.city = _).option2String(_.name).deps(() => Set[F7Field](_provField))
             , new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Create User").btn.d_block)

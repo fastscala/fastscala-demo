@@ -31,7 +31,7 @@ class SimpleFilterTableExamplePage extends MultipleCodeExamples3Page() {
           }).cmd
         ))
       lazy val table = new Table6Base
-        with Table6BaseBootrapSupport
+        with Table6BootrapStyling
         with Table6StandardColumns
         with Table6SeqSortableDataSource
         with Table6Sortable {

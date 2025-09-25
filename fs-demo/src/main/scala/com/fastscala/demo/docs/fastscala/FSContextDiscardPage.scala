@@ -23,7 +23,7 @@ class FSContextDiscardPage extends MultipleCodeExamples3Page() {
 
       // Debug rerenderable:
       val table = new Table6Base
-        with Table6BaseBootrapSupport
+        with Table6BootrapStyling
         with Table6SelectableRows
         with Table6StandardColumns
         with Table6Paginated {

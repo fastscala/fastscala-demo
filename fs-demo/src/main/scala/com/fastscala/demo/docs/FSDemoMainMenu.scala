@@ -44,7 +44,8 @@ object FSDemoMainMenu
         new RoutingMenuItem("demo", "bootstrap", "images")("Images", () => new BootstrapImagesPage()),
         new RoutingMenuItem("demo", "bootstrap", "modal")("Modal", () => new BootstrapModalPage()),
         new RoutingMenuItem("demo", "bootstrap", "offcanvas")("Offcanvas", () => new BootstrapOffcanvasPage()),
-        new RoutingMenuItem("demo", "bootstrap", "acoordion")("Accordion", () => new BootstrapAccordionPage())
+        new RoutingMenuItem("demo", "bootstrap", "acoordion")("Accordion", () => new BootstrapAccordionPage()),
+        new RoutingMenuItem("demo", "bootstrap", "toast")("Toast", () => new BootstrapToastPage())
       ),
       MenuSection("Form7 Library", <i class="bi bi-ui-checks"></i>.withColorPrimary)(
         SimpleMenuItem("Creating a form", "/demo/simple_form"),
@@ -57,7 +58,8 @@ object FSDemoMainMenu
         new RoutingMenuItem("demo", "forms", "validation-by-field-type")("Validation by Field Type", () => new ValidationByFieldTypePage()),
         new RoutingMenuItem("demo", "forms", "input-groups")("Input Groups", () => new FormInputGroupsPage()),
         new RoutingMenuItem("demo", "forms", "server-side-update")("Server-Side Update", () => new UpdatesFromServerSidePage()),
-        new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage())
+        new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage()),
+        new RoutingMenuItem("demo", "forms", "submit-on-enter-on-change")("Submit on enter/change", () => new SaveOnEnterOnSaveFormExamplePage())
       ),
       MenuSection("Table6 Library", <i class="bi bi-table"></i>.withColorPrimary)(
         new RoutingMenuItem("demo", "tables", "simple")("Simple Table", () => new SimpleTableExamplePage()),
@@ -66,10 +68,11 @@ object FSDemoMainMenu
         new RoutingMenuItem("demo", "tables", "paginated_and_sortable")("Paginated & Sortable", () => new PaginatedAndSortableTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "selectable_rows")("Selectable Rows", () => new SelectableRowsTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "selectable_rows_with_actions")("Selectable Rows w/Actions", () => new SelectableRowsWithActionsTableExamplePage()),
-        new RoutingMenuItem("demo", "tables", "selectable_columns")("Selectable Columns", () => new SelectableColsTableExamplePage()),
+        new RoutingMenuItem("demo", "tables", "selectable_columns")("Selectable Columns", () => new ColumnSelectionTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "modifying")("Modifying tables", () => new ModifyingTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "simple_filter")("Simple filter", () => new SimpleFilterTableExamplePage()),
-        new RoutingMenuItem("demo", "tables", "other_features")("Other features", () => new OtherFeaturesTableExamplePage())
+        new RoutingMenuItem("demo", "tables", "bootstrap_styling")("Bootstrap styling", () => new BootstrapStylingOptionsTableExamplePage()),
+        new RoutingMenuItem("demo", "tables", "advanced_filters")("Advanced filtering", () => new FilterableTableExamplePage())
       ),
       MenuSection("Log-in demo", <i class="bi bi-box-arrow-in-left"></i>.withColorDark)(new RoutingMenuItem("demo", "login")("Login example", () => new LoginPage())),
       MenuSection("Other integrations", <i class="bi bi-code-square"></i>.withColorPrimary)(

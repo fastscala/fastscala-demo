@@ -14,9 +14,9 @@ import java.util.Date
 import scala.xml.{Elem, NodeSeq}
 
 
-class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
+class ColumnSelectionTableExamplePage extends MultipleCodeExamples3Page() {
 
-  override def pageTitle: String = "Selectable Column Table Example"
+  override def pageTitle: String = "Table with Column Selection Example"
 
   override def codeSampleWrapperPadding: Boolean = false
 
@@ -25,12 +25,12 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
       lazy val mainTable = new Table6Base
-        with Table6BaseBootrapSupport
+        with Table6BootrapStyling
         with Table6Paginated
         with Table6SeqSortableDataSource
         with Table6StandardColumns
         with Table6Sortable
-        with Table6SelectableCols {
+        with Table6ColumnSelection {
         override type R = Country
 
         override def defaultPageSize: Int = 10
@@ -115,7 +115,7 @@ class SelectableColsTableExamplePage extends MultipleCodeExamples3Page() {
 
         override def transformWidgetCardBody(elem: Elem): Elem = super.transformWidgetCardBody(elem).p_0
 
-        override def widgetTopRight()(implicit fsc: FSContext): NodeSeq = mainTable.colSelectionDropdown()
+        override def widgetTopRight()(implicit fsc: FSContext): NodeSeq = mainTable.columnSelectionDropdown()
 
         override def widgetContents()(implicit fsc: FSContext): NodeSeq = mainTable.render()
       }.renderWidget()

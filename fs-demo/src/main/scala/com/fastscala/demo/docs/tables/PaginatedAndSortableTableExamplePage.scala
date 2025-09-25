@@ -19,7 +19,7 @@ class PaginatedAndSortableTableExamplePage() extends MultipleCodeExamples3Page()
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      new Table6Base with Table6BaseBootrapSupport with Table6Paginated with Table6StandardColumns with Table6SeqSortableDataSource with Table6Sortable {
+      new Table6Base with Table6BootrapStyling with Table6Paginated with Table6StandardColumns with Table6SeqSortableDataSource with Table6Sortable {
         override type R = Country
 
         override def defaultPageSize: Int = 10

@@ -38,9 +38,9 @@ trait MenuItem {
 }
 
 object MenuSection {
-  def apply(name: String, icon: Elem)(items: MenuItem*) = new MenuSection(name, Some(icon))(items: _*)
+  def apply(name: String, icon: Elem)(items: MenuItem*) = new MenuSection(name, Some(icon))(items*)
 
-  def apply(name: String)(items: MenuItem*) = new MenuSection(name, None)(items: _*)
+  def apply(name: String)(items: MenuItem*) = new MenuSection(name, None)(items*)
 }
 
 case class MenuSection(name: String, icon: Option[Elem])(val items: MenuItem*) extends MenuItem {

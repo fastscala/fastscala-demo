@@ -20,7 +20,7 @@ class SelectableRowsTableExamplePage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
       val table = new Table6Base
-        with Table6BaseBootrapSupport
+        with Table6BootrapStyling
         with Table6SelectableRows
         with Table6StandardColumns
         with Table6Paginated {

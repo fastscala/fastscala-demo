@@ -13,7 +13,7 @@ class SimpleTableExamplePage extends MultipleCodeExamples3Page() {
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      new Table6Base with Table6BaseBootrapSupport with Table6StandardColumns {
+      new Table6Base with Table6BootrapStyling with Table6StandardColumns {
         override type R = Country
 
         val ColName = ColStr("Name", _.name.common)

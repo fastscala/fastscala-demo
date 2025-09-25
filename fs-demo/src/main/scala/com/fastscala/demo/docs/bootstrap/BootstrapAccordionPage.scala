@@ -12,9 +12,11 @@ import com.fastscala.components.form7.{F7Field, F7FormRenderer, Form7}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.forms.*
+import com.fastscala.demo.docs.forms.model.{CitiesData, Province, User1}
 import com.fastscala.demo.testdata.{CountriesData, Country}
 import com.fastscala.js.Js
 
+import java.time.LocalDate
 import scala.xml.NodeSeq
 
 class BootstrapAccordionPage extends MultipleCodeExamples3Page() {
@@ -30,9 +32,10 @@ class BootstrapAccordionPage extends MultipleCodeExamples3Page() {
       phoneNumber = "",
       securityLevel = 0,
       countryOfResidence = CountriesData.data(0),
-      birthDay = Some("2022-08-04"),
+      birthday = Some(LocalDate.of(2000, 5, 1)),
       province = CitiesData.data.head._1,
-      city = CitiesData.data.head._2.head
+      city = CitiesData.data.head._2.head,
+      enableLogin = false
     )
 
     renderCodeSampleAndAutoClosePreviousOne("Basic") {
