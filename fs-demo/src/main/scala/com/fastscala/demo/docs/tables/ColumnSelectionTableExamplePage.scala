@@ -100,12 +100,12 @@ class ColumnSelectionTableExamplePage extends MultipleCodeExamples3Page() {
           , ColFlag
         )
 
-        override def columnStartsVisible(c: C): Boolean = Set(
+        override val initiallyVisibleColumns: Set[Table6StandardColumn[Country]] = Set(
           ColName
           , ColUNMember
           , ColCapital
           , ColArea
-        ).contains(c)
+        )
 
         override def seqRowsSource: Seq[Country] = CountriesData.data
       }

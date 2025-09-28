@@ -7,7 +7,7 @@ import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7Vertica
 import com.fastscala.components.form7.fields.select.F7SelectOptField
 import com.fastscala.components.form7.fields.text.{F7IntOptField, F7StringField}
 import com.fastscala.components.form7.fields.{F7CheckboxOptField, F7HtmlField, F7SubmitButtonField}
-import com.fastscala.components.form7.{DefaultForm7, F7Field}
+import com.fastscala.components.form7.{DefaultForm7, F7Field, QueryStringSavedForm}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.components.Widget
@@ -18,9 +18,9 @@ import com.fastscala.scala_xml.js.JS
 import scala.util.chaining.scalaUtilChainingOps
 import scala.xml.{Elem, NodeSeq}
 
-class FilterableTableExamplePage extends MultipleCodeExamples3Page() {
+class FiltersSavedInQueryStringTableExamplePage extends MultipleCodeExamples3Page() {
 
-  override def pageTitle: String = "Table With Filters Example"
+  override def pageTitle: String = "Filters in Query String Example"
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
@@ -28,28 +28,28 @@ class FilterableTableExamplePage extends MultipleCodeExamples3Page() {
 
     renderCodeSampleAndAutoClosePreviousOne("Source") {
 
-      val nameFilterField = new F7StringField().label("Name")
-      val cCA2FilterField = new F7StringField().label("CCA2")
-      val cCN3FilterField = new F7StringField().label("CCN3")
-      val cCA3FilterField = new F7StringField().label("CCA3")
-      val cIOCFilterField = new F7StringField().label("CIOC")
-      val statusFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.status).distinct.sorted).option2String(_.getOrElse("All")).label("Status")
+      val nameFilterField = new F7StringField().label("Name").id("name")
+      val cCA2FilterField = new F7StringField().label("CCA2").id("cca2")
+      val cCN3FilterField = new F7StringField().label("CCN3").id("ccn3")
+      val cCA3FilterField = new F7StringField().label("CCA3").id("cca3")
+      val cIOCFilterField = new F7StringField().label("CIOC").id("cioc")
+      val statusFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.status).distinct.sorted).option2String(_.getOrElse("All")).label("Status").id("status")
       val uNMemberFilterField = new F7CheckboxOptField().label("UN Member")
-      val capitalFilterField = new F7StringField().label("Capital")
-      val altSpellingsFilterField = new F7StringField().label("AltSpellings")
-      val regionFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.region).distinct.sorted).option2String(_.getOrElse("All")).label("Region")
-      val subregionFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.subregion).distinct.sorted).option2String(_.getOrElse("All")).label("Subregion")
-      val latLngFilterField = new F7StringField().label("LatLng")
-      val landlockedFilterField = new F7CheckboxOptField().label("Landlocked")
-      val bordersFilterField = new F7StringField().label("Borders")
-      val areaFilterMinField = new F7IntOptField().label("Area")
+      val capitalFilterField = new F7StringField().label("Capital").id("capital")
+      val altSpellingsFilterField = new F7StringField().label("AltSpellings").id("altspellings")
+      val regionFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.region).distinct.sorted).option2String(_.getOrElse("All")).label("Region").id("region")
+      val subregionFilterField = new F7SelectOptField[String]().optionsNonEmpty(CountriesData.data.map(_.subregion).distinct.sorted).option2String(_.getOrElse("All")).label("Subregion").id("subregion")
+      val latLngFilterField = new F7StringField().label("LatLng").id("latlng")
+      val landlockedFilterField = new F7CheckboxOptField().label("Landlocked").id("landlocked")
+      val bordersFilterField = new F7StringField().label("Borders").id("borders")
+      val areaFilterMinField = new F7IntOptField().label("Area").id("area")
       val areaFilterMaxField = new F7IntOptField()
       val areaFilterField = new F7BSFormInputGroup()(F7HtmlField.label("from:"), areaFilterMinField, F7HtmlField.label("to:"), areaFilterMaxField)
-      val callingCodesFilterField = new F7StringField().label("CallingCodes")
+      val callingCodesFilterField = new F7StringField().label("CallingCodes").id("callingcodes")
 
       import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers.*
 
-      lazy val filtersForm = new DefaultForm7() {
+      lazy val filtersForm = new DefaultForm7() with QueryStringSavedForm {
 
         override lazy val rootField: F7Field = {
           new F7VerticalField()(
