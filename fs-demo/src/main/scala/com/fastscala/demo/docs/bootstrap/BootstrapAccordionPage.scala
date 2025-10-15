@@ -5,9 +5,11 @@ import com.fastscala.components.bootstrap5.modals.{BSModal5, BSModal5Base}
 import com.fastscala.components.bootstrap5.offcanvas.{BSOffcanvas, BSOffcanvasBase}
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.F7SubmitButtonField
+import com.fastscala.components.form7.fields.date.F7LocalDateOptField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
+import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectField
-import com.fastscala.components.form7.fields.text.{F7IntOptField, F7LocalDateOptField, F7StringField}
+import com.fastscala.components.form7.fields.text.F7StringField
 import com.fastscala.components.form7.{F7Field, F7FormRenderer, Form7}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page

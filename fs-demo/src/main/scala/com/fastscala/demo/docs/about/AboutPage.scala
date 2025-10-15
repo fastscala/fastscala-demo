@@ -1,17 +1,17 @@
 package com.fastscala.demo.docs.about
 
-import com.fastscala.core.FSContext
-import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers
-import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.F7SubmitButtonField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.text.F7StringField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
+import com.fastscala.core.FSContext
+import com.fastscala.demo.docs.MultipleCodeExamples3Page
+import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers
+import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
+import com.fastscala.scala_xml.js.JS
 import io.circe.Decoder
 import io.circe.generic.semiauto
 
@@ -50,7 +50,10 @@ class AboutPage extends MultipleCodeExamples3Page {
       <pre>{callbackJs.cmd}</pre>
       <button class="btn btn-primary d-block mx-auto" onclick={callbackJs.cmd}>Check time on server</button>
     }
-    renderCodeSampleAndAutoClosePreviousOne("Building on top of the basics", <p>Builing on top of this basic <b>callback</b> funcionality, we can create a great development experience which allows you to build web applications much faster.</p><p>See bellow the available library to build Bootstrap buttons easily:</p>) {
+    renderCodeSampleAndAutoClosePreviousOne(
+      "Building on top of the basics",
+      <p>Builing on top of this basic <b>callback</b> funcionality, we can create a great development experience which allows you to build web applications much faster.</p><p>See bellow the available library to build Bootstrap buttons easily:</p>
+    ) {
       BSBtn().BtnPrimary.lg.lbl("Check time on server")
         .ajax(_ => JS.alert(s"Current date/time on server: ${new Date().toString}"))
         .btn.m_3.shadow.mx_auto.d_block
@@ -67,49 +70,56 @@ class AboutPage extends MultipleCodeExamples3Page {
           .ajax(_ => rerenderable.rerender()).sm.btn.ms_2
     }
     renderCodeSampleAndAutoClosePreviousOne("Check time on server example 3") {
-      JS.rerenderableContents(rerenderer => implicit fsc => {
-        <span>{new Date().toString}</span> ++
-          BSBtn().BtnPrimary.sm.lbl("Update time")
-            .ajax(_ => rerenderer.rerender()).sm.btn.ms_2
-      }).render()
+      JS.rerenderableContents(rerenderer =>
+        implicit fsc => {
+          <span>{new Date().toString}</span> ++
+            BSBtn().BtnPrimary.sm.lbl("Update time")
+              .ajax(_ => rerenderer.rerender()).sm.btn.ms_2
+        }
+      ).render()
     }
     renderCodeSampleAndAutoClosePreviousOneStrDesc("Variable number of input buttons", "Lets create an even more complex scenario:") {
       var numBtns = 3
-      JS.rerenderableContents(rerenderer => implicit fsc => {
-        val buttons = (0 until numBtns).map(btnNum => {
-          val points = btnNum + 1
-          BSBtn().BtnSecondary.lg.lbl(points.toString)
-            .onclick(JS.alert(points + " points")).btn.mx_3
-        })
-        d_flex.justify_content_center.apply(buttons*).mb_2 ++
-          d_flex.justify_content_center.apply {
-            BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
-              numBtns -= 1
-              rerenderer.rerender()
-            }).btn ++
-              BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
-                numBtns += 1
+      JS.rerenderableContents(rerenderer =>
+        implicit fsc => {
+          val buttons = (0 until numBtns).map(btnNum => {
+            val points = btnNum + 1
+            BSBtn().BtnSecondary.lg.lbl(points.toString)
+              .onclick(JS.alert(points + " points")).btn.mx_3
+          })
+          d_flex.justify_content_center.apply(buttons*).mb_2 ++
+            d_flex.justify_content_center.apply {
+              BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
+                numBtns -= 1
                 rerenderer.rerender()
-              }).btn.ms_2
-          }
-      }).render()
+              }).btn ++
+                BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
+                  numBtns += 1
+                  rerenderer.rerender()
+                }).btn.ms_2
+            }
+        }
+      ).render()
     }
     renderCodeSampleAndAutoClosePreviousOneStrDesc("Variable number of input buttons v2", "More elegant/functional approach, with JS.rerenderableContentsP") {
-      JS.rerenderableContentsP[Int](rerenderer => implicit fsc => numBtns => {
-        val buttons = (0 until numBtns).map(_ + 1).map(points => {
-          BSBtn().BtnSecondary.lg.lbl(points.toString)
-            .onclick(JS.alert(points + " points")).btn.mx_3
-        })
-        d_flex.justify_content_center.apply(buttons*).mb_2 ++
-          d_flex.justify_content_center.apply {
-            BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
-              rerenderer.rerender(math.max(1, numBtns - 1))
-            }).btn ++
-              BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
-                rerenderer.rerender(math.min(10, numBtns + 1))
-              }).btn.ms_2
+      JS.rerenderableContentsP[Int](rerenderer =>
+        implicit fsc =>
+          numBtns => {
+            val buttons = (0 until numBtns).map(_ + 1).map(points => {
+              BSBtn().BtnSecondary.lg.lbl(points.toString)
+                .onclick(JS.alert(points + " points")).btn.mx_3
+            })
+            d_flex.justify_content_center.apply(buttons*).mb_2 ++
+              d_flex.justify_content_center.apply {
+                BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
+                  rerenderer.rerender(math.max(1, numBtns - 1))
+                }).btn ++
+                  BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
+                    rerenderer.rerender(math.min(10, numBtns + 1))
+                  }).btn.ms_2
+              }
           }
-      }).render(3)
+      ).render(3)
     }
     renderCodeSampleAndAutoClosePreviousOne("Easily create advanced forms", <p>We continously build on top of abstractions to create even more complex experiences, that are really simple and low-code to develop:</p>) {
       import DefaultFSDemoBSForm7Renderers.*
@@ -118,15 +128,13 @@ class AboutPage extends MultipleCodeExamples3Page {
 
       new DefaultForm7() {
         override def postSubmitForm()(implicit fsc: FSContext): Js =
-          BSModal5.verySimple("Your input data", "Done")(modal => implicit fsc => {
-            fs_4.apply(s"Your entered the name '${nameField.currentValue}' and email '${emailField.currentValue}'")
-          })
+          BSModal5.verySimple("Your input data", "Done")(modal =>
+            implicit fsc => {
+              fs_4.apply(s"Your entered the name '${nameField.currentValue}' and email '${emailField.currentValue}'")
+            }
+          )
 
-        override lazy val rootField: F7Field = F7VerticalField()(
-          nameField
-          , emailField
-          , new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block)
-        )
+        override lazy val rootField: F7Field = F7VerticalField()(nameField, emailField, new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block))
       }.render()
     }
     renderCodeSampleAndAutoClosePreviousOneStrDesc("Advanced interactions", "Support advanced interactions with a few lines of code") {
@@ -151,26 +159,29 @@ class AboutPage extends MultipleCodeExamples3Page {
 
       def renderResponses(responses: List[Response]) = responses.flatMap(_.render())
 
-      val resultsRenderer = JS.rerenderableContentsP[Option[String]](_ => implicit fsc => queryOpt => {
-        queryOpt match {
-          case Some(query) =>
-            val url = new URL(s"https://api.dictionaryapi.dev/api/v2/entries/en/${URLEncoder.encode(query)}")
-            val con = url.openConnection().asInstanceOf[HttpURLConnection]
-            con.setRequestMethod("GET")
-            try {
-              Try(Source.fromInputStream(con.getInputStream).mkString).toEither.flatMap(json => {
-                io.circe.parser.decode[List[Response]](json)
-              }) match {
-                case Right(responses) => renderResponses(responses)
-                case Left(_: java.io.FileNotFoundException) => span.text_danger.apply("No results found.")
-                case Left(value) => span.apply("Error when calling the API: " + value)
-              }
-            } finally {
-              Try(con.getInputStream.close())
+      val resultsRenderer = JS.rerenderableContentsP[Option[String]](_ =>
+        implicit fsc =>
+          queryOpt => {
+            queryOpt match {
+              case Some(query) =>
+                val url = new URL(s"https://api.dictionaryapi.dev/api/v2/entries/en/${URLEncoder.encode(query)}")
+                val con = url.openConnection().asInstanceOf[HttpURLConnection]
+                con.setRequestMethod("GET")
+                try {
+                  Try(Source.fromInputStream(con.getInputStream).mkString).toEither.flatMap(json => {
+                    io.circe.parser.decode[List[Response]](json)
+                  }) match {
+                    case Right(responses)                       => renderResponses(responses)
+                    case Left(_: java.io.FileNotFoundException) => span.text_danger.apply("No results found.")
+                    case Left(value)                            => span.apply("Error when calling the API: " + value)
+                  }
+                } finally {
+                  Try(con.getInputStream.close())
+                }
+              case None => div.apply("...").text_center
             }
-          case None => div.apply("...").text_center
-        }
-      })
+          }
+      )
 
       val queryField = new F7StringField().label("Search query").required(true)
 
@@ -178,10 +189,7 @@ class AboutPage extends MultipleCodeExamples3Page {
         new DefaultForm7() {
           override def postSubmitForm()(implicit fsc: FSContext): Js = resultsRenderer.rerender(Some(queryField.currentValue))
 
-          override lazy val rootField: F7Field = F7VerticalField()(
-            queryField
-            , new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block)
-          )
+          override lazy val rootField: F7Field = F7VerticalField()(queryField, new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block))
         }.render()
     }
     closeCodeSample()

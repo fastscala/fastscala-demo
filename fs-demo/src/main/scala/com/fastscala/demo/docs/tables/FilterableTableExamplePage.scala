@@ -3,10 +3,12 @@ package com.fastscala.demo.docs.tables
 import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
 import com.fastscala.components.bootstrap5.table6.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
+import com.fastscala.components.form7.fields.checkbox.F7CheckboxOptField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
+import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectOptField
-import com.fastscala.components.form7.fields.text.{F7IntOptField, F7StringField}
-import com.fastscala.components.form7.fields.{F7CheckboxOptField, F7HtmlField, F7SubmitButtonField}
+import com.fastscala.components.form7.fields.text.F7StringField
+import com.fastscala.components.form7.fields.{F7HtmlField, F7SubmitButtonField}
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page

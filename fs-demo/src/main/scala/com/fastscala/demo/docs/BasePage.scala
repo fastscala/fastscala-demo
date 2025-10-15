@@ -38,7 +38,7 @@ trait BasePage extends FSPageImplWithFSContext {
   //    </div> // ++
 
   def renderSideMenu()(implicit fsc: FSContext): NodeSeq = {
-    FSDemoMainMenu.render()(fsc, DefaultBSMenuRenderer.renderer) ++ CurrentUser().map(user => {
+    FSDemoMainMenu.render()(using fsc, DefaultBSMenuRenderer.renderer) ++ CurrentUser().map(user => {
       hr ++
         p_3.d_flex.align_items_center.apply {
           a.apply(user.miniHeadshotOrPlaceholderRendered.withStyle("width: 55px;border-radius: 55px;")) ++

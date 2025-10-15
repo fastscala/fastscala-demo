@@ -3,10 +3,10 @@ package com.fastscala.demo.docs.other
 import com.fastscala.components.aceeditor.*
 import com.fastscala.components.chartjs.*
 import com.fastscala.components.chartjs.ChartJsNullable2Option.nullable2Option
+import com.fastscala.components.form7.fields.checkbox.{F7CheckboxField, F7CheckboxOptField}
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
-import com.fastscala.components.form7.fields.select.F7SelectOptField
-import com.fastscala.components.form7.fields.text.F7IntOptField
-import com.fastscala.components.form7.fields.{F7CheckboxField, F7CheckboxOptField, F7EnumField}
+import com.fastscala.components.form7.fields.number.F7IntOptField
+import com.fastscala.components.form7.fields.select.{F7EnumField, F7SelectOptField}
 import com.fastscala.components.form7.{ChangedField, DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page

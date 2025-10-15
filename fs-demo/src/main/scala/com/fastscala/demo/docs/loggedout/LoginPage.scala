@@ -41,7 +41,7 @@ class LoginPage extends LoggedoutBasePage {
           case Some(user) =>
             fsc.session.delete()
             val newSession = fsc.session.fsSystem.createSession()
-            CurrentUser.update(user)(newSession)
+            CurrentUser.update(user)(using newSession)
             JS.setCookie(fsc.session.fsSystem.FSSessionIdCookieName, newSession.id, path = Some("/")) & JS.redirectTo("/")
           case None => JS.alert("User or password invalid.")
         }

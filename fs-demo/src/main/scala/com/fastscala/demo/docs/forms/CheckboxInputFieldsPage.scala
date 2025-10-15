@@ -8,6 +8,7 @@ import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlig
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.checkbox.{F7CheckboxField, F7CheckboxOptField}
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -22,20 +23,20 @@ class CheckboxInputFieldsPage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Checkbox input-based fields") {
 
-      val checkboxAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).checkboxFieldRenderer
-      val checkboxInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).checkboxFieldRenderer
+      val checkboxAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(using checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).checkboxFieldRenderer
+      val checkboxInline = new FSDemoBSForm7Renderers()(using checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).checkboxFieldRenderer
 
       val termsAndConditionsField = new F7CheckboxField().label("Accept Terms and Conditions")
       val privacyPolicyField = new F7CheckboxField().label("Accept Privacy Policy").setInternalValue(true)
 
       val hasACar = new F7CheckboxOptField().label("Has car").setInternalValue(None)
 
-      val subscribe2NewsletterField = new F7CheckboxField()(checkboxInline).label("Subscribe to Newsletter")
-      val subscribe2DiscountsField = new F7CheckboxField()(checkboxInline).label("Subscribe to Discounts").setInternalValue(true)
+      val subscribe2NewsletterField = new F7CheckboxField()(using checkboxInline).label("Subscribe to Newsletter")
+      val subscribe2DiscountsField = new F7CheckboxField()(using checkboxInline).label("Subscribe to Discounts").setInternalValue(true)
 
-      val marketingEmailField = new F7CheckboxField()(checkboxAsSwitchAndOpposite).label("Email")
-      val marketingSMSField = new F7CheckboxField()(checkboxAsSwitchAndOpposite).label("SMS").setInternalValue(true)
-      val marketingPhoneField = new F7CheckboxField()(checkboxAsSwitchAndOpposite).label("Phone")
+      val marketingEmailField = new F7CheckboxField()(using checkboxAsSwitchAndOpposite).label("Email")
+      val marketingSMSField = new F7CheckboxField()(using checkboxAsSwitchAndOpposite).label("SMS").setInternalValue(true)
+      val marketingPhoneField = new F7CheckboxField()(using checkboxAsSwitchAndOpposite).label("Phone")
 
       div.apply {
         new DefaultForm7() {

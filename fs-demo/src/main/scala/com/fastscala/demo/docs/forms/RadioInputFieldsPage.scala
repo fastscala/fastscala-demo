@@ -23,17 +23,17 @@ class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Radio input-based fields") {
 
-      val radioAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).radioFieldRenderer
-      val radioInline = new FSDemoBSForm7Renderers()(checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).radioFieldRenderer
+      val radioAsSwitchAndOpposite = new FSDemoBSForm7Renderers()(using checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = CheckboxSide.Opposite).radioFieldRenderer
+      val radioInline = new FSDemoBSForm7Renderers()(using checkboxAlignment = CheckboxAlignment.Horizontal, checkboxStyle = summon[CheckboxStyle.Value], checkboxSide = summon[CheckboxSide.Value]).radioFieldRenderer
 
       val registrationType = Seq("Teacher", "Student", "Parent")
       val registrationTypeField = new F7RadioField[String](() => registrationType).label("Registration type")
 
       val phoneType = Seq("Android", "iOS", "Other")
-      val phoneTypeField = new F7RadioField[String](() => phoneType)(radioAsSwitchAndOpposite).label("Phone type")
+      val phoneTypeField = new F7RadioField[String](() => phoneType)(using radioAsSwitchAndOpposite).label("Phone type")
 
       val marketingChannelsType = Seq("Android", "iOS", "Other")
-      val marketingChannelsTypeField = new F7RadioField[String](() => marketingChannelsType)(radioInline).label("Preferred marketing channel")
+      val marketingChannelsTypeField = new F7RadioField[String](() => marketingChannelsType)(using radioInline).label("Preferred marketing channel")
 
       div.apply {
         new DefaultForm7() {

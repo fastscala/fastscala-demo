@@ -74,7 +74,8 @@ object FSDemoMainMenu
         new RoutingMenuItem("demo", "tables", "simple_filter")("Simple filter", () => new SimpleFilterTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "bootstrap_styling")("Bootstrap styling", () => new BootstrapStylingOptionsTableExamplePage()),
         new RoutingMenuItem("demo", "tables", "advanced_filters")("Advanced filtering", () => new FilterableTableExamplePage()),
-        new RoutingMenuItem("demo", "tables", "filter_values_in_query_string")("Filter values in query string", () => new FiltersSavedInQueryStringTableExamplePage())
+        new RoutingMenuItem("demo", "tables", "filter_values_in_query_string")("Filter values in query string", () => new FiltersSavedInQueryStringTableExamplePage()),
+        new RoutingMenuItem("demo", "tables", "sortable_rows")("Sortable rows", () => new SortableRowsTableExamplePage())
       ),
       MenuSection("Log-in demo", <i class="bi bi-box-arrow-in-left"></i>.withColorDark)(new RoutingMenuItem("demo", "login")("Login example", () => new LoginPage())),
       MenuSection("Other integrations", <i class="bi bi-code-square"></i>.withColorPrimary)(

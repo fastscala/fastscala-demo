@@ -7,7 +7,11 @@ import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.color.F7ColorField
+import com.fastscala.components.form7.fields.date.F7LocalDateOptField
+import com.fastscala.components.form7.fields.datetimelocal.F7LocalDateTimeOptField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
+import com.fastscala.components.form7.fields.number.{F7DoubleField, F7DoubleOptField, F7IntField, F7IntOptField}
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -49,6 +53,8 @@ class TextInputFieldsPage extends MultipleCodeExamples3Page() {
       val localDateTimeOptField = new F7LocalDateTimeOptField().label("Meeting date/time")
         .help("An empty input translates into an empty option")
         .setInternalValue(Some(LocalDateTime.now().plusDays(1)))
+      val favouriteColorField = new F7ColorField().label("Favourite color")
+        .setInternalValue("#00FF00")
 
       div.apply {
         new DefaultForm7() {
@@ -62,6 +68,7 @@ class TextInputFieldsPage extends MultipleCodeExamples3Page() {
             stringOptTextareaField,
             localDateOptField,
             localDateTimeOptField,
+            favouriteColorField,
             new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block.w_100)
           )
 
@@ -79,6 +86,7 @@ class TextInputFieldsPage extends MultipleCodeExamples3Page() {
                   <li><b>Optional Textarea Field:</b> {stringOptTextareaField.getInternalValue()}</li>
                   <li><b>Optional LocalDate Field:</b> {localDateOptField.getInternalValue()}</li>
                   <li><b>Optional LocalDateTime Field:</b> {localDateTimeOptField.getInternalValue()}</li>
+                  <li><b>Favourtie Color Field:</b> {favouriteColorField.getInternalValue()}</li>
                 </ul>
           }
 

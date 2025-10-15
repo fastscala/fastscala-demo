@@ -6,9 +6,12 @@ import com.fastscala.components.bootstrap5.toast.BSToast2
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.*
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.checkbox.F7CheckboxField
+import com.fastscala.components.form7.fields.date.F7LocalDateOptField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
+import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectField
-import com.fastscala.components.form7.fields.text.{F7IntOptField, F7LocalDateOptField, F7StringField}
+import com.fastscala.components.form7.fields.text.F7StringField
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.forms.model.{CitiesData, City, Province, User1}

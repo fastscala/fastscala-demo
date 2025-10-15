@@ -8,7 +8,9 @@ import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.checkbox.F7CheckboxField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
+import com.fastscala.components.form7.fields.number.{F7DoubleField, F7IntField}
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem

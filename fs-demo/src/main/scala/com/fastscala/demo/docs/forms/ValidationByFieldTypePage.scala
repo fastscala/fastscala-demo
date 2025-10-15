@@ -5,6 +5,7 @@ import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.toast.BSToast2
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.checkbox.F7CheckboxField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.multiselect.F7MultiSelectField
 import com.fastscala.components.form7.fields.radio.F7RadioField
@@ -145,7 +146,7 @@ class ValidationByFieldTypePage extends MultipleCodeExamples3Page() {
     }
     renderCodeSampleAndAutoClosePreviousOne("Checkbox as switch") {
 
-      val renderers = new FSDemoBSForm7Renderers()(checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = summon[CheckboxSide.Value])
+      val renderers = new FSDemoBSForm7Renderers()(using checkboxAlignment = summon[CheckboxAlignment.Value], checkboxStyle = CheckboxStyle.Switch, checkboxSide = summon[CheckboxSide.Value])
       import renderers.*
 
       // Pass the renderer which renders as switches:

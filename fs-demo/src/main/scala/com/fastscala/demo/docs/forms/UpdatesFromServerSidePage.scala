@@ -8,8 +8,10 @@ import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
 import com.fastscala.components.bootstrap5.toast.BSToast2
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.checkbox.F7CheckboxField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.multiselect.F7MultiSelectField
+import com.fastscala.components.form7.fields.number.F7IntField
 import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.fields.select.F7SelectField
 import com.fastscala.components.form7.fields.text.*

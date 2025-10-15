@@ -20,5 +20,5 @@ object FSDemoBSForm7Renderers {
     checkboxAlignment: CheckboxAlignment.Value = CheckboxAlignment.default,
     checkboxStyle: CheckboxStyle.Value = CheckboxStyle.default,
     checkboxSide: CheckboxSide.Value = CheckboxSide.default,
-  ) = new FSDemoBSForm7Renderers()(checkboxAlignment, checkboxStyle, checkboxSide)
+  ) = new FSDemoBSForm7Renderers()(using checkboxAlignment, checkboxStyle, checkboxSide)
 }

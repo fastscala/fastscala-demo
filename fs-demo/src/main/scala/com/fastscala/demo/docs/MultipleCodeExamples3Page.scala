@@ -40,7 +40,7 @@ abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
     })
     val code = relevantSections.mkString("\n\n// [...]\n\n")
     if (code != "") {
-      val leftPadding: Int = code.split("\n").iterator.map(_.takeWhile(_ == ' ').size).filter(_ > 0).minOption.getOrElse(0)
+      val leftPadding: Int = code.split("\n").iterator.filter(_.trim != "").map(_.takeWhile(_ == ' ').size).minOption.getOrElse(0)
       val withoutPadding = code.split("\n").map(_.drop(leftPadding)).mkString("\n")
 
       import com.fastscala.components.bootstrap5.helpers.BSHelpers.*

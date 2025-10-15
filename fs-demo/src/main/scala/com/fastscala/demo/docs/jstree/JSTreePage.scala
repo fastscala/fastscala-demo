@@ -190,7 +190,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
                   val open: Boolean = false,
                   val disabled: Boolean = false,
                   val icon: Option[String] = None,
-                )(implicit jsTree: JSTreeWithContextMenu[Node]) extends EditableJSTreeNode[Node]()(jsTree) {
+                )(implicit jsTree: JSTreeWithContextMenu[Node]) extends EditableJSTreeNode[Node]()(using jsTree) {
         override val allowDuplicated: Boolean = false
 
         override val children: ArrayBuffer[Node] = ArrayBuffer[Node]()
@@ -224,7 +224,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
 
       val editableJSTree: JSTreeWithContextMenu[Node] = new JSTreeWithContextMenu[Node] {
 
-        override val rootNodes = Seq(new Node("root", "Example")(this))
+        override val rootNodes = Seq(new Node("root", "Example")(using this))
       }
 
       editableJSTree.render() ++ editableJSTree.init().onDOMContentLoaded.inScriptTag
