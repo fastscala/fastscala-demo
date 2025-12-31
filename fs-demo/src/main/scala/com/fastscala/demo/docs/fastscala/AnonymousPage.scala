@@ -20,7 +20,7 @@ class AnonymousPage() extends MultipleCodeExamples3Page() {
             FileUpload(uploadedFile => {
               rerenderer.rerender()
               JS.redirectTo(fsc.anonymousPageURL(implicit fsc => {
-                new VisualizeUploadedImageAnonymousPage(uploadedFile.head.contentType, uploadedFile.head.content).render().toString
+                new VisualizeUploadedImageAnonymousPage(uploadedFile.head.contentType, uploadedFile.head.bytes()).render().toString
               }, "visualize_image"))
             })
         }

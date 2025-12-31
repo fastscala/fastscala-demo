@@ -8,7 +8,8 @@ import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7Vertica
 import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectOptField
 import com.fastscala.components.form7.fields.text.F7StringField
-import com.fastscala.components.form7.fields.{F7HtmlField, F7SubmitButtonField}
+import com.fastscala.components.form7.fields.F7HtmlField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page

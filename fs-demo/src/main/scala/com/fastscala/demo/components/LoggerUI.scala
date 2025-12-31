@@ -1,12 +1,12 @@
 package com.fastscala.demo.components
 
-import com.fastscala.core.FSContext
-import com.fastscala.js.Js
-import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.modals.{BSModal5Base, BSModal5Size}
 import com.fastscala.components.bootstrap5.utils.BSBtn
-import com.fastscala.utils.IdGen
+import com.fastscala.core.FSContext
+import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
+import com.fastscala.scala_xml.js.JS
+import com.fastscala.utils.IdGen
 
 import scala.xml.NodeSeq
 
@@ -29,6 +29,12 @@ trait LoggerUI {
   def continue_?(): Boolean
 
   def finished(): Unit
+
+  var total: Option[Double] = None
+
+  def incrementProgress(): Unit
+
+  def incrementProgress(by: Double): Unit
 }
 
 class LoggerUISysoutOnly(val title: String) extends LoggerUI {
@@ -48,9 +54,33 @@ class LoggerUISysoutOnly(val title: String) extends LoggerUI {
   def continue_?(): Boolean = true
 
   def finished(): Unit = JS.void
+
+  def incrementProgress(): Unit = ()
+
+  def incrementProgress(by: Double): Unit = ()
 }
 
 class LoggerUIImpl(val title: String)(implicit fsc: FSContext) extends LoggerUI {
+
+  private var current = 0d
+
+  private val progressBarRerenderer = JS.rerenderableP[Double](_ => implicit fsc => percent => {
+    <div class="progress mb-2" role="progressbar" aria-valuenow={percent.toInt.toString} aria-valuemin="0" aria-valuemax="100">
+      <div class={"progress-bar" + (if (!hasFinished) " progress-bar-striped progress-bar-animated" else "")} style={s"width: ${percent.toInt}%"}></div>
+    </div>
+  })
+
+  override def incrementProgress(): Unit = incrementProgress(1)
+
+  def incrementProgress(by: Double): Unit = total.foreach { total =>
+    current += by
+    if (current == total) {
+      hasFinished = true
+      fsc.sendToPage(modal.rerenderModalFooterContent() & progressBarRerenderer.rerender(100))
+    } else {
+      fsc.sendToPage(progressBarRerenderer.rerender((current / total) * 100d))
+    }
+  }
 
   import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
 
@@ -58,29 +88,32 @@ class LoggerUIImpl(val title: String)(implicit fsc: FSContext) extends LoggerUI 
   private var continue: Boolean = true
   private var hasFinished: Boolean = false
 
-  def log(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;">{mesg}</pre>))
+  def log(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;">{mesg}</p>))
 
-  def info(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;" class="text-info">{mesg}</pre>))
+  def info(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;" class="text-primary">{mesg}</p>))
 
-  def success(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;" class="text-success">{mesg}</pre>))
+  def success(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;" class="text-success">{mesg}</p>))
 
-  def danger(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;" class="text-danger">{mesg}</pre>))
+  def danger(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;" class="text-danger">{mesg}</p>))
 
-  def warn(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;" class="text-warning">{mesg}</pre>))
+  def warn(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;" class="text-warning">{mesg}</p>))
 
-  def debug(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <pre style="white-space: pre-wrap; margin: 0;" class="text-black-50">{mesg}</pre>))
+  def debug(mesg: String): Unit = fsc.sendToPage(JS.prepend2(loggerOutputId, <p style="white-space: pre-wrap; margin: 0;" class="text-black-50">{mesg}</p>))
 
   override def continue_?(): Boolean = continue
 
   private val modal = new BSModal5Base {
     override def modalHeaderTitle: String = title
 
-    override def modalSize: BSModal5Size.Value = BSModal5Size.LG
+    override def modalSize: BSModal5Size.Value = BSModal5Size.Large
 
     override def modalBodyContents()(implicit fsc: FSContext): NodeSeq = {
-      div.withId(loggerOutputId).withStyle("min-height: 400px; background: #f5f5f5; max-height: 800px; overflow: auto;").apply {
-        ""
-      }
+      total.map(_ => {
+        progressBarRerenderer.render(0d)
+      }).getOrElse(NodeSeq.Empty) ++
+        div.withId(loggerOutputId).withStyle("min-height: 400px; background: #f5f5f5; max-height: 800px; overflow: auto;").apply {
+          ""
+        }
     }
 
     override def modalFooterContents()(implicit fsc: FSContext): Option[NodeSeq] = Some {
@@ -100,7 +133,7 @@ class LoggerUIImpl(val title: String)(implicit fsc: FSContext) extends LoggerUI 
 
   override def finished(): Unit = {
     hasFinished = true
-    fsc.sendToPage(modal.rerenderModalFooterContent())
+    fsc.sendToPage(modal.rerenderModalFooterContent() & progressBarRerenderer.rerender(100))
   }
 }
 
@@ -108,8 +141,9 @@ object LoggerUI {
 
   implicit val Default: com.fastscala.demo.components.LoggerUISysoutOnly = new LoggerUISysoutOnly("Default")
 
-  def runInSeparateThreadAndOpenProgressModal(title: String)(code: LoggerUI => Unit)(implicit fsc: FSContext): Js = {
+  def runInSeparateThreadAndOpenProgressModal(title: String, totalProgress: Option[Double] = None)(code: LoggerUI => Unit)(implicit fsc: FSContext): Js = {
     val loggerUI = new LoggerUIImpl(title)
+    loggerUI.total = totalProgress
     new Thread() {
       override def run(): Unit = code(loggerUI)
     }.start()

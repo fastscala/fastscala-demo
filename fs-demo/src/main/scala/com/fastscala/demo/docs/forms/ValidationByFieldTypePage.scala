@@ -10,6 +10,7 @@ import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.multiselect.F7MultiSelectField
 import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.fields.select.F7SelectField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext

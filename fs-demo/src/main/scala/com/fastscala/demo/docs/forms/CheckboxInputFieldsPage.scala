@@ -10,6 +10,7 @@ import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.checkbox.{F7CheckboxField, F7CheckboxOptField}
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
@@ -41,23 +42,23 @@ class CheckboxInputFieldsPage extends MultipleCodeExamples3Page() {
       div.apply {
         new DefaultForm7() {
           override lazy val rootField: F7Field = F7VerticalField()(
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Checkboxes")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Checkboxes")),
             termsAndConditionsField,
             privacyPolicyField,
             //
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Tri-state checkboxes (supports indeterminate)")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Tri-state checkboxes (supports indeterminate)")),
             new F7ContainerField("row")(
               "col" -> hasACar,
-              "col" -> new F7HtmlField({
+              "col" -> new F7HtmlField(implicit fsc => {
                 span.apply("Checkbox state: " + hasACar.currentValue.map("set to " + _).getOrElse("not set"))
               }).dependsOn(hasACar),
             ),
             //
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Checkboxes inline")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Checkboxes inline")),
             subscribe2NewsletterField,
             subscribe2DiscountsField,
             //
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Checkboxes as switches and opposite side")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Checkboxes as switches and opposite side")),
             marketingEmailField,
             marketingSMSField,
             marketingPhoneField,

@@ -25,7 +25,7 @@ class FileUploadPage extends MultipleCodeExamples3Page() {
           UploadedImage() match {
             case Some(uploadedFile) =>
               h3.apply("Uploaded image:") ++
-                <img class="w-100" src={s"data:${uploadedFile.contentType};base64, " + Base64.getEncoder.encodeToString(uploadedFile.content)}></img>.mx_auto.my_4.d_block
+                <img class="w-100" src={s"data:${uploadedFile.contentType};base64, " + Base64.getEncoder.encodeToString(uploadedFile.bytes())}></img>.mx_auto.my_4.d_block
             case None =>
               h3.apply("Upload an image:") ++
                 FileUpload(

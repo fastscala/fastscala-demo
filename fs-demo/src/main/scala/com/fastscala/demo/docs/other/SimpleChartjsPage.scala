@@ -1,6 +1,7 @@
 package com.fastscala.demo.docs.other
 
 import com.fastscala.components.chartjs.*
+import com.fastscala.components.chartjs.ChartJsNullable2Option.*
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js

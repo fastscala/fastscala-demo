@@ -6,6 +6,7 @@ import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.radio.F7RadioField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
@@ -38,13 +39,13 @@ class RadioInputFieldsPage extends MultipleCodeExamples3Page() {
       div.apply {
         new DefaultForm7() {
           override lazy val rootField: F7Field = F7VerticalField()(
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Radio input")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Radio input")),
             registrationTypeField,
             //
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Radio buttons as switches on the opposite side")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Radio buttons as switches on the opposite side")),
             phoneTypeField,
             //
-            new F7HtmlField(fs_5.mb_3.border_bottom.apply("Radio buttons inline")),
+            new F7HtmlField(implicit fsc => fs_5.mb_3.border_bottom.apply("Radio buttons inline")),
             marketingChannelsTypeField,
             new F7SubmitButtonField(implicit fsc => BSBtn().BtnPrimary.lbl("Submit").btn.d_block.w_100)
           )

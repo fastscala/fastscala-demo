@@ -7,9 +7,9 @@ val Version = "0.0.3"
 
 ThisBuild / organization := "com.fastscala"
 ThisBuild / version := Version
-ThisBuild / scalaVersion := "3.7.3"
+ThisBuild / scalaVersion := "3.7.4"
 
-val FastScalaVersion = "0.0.20"
+val FastScalaVersion = "0.0.31"
 
 lazy val fs_demo = (project in file("fs-demo"))
   .enablePlugins(JavaServerAppPackaging, SystemdPlugin)

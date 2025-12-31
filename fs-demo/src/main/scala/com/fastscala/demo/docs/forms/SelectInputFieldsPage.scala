@@ -10,6 +10,7 @@ import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.multiselect.F7MultiSelectField
 import com.fastscala.components.form7.fields.select.{F7SelectField, F7SelectOptField}
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 

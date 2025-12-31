@@ -20,20 +20,20 @@ class SelectableRowsWithActionsTableExamplePage extends MultipleCodeExamples3Pag
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Source") {
-      val table = new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SelectableRowsWithActions with Table6Paginated {
+      val table = new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SelectableRowsWithActions with Table6SelectableRows with Table6Paginated {
         override type R = Country
 
         override def defaultPageSize: Int = 10
 
         override def actionsBtnToIncludeInTopDropdown: BSBtn = BSBtn().BtnPrimary.lbl("Actions").sm.addClass(ms_2.getClassAttr)
 
-        override def actionsForRows(rows: Set[Country]): Seq[BSBtn] = List(
+        override def actionsForRows(rows: Seq[Country]): Seq[BSBtn] = List(
           Some(()).filter(_ => rows.size >= 2).map(_ =>
             BSBtn().lbl("Calculate total area").callback(implicit fsc => JS.alert(s"Total area of ${rows.map(_.name.common).mkString(", ")}: ${rows.map(_.area).sum}"))
           ),
           Some(
             BSBtn().lbl("Download as TSV").callback(implicit fsc =>
-              JS.redirectTo(fsc.fileDownload(
+              JS.redirectTo(fsc.fileDownloadByteArray(
                 "countries.tsv",
                 "text/tab-separated-values",
                 () => {

@@ -11,6 +11,7 @@ import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.checkbox.F7CheckboxField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.number.{F7DoubleField, F7IntField}
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
@@ -41,12 +42,12 @@ class FormInputGroupsPage extends MultipleCodeExamples3Page() {
           validateBeforeUserInput()
 
           override lazy val rootField: F7Field = F7VerticalField()(
-            new F7BSFormInputGroup()(new F7HtmlField(<label>@</label>), userhandle),
+            new F7BSFormInputGroup()(new F7HtmlField(implicit fsc => <label>@</label>), userhandle),
             new F7BSFormInputGroup()(enableOldHandleMigrationField, oldHandleField),
-            new F7BSFormInputGroup()(commentsField, new F7HtmlField(<label>Your comments</label>)),
-            new F7HtmlField(<h6>With help and validations</h6>),
+            new F7BSFormInputGroup()(commentsField, new F7HtmlField(implicit fsc => <label>Your comments</label>)),
+            new F7HtmlField(implicit fsc => <h6>With help and validations</h6>),
             new F7BSFormInputGroup()(
-              new F7HtmlField(<label>Full name:</label>),
+              new F7HtmlField(implicit fsc => <label>Full name:</label>),
               firstNameField,
               lastNameField,
             ),

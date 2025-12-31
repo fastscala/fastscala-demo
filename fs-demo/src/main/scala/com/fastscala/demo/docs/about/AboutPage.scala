@@ -2,8 +2,8 @@ package com.fastscala.demo.docs.about
 
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
-import com.fastscala.components.form7.fields.F7SubmitButtonField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.F7StringField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext

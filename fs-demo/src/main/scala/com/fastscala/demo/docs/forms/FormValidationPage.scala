@@ -7,6 +7,7 @@ import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.date.F7LocalDateOptField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.number.F7DoubleField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.*
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 

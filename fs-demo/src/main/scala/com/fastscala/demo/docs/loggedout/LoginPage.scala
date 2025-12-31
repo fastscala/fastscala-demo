@@ -8,7 +8,8 @@ import com.fastscala.scala_xml.js.JS
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.text.F7StringField
-import com.fastscala.components.form7.fields.{F7HtmlField, F7SubmitButtonField}
+import com.fastscala.components.form7.fields.F7HtmlField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
@@ -29,8 +30,8 @@ class LoginPage extends LoggedoutBasePage {
       val usernameField = new F7StringField().placeholder("Username").name("username")
       val passwordField = new F7StringField().placeholder("Password").inputTypePassword.name("password")
       override val rootField: F7Field = F7VerticalField()(
-        new F7HtmlField(<img src="/static/images/logo-wide.png"/>.mb_3.w_75.d_block.mx_auto),
-        new F7HtmlField(<p>You can use user <b>admin</b> and password <b>admin</b> to login:</p>),
+        new F7HtmlField(implicit fsc => <img src="/static/images/logo-wide.png"/>.mb_3.w_75.d_block.mx_auto),
+        new F7HtmlField(implicit fsc => <p>You can use user <b>admin</b> and password <b>admin</b> to login:</p>),
         usernameField,
         passwordField,
         new F7SubmitButtonField(implicit fsc => BSBtn().BtnOutlinePrimary.lbl("Login").sm.btn.d_block.w_100),

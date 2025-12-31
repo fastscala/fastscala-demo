@@ -4,13 +4,14 @@ import com.fastscala.components.bootstrap5.accordion.BSAccordion
 import com.fastscala.components.bootstrap5.modals.{BSModal5, BSModal5Base}
 import com.fastscala.components.bootstrap5.offcanvas.{BSOffcanvas, BSOffcanvasBase}
 import com.fastscala.components.bootstrap5.utils.BSBtn
-import com.fastscala.components.form7.fields.F7SubmitButtonField
 import com.fastscala.components.form7.fields.date.F7LocalDateOptField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectField
+import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.F7StringField
-import com.fastscala.components.form7.{F7Field, F7FormRenderer, Form7}
+import com.fastscala.components.form7.renderers.F7FormRenderer
+import com.fastscala.components.form7.{F7Field, Form7}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.docs.forms.*
@@ -51,9 +52,15 @@ class BootstrapAccordionPage extends MultipleCodeExamples3Page() {
               override def postSubmitForm()(implicit fsc: FSContext): Js = {
                 BSModal5.verySimple("Created User", "Done")(modal =>
                   implicit fsc => {
-                    <span><b>First Name:</b> {editing.firstName}</span><br/> ++
-                      <span><b>Last Name:</b> {editing.lastName}</span><br/> ++
-                      <span><b>Email:</b> {editing.email}</span><br/>
+                    <span>
+                      <b>First Name:</b>{editing.firstName}
+                    </span> <br/> ++
+                      <span>
+                        <b>Last Name:</b>{editing.lastName}
+                      </span> <br/> ++
+                      <span>
+                        <b>Email:</b>{editing.email}
+                      </span> <br/>
                   }
                 )
               }
@@ -73,12 +80,12 @@ class BootstrapAccordionPage extends MultipleCodeExamples3Page() {
               override def formRenderer: F7FormRenderer = DefaultFSDemoBSForm7Renderers.formRenderer
             }.render()
           }
-        ),
+          ),
         <span>Actions</span> -> (implicit fsc =>
           idx => {
             BSBtn().BtnPrimary.lbl("Delete User").btn
           }
-        )
+          )
       ).render()
     }
     closeCodeSample()
