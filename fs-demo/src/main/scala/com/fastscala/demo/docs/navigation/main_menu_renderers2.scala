@@ -21,7 +21,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     val id = IdGen.id
     <li class="bd-links-group py-2">
         <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
-            {elem.icon.map(_.withClass("bi me-2 mb-1")).getOrElse(NodeSeq.Empty)}
+            {elem.icon.map(_.addClass("bi me-2 mb-1")).getOrElse(NodeSeq.Empty)}
             {elem.name}
         </strong>
         <ul class="list-unstyled fw-normal pb-2 small">
@@ -35,7 +35,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     <li>
       {
       <a href={elem.href} class="bd-links-link d-inline-block rounded">{elem.name}</a>
-        .withClassIf(isOpen, "active")
+        .addClassIf(isOpen, "active")
         .withAttrIf(isOpen, "aria-current" -> "page")
       }
     </li>
@@ -46,7 +46,7 @@ implicit val BSMenuRenderer2: BSMenuRenderer = new BSMenuRenderer {
     <li>
       {
       <a href={elem.href} class="bd-links-link d-inline-block rounded">{elem.name}</a>
-        .withClassIf(isOpen, "active")
+        .addClassIf(isOpen, "active")
         .withAttrIf(isOpen, "aria-current" -> "page")
       }
     </li>

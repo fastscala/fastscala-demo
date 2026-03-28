@@ -21,7 +21,7 @@ class HtmlUtilsPage extends MultipleCodeExamples3Page() {
 
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     renderCodeSampleAndAutoClosePreviousOne("Adding a class") {
-      span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").withClass("text-bg-success")
+      span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").addClass("text-bg-success")
     }
     renderCodeSampleAndAutoClosePreviousOne("Adding a style") {
       span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").withStyle("color: green;")
@@ -31,7 +31,7 @@ class HtmlUtilsPage extends MultipleCodeExamples3Page() {
     }
     renderCodeSampleAndAutoClosePreviousOne("Adding a class conditionally") {
       val value = math.random() - 0.5
-      span.apply(f"$value%.2f").withClassIf(value < 0, "text-bg-danger")
+      span.apply(f"$value%.2f").addClassIf(value < 0, "text-bg-danger")
     }
     renderCodeSampleAndAutoClosePreviousOne("Adding an attribute conditionally") {
       val value = math.random() - 0.5

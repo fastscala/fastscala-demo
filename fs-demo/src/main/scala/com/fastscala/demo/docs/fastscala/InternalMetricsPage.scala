@@ -67,11 +67,11 @@ class InternalMetricsPage extends MultipleCodeExamples3Page() {
       border.p_2.rounded.apply {
         rerenderable.render() ++
           d_flex.justify_content_center.apply {
-            BSBtn().BtnPrimary.lbl("System GC").ajax(_ => {
+            BSBtn().BtnPrimary.lbl("System GC").callback(_ => {
               fsc.page.session.fsSystem.freeUpSpace()
               JS.void
             }).btn.me_2 ++
-              BSBtn().BtnPrimary.lbl("Free Space").ajax(_ => {
+              BSBtn().BtnPrimary.lbl("Free Space").callback(_ => {
                 fsc.page.session.fsSystem.freeUpSpace()
                 JS.void
               }).btn

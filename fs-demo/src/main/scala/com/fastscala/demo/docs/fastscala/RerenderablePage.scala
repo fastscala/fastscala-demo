@@ -27,13 +27,13 @@ class RerenderablePage extends MultipleCodeExamples3Page() {
         div.withStyle(s"height: 100px; width: 300px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(s"Time on server: ${new Date().toString}")
       })
       rerenderer.render() ++
-        BSBtn().BtnPrimary.lbl("Re-render").ajax(_ => rerenderer.rerender()).btn.w_100
+        BSBtn().BtnPrimary.lbl("Re-render").callback(_ => rerenderer.rerender()).btn.w_100
     }
     renderCodeSampleAndAutoClosePreviousOne("Rerenderable from inside the block") {
       JS.rerenderableContents(rerenderer => implicit fsc => {
         div.withStyle(s"height: 100px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(
           p.apply(s"Time on server: ${new Date().toString}").mb_2 ++
-            BSBtn().BtnSuccess.lbl("Re-render").ajax(_ => rerenderer.rerender()).btn.w_100
+            BSBtn().BtnSuccess.lbl("Re-render").callback(_ => rerenderer.rerender()).btn.w_100
         )
 
       }).render()
@@ -46,10 +46,10 @@ class RerenderablePage extends MultipleCodeExamples3Page() {
       })
       rerenderer.render(None) ++
         d_flex.justify_content_between.apply {
-          BSBtn().BtnSuccess.lbl("Undefined").ajax(_ => rerenderer.rerender(None)).btn ++
-            BSBtn().BtnSuccess.lbl("5pts").ajax(_ => rerenderer.rerender(Some(5))).btn ++
-            BSBtn().BtnSuccess.lbl("20pts").ajax(_ => rerenderer.rerender(Some(20))).btn ++
-            BSBtn().BtnSuccess.lbl("100pts").ajax(_ => rerenderer.rerender(Some(100))).btn
+          BSBtn().BtnSuccess.lbl("Undefined").callback(_ => rerenderer.rerender(None)).btn ++
+            BSBtn().BtnSuccess.lbl("5pts").callback(_ => rerenderer.rerender(Some(5))).btn ++
+            BSBtn().BtnSuccess.lbl("20pts").callback(_ => rerenderer.rerender(Some(20))).btn ++
+            BSBtn().BtnSuccess.lbl("100pts").callback(_ => rerenderer.rerender(Some(100))).btn
         }
     }
     closeCodeSample()

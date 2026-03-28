@@ -33,7 +33,7 @@ class SimpleFilterTableExamplePage extends MultipleCodeExamples3Page() {
       lazy val table = new Table6Base
         with Table6BootrapStyling
         with Table6StandardColumns
-        with Table6SeqSortableDataSource
+        with Table6SortableWithSeqDataSource
         with Table6Sortable {
         override type R = Country
 
@@ -59,7 +59,7 @@ class SimpleFilterTableExamplePage extends MultipleCodeExamples3Page() {
         override def seqRowsSource: Seq[Country] = CountriesData.data.filter(_.name.common.toLowerCase.contains(countryNameFilter.toLowerCase))
       }
       new DefaultForm7() with com.fastscala.components.form7.Form7WithSaveOnEnterHint {
-        override def rootField: F7Field = filterF
+        override lazy val rootField: F7Field = filterF
       }.render().mb_2 ++
         table.render()
     }

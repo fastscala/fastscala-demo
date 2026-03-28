@@ -29,7 +29,7 @@ class ScalaTagsPage extends MultipleCodeExamples3Page() {
       implicit def scalaTags2ScalaXml(frag: TypedTag[String]): NodeSeq =
         scala.xml.Unparsed(frag.render)
 
-      BSBtn().BtnPrimary.lbl("Open Modal").ajax(implicit fsc =>
+      BSBtn().BtnPrimary.lbl("Open Modal").callback(implicit fsc =>
         BSModal5.verySimple("Simple modal", "Close")({ modal =>
           implicit fsc =>
             import scalatags.Text.all.*

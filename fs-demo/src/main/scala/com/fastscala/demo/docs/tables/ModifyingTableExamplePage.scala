@@ -17,7 +17,7 @@ class ModifyingTableExamplePage extends MultipleCodeExamples3Page() {
 
     renderCodeSampleAndAutoClosePreviousOne("Building the table") {
       buildTable = () =>
-        new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqDataSource with Table6Paginated {
+        new Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqDataSource with Table6PaginatedWithSeqDataSource {
           override type R = Country
 
           val ColName = ColStr("Name", _.name.common)

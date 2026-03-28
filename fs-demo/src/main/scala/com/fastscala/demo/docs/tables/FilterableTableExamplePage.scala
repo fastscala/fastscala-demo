@@ -4,11 +4,11 @@ import com.fastscala.components.bootstrap5.form7.layout.F7BSFormInputGroup
 import com.fastscala.components.bootstrap5.table6.*
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.checkbox.F7CheckboxOptField
+import com.fastscala.components.form7.fields.html.F7HtmlField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.number.F7IntOptField
 import com.fastscala.components.form7.fields.select.F7SelectOptField
 import com.fastscala.components.form7.fields.text.F7StringField
-import com.fastscala.components.form7.fields.F7HtmlField
 import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
@@ -70,7 +70,7 @@ class FilterableTableExamplePage extends MultipleCodeExamples3Page() {
         override def postSubmitForm()(implicit fsc: FSContext): Js = super.postSubmitForm() & mainTable.rerender()
       }
 
-      lazy val mainTable: Table6Base & Table6ColumnSelection = new Table6Base with Table6BootrapStyling with Table6Paginated with Table6SeqSortableDataSource with Table6StandardColumns with Table6Sortable with Table6ColumnSelection {
+      lazy val mainTable: Table6Base & Table6ColumnSelection = new Table6Base with Table6BootrapStyling with Table6PaginatedWithSeqDataSource with Table6SortableWithSeqDataSource with Table6StandardColumns with Table6Sortable with Table6ColumnSelection {
         override type R = Country
 
         override def defaultPageSize: Int = 10
@@ -121,7 +121,7 @@ class FilterableTableExamplePage extends MultipleCodeExamples3Page() {
 
         override def allColumns: List[C] = List(ColName, ColCCA2, ColCCN3, ColCCA3, ColCIOC, ColStatus, ColUNMember, ColCapital, ColAltSpellings, ColRegion, ColSubregion, ColLatLng, ColLandlocked, ColBorders, ColArea, ColCallingCodes, ColFlag)
 
-        override val initiallyVisibleColumns: Set[Table6StandardColumn[Country]] = Set(ColName, ColUNMember, ColCapital, ColArea)
+        override lazy val initiallyVisibleColumns: Set[Table6StandardColumn[Country]] = Set(ColName, ColUNMember, ColCapital, ColArea)
 
         override def seqRowsSource: Seq[Country] = CountriesData.data.filter(country => {
           Some(nameFilterField.getInternalValue()).filter(_.trim != "").forall(str => country.name.common.toLowerCase.contains(str.toLowerCase)) &&

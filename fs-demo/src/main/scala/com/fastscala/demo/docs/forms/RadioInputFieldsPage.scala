@@ -4,6 +4,7 @@ import com.fastscala.components.bootstrap5.form7.renderermodifiers.{CheckboxAlig
 import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
+import com.fastscala.components.form7.fields.html.F7HtmlField
 import com.fastscala.components.form7.fields.layout.F7VerticalField
 import com.fastscala.components.form7.fields.radio.F7RadioField
 import com.fastscala.components.form7.fields.submit.F7SubmitButtonField

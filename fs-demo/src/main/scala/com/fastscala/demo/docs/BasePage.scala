@@ -26,7 +26,7 @@ trait BasePage extends FSPageImplWithFSContext {
     <div class="text-end justify-content-end">
         {
         CurrentUser().map(user => {
-          BSBtn().BtnOutlineWarning.lbl("Logout").ajax(implicit fsc => {
+          BSBtn().BtnOutlineWarning.lbl("Logout").callback(implicit fsc => {
             user.logOut()
           }).btn.ms_2
         }).getOrElse(Empty)

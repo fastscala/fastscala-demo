@@ -8,8 +8,8 @@ import com.fastscala.components.bootstrap5.modals.BSModal5
 import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.layout.F7VerticalField
-import com.fastscala.components.form7.fields.select.F7EnumField
 import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
+import com.fastscala.components.form7.utils.F7FieldForEnum
 import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
@@ -28,7 +28,7 @@ class FormInputTypesPage extends MultipleCodeExamples3Page() {
         val High, Low, HighZ = Value
       }
 
-      val inputField = F7EnumField.Nullable(OutputState).label("Output State").option2String(_.map(_.toString).getOrElse("--"))
+      val inputField = F7FieldForEnum.Nullable(OutputState).label("Output State").option2String(_.map(_.toString).getOrElse("--"))
 
       div.border.p_2.rounded.apply {
         new DefaultForm7() {

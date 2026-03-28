@@ -12,7 +12,7 @@ class BootstrapStylingOptionsTableExamplePage extends MultipleCodeExamples3Page(
   override def codeSampleWrapperPadding: Boolean = false
 
   // === code sample ===
-  class SampleTable extends Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqDataSource with Table6Paginated {
+  class SampleTable extends Table6Base with Table6BootrapStyling with Table6StandardColumns with Table6SeqDataSource with Table6PaginatedWithSeqDataSource {
     override type R = Country
 
     val ColName = ColStr("Name", _.name.common)

@@ -58,9 +58,11 @@ object FSDemoMainMenu
       new RoutingMenuItem("demo", "forms", "validation-by-field-type")("Validation by Field Type", () => new ValidationByFieldTypePage()),
       new RoutingMenuItem("demo", "forms", "input-groups")("Input Groups", () => new FormInputGroupsPage()),
       new RoutingMenuItem("demo", "forms", "server-side-update")("Server-Side Update", () => new UpdatesFromServerSidePage()),
+      new RoutingMenuItem("demo", "forms", "update-client-wo-rerendering")("Light Client-Side Updates", () => new UpdateClientSideWithoutRerenderingPage()),
       new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage()),
       new RoutingMenuItem("demo", "forms", "submit-on-enter-on-change")("Submit on enter/change", () => new SaveOnEnterAndOnChangeFormExamplePage()),
-      new RoutingMenuItem("demo", "forms", "save-state-in-query-string")("Save state in query string", () => new SaveFormStateInQueryStringExamplePage())
+      new RoutingMenuItem("demo", "forms", "save-state-in-query-string")("Save state in query string", () => new SaveFormStateInQueryStringExamplePage()),
+      new RoutingMenuItem("demo", "forms", "ace-editor")("Ace Editor Integration", () => new AceEditorFieldPage())
     ),
     MenuSection("Table6 Library", <i class="bi bi-table"></i>.withColorPrimary)(
       new RoutingMenuItem("demo", "tables", "simple")("Simple Table", () => new SimpleTableExamplePage()),

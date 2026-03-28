@@ -30,7 +30,7 @@ trait LoggerUI {
 
   def finished(): Unit
 
-  var total: Option[Double] = None
+  var total: Option[Double]
 
   def incrementProgress(): Unit
 
@@ -58,9 +58,11 @@ class LoggerUISysoutOnly(val title: String) extends LoggerUI {
   def incrementProgress(): Unit = ()
 
   def incrementProgress(by: Double): Unit = ()
+
+  var total: Option[Double] = None
 }
 
-class LoggerUIImpl(val title: String)(implicit fsc: FSContext) extends LoggerUI {
+class LoggerUIImpl(val title: String, var total: Option[Double] = None)(implicit fsc: FSContext) extends LoggerUI {
 
   private var current = 0d
 
@@ -121,7 +123,7 @@ class LoggerUIImpl(val title: String)(implicit fsc: FSContext) extends LoggerUI 
         BSBtn().BtnSecondary.lbl("Close").onclick(hideAndRemoveAndDeleteContext()).btn
       } else {
         val btn: BSBtn = BSBtn().BtnDark.lbl("Stop").withRandomId
-        btn.ajax(implicit fsc => {
+        btn.callback(implicit fsc => {
           continue = false
           btn.disable()
         }).btn

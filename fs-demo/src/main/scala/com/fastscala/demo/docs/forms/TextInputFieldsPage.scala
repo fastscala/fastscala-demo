@@ -46,7 +46,7 @@ class TextInputFieldsPage extends MultipleCodeExamples3Page() {
       val intOptField = new F7IntOptField().label("Your age")
         .help("An empty input translates into an empty option")
         .setInternalValue(Some(47))
-      val stringOptTextareaField = new F7StringOptTextareaField().rows(6).label("Your message")
+      val stringOptTextareaField = new F7StringOptTextareaField().numRows(6).label("Your message")
         .setInternalValue(Some("Fast Scala is great!"))
       val localDateOptField = new F7LocalDateOptField().label("Date of birth")
         .help("An empty input translates into an empty option")

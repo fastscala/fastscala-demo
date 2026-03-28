@@ -85,7 +85,7 @@ abstract class MultipleCodeExamples3Page() extends DocsBasePage() {
 
   def codeSampleWrapperPadding: Boolean = true
 
-  private def renderedCodeSampleWrapper = div.withClass("bd-example m-0 border-0" + (if (codeSampleWrapperPadding) "" else " p-0"))
+  private def renderedCodeSampleWrapper = div.addClass("bd-example m-0 border-0" + (if (codeSampleWrapperPadding) "" else " p-0"))
 
   private def renderTitle(title: String, id: String): Elem = <h2 id={id}>{title} <a class="anchor-link" href={"#" + id} aria-label={"Link to this code sample: " + title}></a></h2>
 

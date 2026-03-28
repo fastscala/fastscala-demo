@@ -19,7 +19,7 @@ class LoggerUIPage extends MultipleCodeExamples3Page() {
   override def renderAllCodeSamples()(implicit fsc: FSContext): Unit = {
     import com.fastscala.components.bootstrap5.helpers.BSHelpers.*
     renderCodeSampleAndAutoClosePreviousOne("Using LoggerUI", <p>Small utility to easily show the status/progress of some server activity to the user.</p>) {
-      BSBtn().BtnPrimary.lbl("Start task").ajax(implicit fsc => {
+      BSBtn().BtnPrimary.lbl("Start task").callback(implicit fsc => {
         LoggerUI.runInSeparateThreadAndOpenProgressModal("Long running task") { logger =>
           logger.info("Starting a long running task...")
           Thread.sleep(500)
@@ -39,7 +39,7 @@ class LoggerUIPage extends MultipleCodeExamples3Page() {
       }).btn.w_100
     }
     renderCodeSampleAndAutoClosePreviousOne("With progres") {
-      BSBtn().BtnPrimary.lbl("Start task").ajax(implicit fsc => {
+      BSBtn().BtnPrimary.lbl("Start task").callback(implicit fsc => {
         LoggerUI.runInSeparateThreadAndOpenProgressModal("Long running task with 7 steps", Some(7)) { logger =>
           logger.info("Starting a long running task...")
           logger.incrementProgress()

@@ -26,8 +26,8 @@ class ColumnSelectionTableExamplePage extends MultipleCodeExamples3Page() {
 
       lazy val mainTable = new Table6Base
         with Table6BootrapStyling
-        with Table6Paginated
-        with Table6SeqSortableDataSource
+        with Table6PaginatedWithSeqDataSource
+        with Table6SortableWithSeqDataSource
         with Table6StandardColumns
         with Table6Sortable
         with Table6ColumnSelection {
@@ -100,7 +100,7 @@ class ColumnSelectionTableExamplePage extends MultipleCodeExamples3Page() {
           , ColFlag
         )
 
-        override val initiallyVisibleColumns: Set[Table6StandardColumn[Country]] = Set(
+        override lazy val initiallyVisibleColumns: Set[Table6StandardColumn[Country]] = Set(
           ColName
           , ColUNMember
           , ColCapital

@@ -6,7 +6,8 @@ import com.fastscala.components.chartjs.ChartJsNullable2Option.nullable2Option
 import com.fastscala.components.form7.fields.checkbox.{F7CheckboxField, F7CheckboxOptField}
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.number.F7IntOptField
-import com.fastscala.components.form7.fields.select.{F7EnumField, F7SelectOptField}
+import com.fastscala.components.form7.fields.select.F7SelectOptField
+import com.fastscala.components.form7.utils.F7FieldForEnum
 import com.fastscala.components.form7.{ChangedField, DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
@@ -53,7 +54,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
           import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers.*
           new DefaultForm7() {
 
-            override val rootField: F7Field = new F7VerticalField()(
+            override lazy val rootField: F7Field = new F7VerticalField()(
               new F7ContainerField("row")(
                 "col-4" -> new F7CheckboxOptField().label("IndentedSoftWrap").addOnThisFieldChanged(_.currentValue.map(bool => aceEditor.setIndentedSoftWrap(bool)).getOrElse(JS.void)).disableSwitchingToUndefined,
                 "col-4" -> new F7CheckboxOptField().label("UseWorker").addOnThisFieldChanged(_.currentValue.map(bool => aceEditor.setUseWorker(bool)).getOrElse(JS.void)).disableSwitchingToUndefined,
@@ -114,11 +115,11 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
               new F7ContainerField("row")(
                 //                "col-6" -> F7EnumField.Nullable(Language).label("Language").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setMode(v)).getOrElse(JS.void)),
                 //                "col-6" -> F7EnumField.Nullable(Theme).label("Theme").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setTheme(v)).getOrElse(JS.void)),
-                "col-4" -> F7EnumField.Nullable(WrapMethod).label("WrapMethod").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setWrapMethod(v)).getOrElse(JS.void)),
-                "col-4" -> F7EnumField.Nullable(FoldStyle).label("FoldStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setFoldStyle(v)).getOrElse(JS.void)),
-                "col-4" -> F7EnumField.Nullable(NewLineMode).label("NewLineMode").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setNewLineMode(v)).getOrElse(JS.void)),
-                "col-4" -> F7EnumField.Nullable(SelectionStyle).label("SelectionStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setSelectionStyle(v)).getOrElse(JS.void)),
-                "col-4" -> F7EnumField.Nullable(CursorStyle).label("CursorStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setCursorStyle(v)).getOrElse(JS.void)),
+                "col-4" -> F7FieldForEnum.Nullable(WrapMethod).label("WrapMethod").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setWrapMethod(v)).getOrElse(JS.void)),
+                "col-4" -> F7FieldForEnum.Nullable(FoldStyle).label("FoldStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setFoldStyle(v)).getOrElse(JS.void)),
+                "col-4" -> F7FieldForEnum.Nullable(NewLineMode).label("NewLineMode").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setNewLineMode(v)).getOrElse(JS.void)),
+                "col-4" -> F7FieldForEnum.Nullable(SelectionStyle).label("SelectionStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setSelectionStyle(v)).getOrElse(JS.void)),
+                "col-4" -> F7FieldForEnum.Nullable(CursorStyle).label("CursorStyle").addOnThisFieldChanged(_.currentValue.map(v => aceEditor.setCursorStyle(v)).getOrElse(JS.void)),
               )
             )
           }.render()

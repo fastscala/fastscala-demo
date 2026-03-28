@@ -23,7 +23,7 @@ class SelectableRowsTableExamplePage extends MultipleCodeExamples3Page() {
         with Table6BootrapStyling
         with Table6SelectableRows
         with Table6StandardColumns
-        with Table6Paginated {
+        with Table6PaginatedWithSeqDataSource {
         override type R = Country
 
         override def defaultPageSize: Int = 10

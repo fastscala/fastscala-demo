@@ -55,26 +55,26 @@ class AboutPage extends MultipleCodeExamples3Page {
       <p>Builing on top of this basic <b>callback</b> funcionality, we can create a great development experience which allows you to build web applications much faster.</p><p>See bellow the available library to build Bootstrap buttons easily:</p>
     ) {
       BSBtn().BtnPrimary.lg.lbl("Check time on server")
-        .ajax(_ => JS.alert(s"Current date/time on server: ${new Date().toString}"))
+        .callback(_ => JS.alert(s"Current date/time on server: ${new Date().toString}"))
         .btn.m_3.shadow.mx_auto.d_block
     }
     renderCodeSampleAndAutoClosePreviousOneStrDesc("Check time on server basic example", "Your imagination is the limit - easily control the client side from the client side:") {
       <div id="current-time"><span>{new Date().toString}</span></div> ++
         BSBtn().BtnPrimary.sm.lbl("Update time")
-          .ajax(_ => JS.setContents("current-time", <span>{new Date().toString}</span>)).sm.btn
+          .callback(_ => JS.setContents("current-time", <span>{new Date().toString}</span>)).sm.btn
     }
     renderCodeSampleAndAutoClosePreviousOneStrDesc("Check time on server example 2", "Building on these fundations we introduce more advanced components which make you go even faster and safer:") {
       val rerenderable = JS.rerenderable(_ => _ => <span>{new Date().toString}</span>)
       rerenderable.render() ++
         BSBtn().BtnPrimary.sm.lbl("Update time")
-          .ajax(_ => rerenderable.rerender()).sm.btn.ms_2
+          .callback(_ => rerenderable.rerender()).sm.btn.ms_2
     }
     renderCodeSampleAndAutoClosePreviousOne("Check time on server example 3") {
       JS.rerenderableContents(rerenderer =>
         implicit fsc => {
           <span>{new Date().toString}</span> ++
             BSBtn().BtnPrimary.sm.lbl("Update time")
-              .ajax(_ => rerenderer.rerender()).sm.btn.ms_2
+              .callback(_ => rerenderer.rerender()).sm.btn.ms_2
         }
       ).render()
     }
@@ -89,11 +89,11 @@ class AboutPage extends MultipleCodeExamples3Page {
           })
           d_flex.justify_content_center.apply(buttons*).mb_2 ++
             d_flex.justify_content_center.apply {
-              BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
+              BSBtn().BtnPrimary.sm.lbl("-").callback(_ => {
                 numBtns -= 1
                 rerenderer.rerender()
               }).btn ++
-                BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
+                BSBtn().BtnPrimary.sm.lbl("+").callback(_ => {
                   numBtns += 1
                   rerenderer.rerender()
                 }).btn.ms_2
@@ -111,10 +111,10 @@ class AboutPage extends MultipleCodeExamples3Page {
             })
             d_flex.justify_content_center.apply(buttons*).mb_2 ++
               d_flex.justify_content_center.apply {
-                BSBtn().BtnPrimary.sm.lbl("-").ajax(_ => {
+                BSBtn().BtnPrimary.sm.lbl("-").callback(_ => {
                   rerenderer.rerender(math.max(1, numBtns - 1))
                 }).btn ++
-                  BSBtn().BtnPrimary.sm.lbl("+").ajax(_ => {
+                  BSBtn().BtnPrimary.sm.lbl("+").callback(_ => {
                     rerenderer.rerender(math.min(10, numBtns + 1))
                   }).btn.ms_2
               }

@@ -17,7 +17,7 @@ class PaginatedTableExamplePage extends MultipleCodeExamples3Page() {
       new Table6Base
         with Table6BootrapStyling
         with Table6StandardColumns
-        with Table6Paginated {
+        with Table6PaginatedWithSeqDataSource {
 
         override type R = Country
 
