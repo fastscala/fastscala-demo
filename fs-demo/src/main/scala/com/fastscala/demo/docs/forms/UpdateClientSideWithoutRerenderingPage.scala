@@ -16,6 +16,8 @@ import com.fastscala.components.form7.fields.radio.{F7RadioField, F7RadioOptFiel
 import com.fastscala.components.form7.fields.select.{F7SelectField, F7SelectOptField}
 import com.fastscala.components.form7.fields.submit.F7SubmitButtonField
 import com.fastscala.components.form7.fields.text.*
+import com.fastscala.components.form7.mixins.F7FieldWithEnabled
+import com.fastscala.components.form7.mixins.mainelem.F7FieldWithDisabled
 import com.fastscala.components.form7.{DefaultForm7, F7Field, Form7}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
@@ -63,7 +65,32 @@ class UpdateClientSideWithoutRerenderingPage extends MultipleCodeExamples3Page()
       val textareaField = new F7StringTextareaField().labelStrF(() => s"String textarea example (seed is ${randomSeed.currentValue})").dependsOn(randomSeed).numRows(() => Some(randomSeed.currentValue + 1))
       val textareaOptField = new F7StringOptTextareaField().labelStrF(() => s"String textarea optional example (seed is ${randomSeed.currentValue})").dependsOn(randomSeed).numRows(() => Some(randomSeed.currentValue + 1))
 
-      List(
+      List[F7FieldWithDisabled](
+        checkboxField,
+        checkboxOptField,
+        colorField,
+        dateField,
+        dateOptField,
+        dateTimeOptField,
+        textSurroundedField,
+        surroundField,
+        multiSelectField,
+        doubleField,
+        doubleOptField,
+        intField,
+        intOptField,
+        radioField,
+        radioOptField,
+        selectField,
+        selectOptField,
+        stringField,
+        textareaField,
+        textareaOptField,
+      ).foreach(f => {
+        f.disabled(() => randomSeed.currentValue == 1)
+      })
+
+      List[F7FieldWithEnabled](
         checkboxField,
         checkboxOptField,
         colorField,
@@ -86,7 +113,6 @@ class UpdateClientSideWithoutRerenderingPage extends MultipleCodeExamples3Page()
         textareaField,
         textareaOptField,
       ).foreach(f => {
-        f.disabled(() => randomSeed.currentValue == 1)
         f.enabled(() => randomSeed.currentValue != 2)
       })
 

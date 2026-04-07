@@ -24,7 +24,9 @@ object FSDemoMainMenu
     MenuSection("FastScala", <i class="bi bi-book"></i>.withColorInfo)(
       new RoutingMenuItem("demo", "fastscala", "callbacks")("Callbacks", () => new CallbacksPage()),
       new RoutingMenuItem("demo", "fastscala", "rerenderable")("Rerenderable", () => new RerenderablePage()),
-      new RoutingMenuItem("demo", "fastscala", "file_upload")("File Upload", () => new FileUploadPage()),
+      new RoutingMenuItem("demo", "fastscala", "file_upload", "target_form_in_hidden_iframe")("File Upload (target form)", () => new FileUploadTargetFormInHiddenIframePage()),
+      new RoutingMenuItem("demo", "fastscala", "file_upload", "paste_from_clipboard")("File Upload (paste from clipboard)", () => new FileUploadFromClipboardPage()),
+      new RoutingMenuItem("demo", "fastscala", "file_upload", "dedicated_xmlhttprequest")("File Upload (XMLHttpRequest)", () => new FileUploadDedicatedXmlHttpRequestPage()),
       new RoutingMenuItem("demo", "fastscala", "anon_page")("Anonymous Page", () => new AnonymousPage()),
       new RoutingMenuItem("demo", "fastscala", "file_download")("File Download", () => new FileDownloadPage()),
       new RoutingMenuItem("demo", "fastscala", "server_side_push")("Server Side Push", () => new ServerSidePushPage()),
@@ -62,7 +64,8 @@ object FSDemoMainMenu
       new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage()),
       new RoutingMenuItem("demo", "forms", "submit-on-enter-on-change")("Submit on enter/change", () => new SaveOnEnterAndOnChangeFormExamplePage()),
       new RoutingMenuItem("demo", "forms", "save-state-in-query-string")("Save state in query string", () => new SaveFormStateInQueryStringExamplePage()),
-      new RoutingMenuItem("demo", "forms", "ace-editor")("Ace Editor Integration", () => new AceEditorFieldPage())
+      new RoutingMenuItem("demo", "forms", "file-upload")("File Upload", () => new FileUploadInputExamplePage()),
+      new RoutingMenuItem("demo", "forms", "ace-editor")("Ace Editor Integration", () => new AceEditorFieldPage()),
     ),
     MenuSection("Table6 Library", <i class="bi bi-table"></i>.withColorPrimary)(
       new RoutingMenuItem("demo", "tables", "simple")("Simple Table", () => new SimpleTableExamplePage()),

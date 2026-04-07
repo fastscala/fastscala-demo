@@ -4,7 +4,7 @@ import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
-import com.fastscala.components.bootstrap5.utils.FileUpload
+import com.fastscala.components.bootstrap5.utils.FileUploadHiddenTargetForm
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 
 class AnonymousPage() extends MultipleCodeExamples3Page() {
@@ -17,7 +17,7 @@ class AnonymousPage() extends MultipleCodeExamples3Page() {
       JS.rerenderable(rerenderer => implicit fsc => {
         div.border.p_2.rounded.apply {
           h3.apply("Upload an image:") ++
-            FileUpload(uploadedFile => {
+            FileUploadHiddenTargetForm(uploadedFile => {
               rerenderer.rerender()
               JS.redirectTo(fsc.anonymousPageURL(implicit fsc => {
                 new VisualizeUploadedImageAnonymousPage(uploadedFile.head.contentType, uploadedFile.head.bytes()).render().toString
