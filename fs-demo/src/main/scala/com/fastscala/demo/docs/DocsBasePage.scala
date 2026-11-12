@@ -33,7 +33,6 @@ trait DocsBasePage extends FSPageImplWithFSContext {
         }).btn.ms_2
       }).getOrElse(Empty)
     }
-        <a href="https://calendly.com/fastscala/fastscala-free-training" class="btn btn-warning">Register for Free Training!</a>
     </div>
   //      <div class="text-end justify-content-end ms-2">
   //        <a href="https://github.com/fastscala/fastscala" class="btn btn-warning">GitHub</a>
@@ -152,9 +151,6 @@ trait DocsBasePage extends FSPageImplWithFSContext {
                 <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
                   <li class="nav-item col-6 col-lg-auto">
                     <a class="nav-link py-2 px-0 px-lg-2 active" aria-current="true" href="/docs/5.3/getting-started/introduction/">Docs</a>
-                  </li>
-                  <li class="nav-item col-6 col-lg-auto">
-                    <a class="nav-link py-2 px-0 px-lg-2" href="https://calendly.com/fastscala/fastscala-free-training">Training</a>
                   </li>
                 </ul>
                 <hr class="d-lg-none text-white-50"/>

@@ -31,7 +31,6 @@ trait BasePage extends FSPageImplWithFSContext {
           }).btn.ms_2
         }).getOrElse(Empty)
         }
-        <a href="https://calendly.com/fastscala/fastscala-free-training" class="btn btn-warning">Register for Free Training!</a>
     </div>
   //      <div class="text-end justify-content-end ms-2">
   //        <a href="https://github.com/fastscala/fastscala" class="btn btn-warning">GitHub</a>
