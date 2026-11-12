@@ -41,7 +41,7 @@ trait BasePage extends FSPageImplWithFSContext {
     FSDemoMainMenu.render()(using fsc, DefaultBSMenuRenderer.renderer) ++ CurrentUser().map(user => {
       hr ++
         p_3.d_flex.align_items_center.apply {
-          a.apply(user.miniHeadshotOrPlaceholderRendered.withStyle("width: 55px;border-radius: 55px;")) ++
+          a.apply(user.miniHeadshotOrPlaceholderRendered.addStyle("width: 55px;border-radius: 55px;")) ++
             a.text_decoration_none.fw_bold.text_warning.ms_2.apply(user.fullName)
         }
     }).getOrElse(Empty)
@@ -141,7 +141,7 @@ trait BasePage extends FSPageImplWithFSContext {
         <script src="//cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
         {append2Body()}
         {Try(config.getString("com.fastscala.demo.pages.include_file_in_body")).map(Source.fromFile(_).getLines().mkString("\n")).map(scala.xml.Unparsed(_)).getOrElse(NodeSeq.Empty)}
-        {JS.setContents("fs_num_page_callbacks", scala.xml.Text(fsc.page.callbacks.size.toString)).printBeforeExec.onDOMContentLoaded.inScriptTag}
+        {JS.setContents("fs_num_page_callbacks", scala.xml.Text(fsc.page.callbacks.size.toString)).onDOMContentLoaded.inScriptTag}
       </body>
     </html>
 

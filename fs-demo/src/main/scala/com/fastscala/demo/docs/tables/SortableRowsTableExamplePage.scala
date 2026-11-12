@@ -1,9 +1,9 @@
 package com.fastscala.demo.docs.tables
 
 import com.fastscala.components.bootstrap5.table6.*
+import com.fastscala.components.bootstrap5.widget.Widget
 import com.fastscala.core.{FSContext, FSSessionVar}
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.demo.docs.components.Widget
 import com.fastscala.demo.testdata.{CountriesData, Country}
 import com.fastscala.js.Js
 

@@ -24,7 +24,7 @@ class HtmlUtilsPage extends MultipleCodeExamples3Page() {
       span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").addClass("text-bg-success")
     }
     renderCodeSampleAndAutoClosePreviousOne("Adding a style") {
-      span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").withStyle("color: green;")
+      span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").addStyle("color: green;")
     }
     renderCodeSampleAndAutoClosePreviousOne("Adding an onclick handler") {
       span.apply("Lorem ipsum dolor sit amet, consectetur adipiscing elit.").addOnClick(JS.alert("Clicked"))

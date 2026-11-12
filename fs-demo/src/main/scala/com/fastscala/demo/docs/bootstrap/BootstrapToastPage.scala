@@ -22,7 +22,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
           <p>The import of file <b>sales_data_1988.xlsx</b> has now finished successfully.</p>
         }.positionTopRight
           // Show the toast bellow the top bar:
-          .onToastContainer(_.withStyle("margin-top: 65px;"))
+          .onToastContainer(_.addStyle("margin-top: 65px;"))
           .installAndShow()
       }).btn.w_100
     }
@@ -32,17 +32,17 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
       row.apply {
         col_4.apply {
           BSBtn().BtnPrimary.lbl("Top-Left").callback(implicit fsc => {
-            BSToast2.Simple(<span>Position Top-Left</span>)(loremIpsum).positionTopLeft.onToastContainer(_.withStyle("margin-top: 65px;")).installAndShow()
+            BSToast2.Simple(<span>Position Top-Left</span>)(loremIpsum).positionTopLeft.onToastContainer(_.addStyle("margin-top: 65px;")).installAndShow()
           }).btn.w_100.mb_2
         } ++
           col_4.apply {
             BSBtn().BtnPrimary.lbl("Top-Center").callback(implicit fsc => {
-              BSToast2.Simple(<span>Position Top-Center</span>)(loremIpsum).positionTopCenter.onToastContainer(_.withStyle("margin-top: 65px;")).installAndShow()
+              BSToast2.Simple(<span>Position Top-Center</span>)(loremIpsum).positionTopCenter.onToastContainer(_.addStyle("margin-top: 65px;")).installAndShow()
             }).btn.w_100.mb_2
           } ++
           col_4.apply {
             BSBtn().BtnPrimary.lbl("Top-Right").callback(implicit fsc => {
-              BSToast2.Simple(<span>Position Top-Right</span>)(loremIpsum).positionTopRight.onToastContainer(_.withStyle("margin-top: 65px;")).installAndShow()
+              BSToast2.Simple(<span>Position Top-Right</span>)(loremIpsum).positionTopRight.onToastContainer(_.addStyle("margin-top: 65px;")).installAndShow()
             }).btn.w_100.mb_2
           } ++
           col_4.apply {
@@ -84,7 +84,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
           BSBtn().BtnPrimary.lbl("Danger").onclick({
             BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
               .positionTopRight
-              .onToastContainer(_.withStyle("margin-top: 65px;"))
+              .onToastContainer(_.addStyle("margin-top: 65px;"))
               .onToast(_.text_bg_danger.border_0.p_2)
               .onToastHeaderCloseBtn(_.btn_close_white)
               .enableCloseBtn
@@ -95,7 +95,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Dark").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_dark.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -106,7 +106,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Info").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_info.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -117,7 +117,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Light").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_light.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -128,7 +128,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Primary").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_primary.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -139,7 +139,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Secondary").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_secondary.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -150,7 +150,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Success").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_success.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn
@@ -161,7 +161,7 @@ class BootstrapToastPage extends MultipleCodeExamples3Page() {
             BSBtn().BtnPrimary.lbl("Warning").onclick({
               BSToast2.Simple(<span>Primary Style</span>)(<span>Lorem ipsum</span>)
                 .positionTopRight
-                .onToastContainer(_.withStyle("margin-top: 65px;"))
+                .onToastContainer(_.addStyle("margin-top: 65px;"))
                 .onToast(_.text_bg_warning.border_0.p_2)
                 .onToastHeaderCloseBtn(_.btn_close_white)
                 .enableCloseBtn

@@ -24,14 +24,14 @@ class RerenderablePage extends MultipleCodeExamples3Page() {
 
     renderCodeSampleAndAutoClosePreviousOne("Rerenderable from outside") {
       val rerenderer = JS.rerenderableContents(rerenderer => implicit fsc => {
-        div.withStyle(s"height: 100px; width: 300px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(s"Time on server: ${new Date().toString}")
+        div.addStyle(s"height: 100px; width: 300px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(s"Time on server: ${new Date().toString}")
       })
       rerenderer.render() ++
         BSBtn().BtnPrimary.lbl("Re-render").callback(_ => rerenderer.rerender()).btn.w_100
     }
     renderCodeSampleAndAutoClosePreviousOne("Rerenderable from inside the block") {
       JS.rerenderableContents(rerenderer => implicit fsc => {
-        div.withStyle(s"height: 100px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(
+        div.addStyle(s"height: 100px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(
           p.apply(s"Time on server: ${new Date().toString}").mb_2 ++
             BSBtn().BtnSuccess.lbl("Re-render").callback(_ => rerenderer.rerender()).btn.w_100
         )
@@ -40,7 +40,7 @@ class RerenderablePage extends MultipleCodeExamples3Page() {
     }
     renderCodeSampleAndAutoClosePreviousOne("Rerenderable with arguments") {
       val rerenderer = JS.rerenderableContentsP[Option[Int]](rerenderer => implicit fsc => pointsOpt => {
-        div.text_center.fs_1.fw_bolder.withStyle(s"height: 100px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(
+        div.text_center.fs_1.fw_bolder.addStyle(s"height: 100px;background-color: rgb(${math.random() * 80},${math.random() * 80},${math.random() * 80})").text_white.rounded_1.rounded.mx_auto.p_2.my_2.apply(
           pointsOpt.map(_.toString).getOrElse("--")
         )
       })

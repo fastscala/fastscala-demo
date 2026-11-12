@@ -6,7 +6,7 @@ import com.fastscala.components.bootstrap5.utils.BSBtn
 import com.fastscala.components.form7.*
 import com.fastscala.components.form7.fields.*
 import com.fastscala.components.form7.fields.date.F7LocalDateOptField
-import com.fastscala.components.form7.fields.file.F7FileUploadField
+import com.fastscala.components.form7.fields.file.F7FileField
 import com.fastscala.components.form7.fields.html.F7HtmlField
 import com.fastscala.components.form7.fields.layout.{F7ContainerField, F7VerticalField}
 import com.fastscala.components.form7.fields.number.F7IntOptField
@@ -27,7 +27,7 @@ import java.time.LocalDate
 import java.util.Base64
 import scala.xml.NodeSeq
 
-class FileUploadInputExamplePage extends MultipleCodeExamples3Page() {
+class FileInputExamplePage extends MultipleCodeExamples3Page() {
 
   override def pageTitle: String = "File Upload Input Example"
 
@@ -38,11 +38,11 @@ class FileUploadInputExamplePage extends MultipleCodeExamples3Page() {
       div.border.p_2.rounded.apply {
         new Form7 {
 
-          lazy val fileInputField = new F7FileUploadField().label("File upload").multiple(true).previewRenderer(files => implicit fsc => {
+          lazy val fileInputField = new F7FileField().label("File upload").multiple(true).previewRenderer(files => implicit fsc => {
             div.row.overflow_x_auto.apply {
               files.collect({
                 case f if f.name.endsWith("jpg") || f.name.endsWith("png") =>
-                  <div class="col mb-1">{<img src={s"data:${f.contentType};base64, " + Base64.getEncoder.encodeToString(f.bytes)}></img>.d_block.w_100}</div>
+                  <div class="col mb-2">{<img src={s"data:${f.contentType};base64, " + Base64.getEncoder.encodeToString(f.bytes)}></img>.d_block.w_100}</div>
               }).mkNS
             }
           })

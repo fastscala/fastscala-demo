@@ -29,7 +29,7 @@ class CallbacksPage extends MultipleCodeExamples3Page() {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
-          fsc.callback(JS("navigator.userAgent"), userAgent => {
+          fsc.callback(Js("navigator.userAgent"), userAgent => {
             JS.alert(s"User's browser is: $userAgent")
           }).cmd
         }
@@ -39,7 +39,7 @@ class CallbacksPage extends MultipleCodeExamples3Page() {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
-          fsc.callbackJSON(JS("navigator.languages"), json => {
+          fsc.callbackJSON(Js("navigator.languages"), json => {
             println(json.asString)
             val languages: Iterable[String] = json.asArray.map(_.flatMap(_.asString)).getOrElse(Seq())
             JS.alert(s"Supported languages on user's browser are: ${languages.mkString(", ")}")
@@ -60,7 +60,7 @@ class CallbacksPage extends MultipleCodeExamples3Page() {
       <button
         class="btn btn-primary d-block mx-auto"
         onclick={
-          fsc.callbackJSONDecoded[NavigatorData](JS("{language: navigator.language, languages: navigator.languages, platform: navigator.platform, product: navigator.product, productSub: navigator.productSub, userAgent: navigator.userAgent, vendor: navigator.vendor }"), navigatorData => {
+          fsc.callbackJSONDecoded[NavigatorData](Js("{language: navigator.language, languages: navigator.languages, platform: navigator.platform, product: navigator.product, productSub: navigator.productSub, userAgent: navigator.userAgent, vendor: navigator.vendor }"), navigatorData => {
             JS.alert(s"NavigatorData: ${navigatorData.toString}")
           }).cmd}
       >Send browser details to server side as a case class</button>

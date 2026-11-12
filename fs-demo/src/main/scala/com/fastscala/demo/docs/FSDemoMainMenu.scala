@@ -64,7 +64,7 @@ object FSDemoMainMenu
       new RoutingMenuItem("demo", "forms", "field-state")("Field state", () => new FieldStatesPage()),
       new RoutingMenuItem("demo", "forms", "submit-on-enter-on-change")("Submit on enter/change", () => new SaveOnEnterAndOnChangeFormExamplePage()),
       new RoutingMenuItem("demo", "forms", "save-state-in-query-string")("Save state in query string", () => new SaveFormStateInQueryStringExamplePage()),
-      new RoutingMenuItem("demo", "forms", "file-upload")("File Upload", () => new FileUploadInputExamplePage()),
+      new RoutingMenuItem("demo", "forms", "file-upload")("File Upload", () => new FileInputExamplePage()),
       new RoutingMenuItem("demo", "forms", "ace-editor")("Ace Editor Integration", () => new AceEditorFieldPage()),
     ),
     MenuSection("Table6 Library", <i class="bi bi-table"></i>.withColorPrimary)(

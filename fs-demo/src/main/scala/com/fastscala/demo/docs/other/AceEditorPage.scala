@@ -1,6 +1,7 @@
 package com.fastscala.demo.docs.other
 
 import com.fastscala.components.aceeditor.*
+import com.fastscala.components.bootstrap5.widget.Widget
 import com.fastscala.components.chartjs.*
 import com.fastscala.components.chartjs.ChartJsNullable2Option.nullable2Option
 import com.fastscala.components.form7.fields.checkbox.{F7CheckboxField, F7CheckboxOptField}
@@ -11,7 +12,6 @@ import com.fastscala.components.form7.utils.F7FieldForEnum
 import com.fastscala.components.form7.{ChangedField, DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
-import com.fastscala.demo.docs.components.Widget
 import com.fastscala.js.Js
 import com.fastscala.scala_xml.ScalaXmlElemUtils.RichElem
 import com.fastscala.scala_xml.js.{JS, inScriptTag, printBeforeExec}
@@ -126,7 +126,7 @@ class AceEditorPage extends MultipleCodeExamples3Page() {
         }
       }
 
-      aceEditor.render().withStyle("height: 300px;").w_100.border.border_secondary_subtle.bg_white.p_3.mb_3 ++
+      aceEditor.render().addStyle("height: 300px;").w_100.border.border_secondary_subtle.bg_white.p_3.mb_3 ++
         editorOptions.renderWidget() ++
         aceEditor.initialize().onDOMContentLoaded.inScriptTag
     }

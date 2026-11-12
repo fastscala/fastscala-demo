@@ -33,7 +33,7 @@ class ServerSidePushPage extends MultipleCodeExamples3Page() {
 
       h2.apply(s"Calculating the factorial($N)") ++
         <div id={id}></div>.m_2.bg_secondary.p_1
-          .withStyle("font-family: courier; min-height: 100px;") ++
+          .addStyle("font-family: courier; min-height: 100px;") ++
         JS.inScriptTag(fsc.page.initWebSocket())
     }
     closeCodeSample()

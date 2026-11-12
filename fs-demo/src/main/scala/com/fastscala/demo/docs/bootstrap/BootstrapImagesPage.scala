@@ -17,12 +17,12 @@ class BootstrapImagesPage extends MultipleCodeExamples3Page() {
     }
     renderCodeSampleAndAutoClosePreviousOne("Thumbnails") {
       text_center.apply {
-        image.withStyle("max-width: 250px; max-height: 250px;").img_thumbnail
+        image.addStyle("max-width: 250px; max-height: 250px;").img_thumbnail
       }
     }
     renderCodeSampleAndAutoClosePreviousOne("Rounded") {
       text_center.apply {
-        image.withStyle("max-width: 250px; max-height: 250px;").rounded
+        image.addStyle("max-width: 250px; max-height: 250px;").rounded
       }
     }
     closeCodeSample()

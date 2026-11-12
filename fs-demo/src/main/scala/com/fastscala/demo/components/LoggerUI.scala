@@ -113,7 +113,7 @@ class LoggerUIImpl(val title: String, var total: Option[Double] = None)(implicit
       total.map(_ => {
         progressBarRerenderer.render(0d)
       }).getOrElse(NodeSeq.Empty) ++
-        div.withId(loggerOutputId).withStyle("min-height: 400px; background: #f5f5f5; max-height: 800px; overflow: auto;").apply {
+        div.withId(loggerOutputId).addStyle("min-height: 400px; background: #f5f5f5; max-height: 800px; overflow: auto;").apply {
           ""
         }
     }

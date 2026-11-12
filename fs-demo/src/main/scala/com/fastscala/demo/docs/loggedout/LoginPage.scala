@@ -22,7 +22,7 @@ class LoginPage extends LoggedoutBasePage {
   override def pageTitle: String = "FastScala Demo Login"
 
   override def renderBody()(implicit fsc: FSContext): Elem =
-    super.renderBody().d_flex.align_content_center.py_4.withStyle("background-image: url('/static/images/pexels-pixabay-315938.jpg'); background-size: cover;background-position: center;")
+    super.renderBody().d_flex.align_content_center.py_4.addStyle("background-image: url('/static/images/pexels-pixabay-315938.jpg'); background-size: cover;background-position: center;")
 
   override def renderPageContents()(implicit fsc: FSContext): NodeSeq = {
     import com.fastscala.demo.docs.forms.DefaultFSDemoBSForm7Renderers.*

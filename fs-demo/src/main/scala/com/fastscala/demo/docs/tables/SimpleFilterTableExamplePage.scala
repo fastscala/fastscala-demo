@@ -6,6 +6,7 @@ import com.fastscala.components.form7.{DefaultForm7, F7Field}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.docs.MultipleCodeExamples3Page
 import com.fastscala.demo.testdata.{CountriesData, Country}
+import com.fastscala.js.Js
 import com.fastscala.scala_xml.js.JS
 
 class SimpleFilterTableExamplePage extends MultipleCodeExamples3Page() {
@@ -25,7 +26,7 @@ class SimpleFilterTableExamplePage extends MultipleCodeExamples3Page() {
         //        })
         // Option B:
         .additionalAttrs(() => Seq(
-          "oninput" -> fsc.callback(JS("this.value"), value => {
+          "oninput" -> fsc.callback(Js("this.value"), value => {
             countryNameFilter = value
             table.rerender()
           }).cmd

@@ -1,5 +1,6 @@
 package com.fastscala.demo.docs.components
 
+import com.fastscala.components.bootstrap5.widget.Widget
 import com.fastscala.core.FSContext
 import com.fastscala.components.form5.{Form5, FormRenderer}
 

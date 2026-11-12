@@ -44,7 +44,7 @@ class User(
       case (photoFileName, photoBytes) =>
         def imageData = s"data:${Files.probeContentType(new File(photoFileName).toPath())};base64,${Base64.getEncoder.encodeToString(photoBytes)}"
 
-        div.withStyle(
+        div.addStyle(
           s"background-image: url('$imageData');background-size: cover;background-position: center; box-shadow: inset 0 0 1em 0em #00000029; aspect-ratio: 1;"
         ).d_inline_block
     }).getOrElse({

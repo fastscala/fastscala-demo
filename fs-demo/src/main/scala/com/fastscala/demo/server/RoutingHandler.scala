@@ -85,7 +85,7 @@ class RoutingHandler(implicit fss: FSSystem) extends ScalaXmlRoutingHandlerHelpe
       }))
     } else if (req.getHttpURI.getPath == "/basic4") {
       Some(session.createPage(implicit fsc => {
-        val callback = fsc.callback(JS("document.getElementById('myInput').value"), str => {
+        val callback = fsc.callback(Js("document.getElementById('myInput').value"), str => {
           println(s"input has value: '$str'")
           JS.alert(s"The server has received your input ('$str') at ${new Date().toGMTString}")
         })

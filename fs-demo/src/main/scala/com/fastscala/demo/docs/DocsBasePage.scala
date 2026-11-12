@@ -2,6 +2,7 @@ package com.fastscala.demo.docs
 
 import com.fastscala.components.bootstrap5.helpers.BSHelpers
 import com.fastscala.components.bootstrap5.utils.BSBtn
+import com.fastscala.components.langpack.{FSComponentsLangPack, FSComponentsLangPackEN}
 import com.fastscala.core.FSContext
 import com.fastscala.demo.db.CurrentUser
 import com.fastscala.demo.docs.navigation.DefaultBSMenuRenderer
@@ -20,6 +21,7 @@ trait DocsBasePage extends FSPageImplWithFSContext {
 
   import BSHelpers.*
 
+  implicit val langPack: FSComponentsLangPackEN = FSComponentsLangPack.Default.EN
   val config = ConfigFactory.load()
 
   def navBarTopRight()(implicit fsc: FSContext): NodeSeq =
@@ -41,7 +43,7 @@ trait DocsBasePage extends FSPageImplWithFSContext {
     FSDemoMainMenu.render()(using fsc, DefaultBSMenuRenderer.renderer) ++ CurrentUser().map(user => {
       hr ++
         p_3.d_flex.align_items_center.apply {
-          a.apply(user.miniHeadshotOrPlaceholderRendered.withStyle("width: 55px;border-radius: 55px;")) ++
+          a.apply(user.miniHeadshotOrPlaceholderRendered.addStyle("width: 55px;border-radius: 55px;")) ++
             a.text_decoration_none.fw_bold.text_warning.ms_2.apply(user.fullName)
         }
     }).getOrElse(Empty)

@@ -59,7 +59,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
         },
       )
 
-      jsTree.render().withStyle("height: 600px; overflow: auto;")
+      jsTree.render().addStyle("height: 600px; overflow: auto;")
         ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
     }
     renderCodeSampleAndAutoClosePreviousOne("Countries (dedicated classes)", <p>Same functionality but with dedicated classes for RootNode, CountryNode, RegionNode and CityNode.</p>) {
@@ -121,7 +121,7 @@ class JSTreePage extends MultipleCodeExamples3Page() {
         },
       )
 
-      jsTree.render().withStyle("height: 600px; overflow: auto;")
+      jsTree.render().addStyle("height: 600px; overflow: auto;")
         ++ jsTree.init(onSelect = onSelect).onDOMContentLoaded.inScriptTag
     }
     renderCodeSampleAndAutoClosePreviousOne("With menu") {
